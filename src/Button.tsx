@@ -14,7 +14,7 @@ export type Props = {
   /** Button kind */
   kind?: "default" | "primary" | "danger"
 
-  onClick?: () => { }
+  onClick?: () => void;
 }
 
 // Component

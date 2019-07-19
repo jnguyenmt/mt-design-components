@@ -11,7 +11,7 @@ export type Props = {
 }
 
 // Component
-export const Tooltip: React.FC<Props> = ({
+const Tooltip: React.FC<Props> = ({
   arrow = "left",
   error,
   children
@@ -20,6 +20,8 @@ export const Tooltip: React.FC<Props> = ({
     {children}
   </StyledTooltip>
 )
+
+export default Tooltip;
 
 // Styling
 const StyledTooltip = styled.span`

@@ -7,7 +7,7 @@ export type Props = {
 }
 
 // Component
-export const Title = (props: React.ComponentProps<"h1"> & Props): JSX.Element => {
+const Title = (props: React.ComponentProps<"h1"> & Props): JSX.Element => {
     const {text, className, ...rest} = props;
     // preserve given class value/s by tacking them onto our guaranteed class/s
     return (
@@ -19,3 +19,5 @@ export const Title = (props: React.ComponentProps<"h1"> & Props): JSX.Element =>
         </h1>
     )
 }
+
+export default Title;

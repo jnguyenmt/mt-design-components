@@ -11,4 +11,5 @@ export declare type Props = {
     /** Change handler */
     onChange?: any;
 };
-export declare const Input: React.FC<Props>;
+declare const Input: React.FC<Props>;
+export default Input;

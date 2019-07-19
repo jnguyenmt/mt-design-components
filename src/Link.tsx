@@ -10,7 +10,7 @@ export type Props = {
 }
 
 // Component
-export const Link: React.FC<Props> = ({
+const Link: React.FC<Props> = ({
   text,
   url,
   onClick
@@ -19,6 +19,8 @@ export const Link: React.FC<Props> = ({
     {text}
   </StyledButton>
 )
+
+export default Link;
 
 // Styles
 const StyledButton = styled.a`

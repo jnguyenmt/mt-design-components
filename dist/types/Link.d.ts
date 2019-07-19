@@ -5,4 +5,5 @@ export declare type Props = {
     url?: string;
     onClick?: () => {};
 };
-export declare const Link: React.FC<Props>;
+declare const Link: React.FC<Props>;
+export default Link;

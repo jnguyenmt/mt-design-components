@@ -5,4 +5,5 @@ export declare type Props = {
     /** Set error state  */
     error?: boolean;
 };
-export declare const Tooltip: React.FC<Props>;
+declare const Tooltip: React.FC<Props>;
+export default Tooltip;

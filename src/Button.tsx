@@ -17,7 +17,7 @@ export type Props = {
 }
 
 // Component
-export const Button: React.FC<Props> = ({
+const Button: React.FC<Props> = ({
   text,
   fluid,
   disabled,
@@ -31,7 +31,9 @@ export const Button: React.FC<Props> = ({
   >
     {text || children}
   </StyledButton>
-)
+);
+
+export default Button;
 
 // Styles
 const StyledButton = styled.button`

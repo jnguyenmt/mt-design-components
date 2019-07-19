@@ -7,4 +7,5 @@ export declare type Props = {
     /** Click handler */
     onClick?: React.MouseEventHandler<HTMLDivElement>;
 };
-export declare const Toggle: React.FC<Props>;
+declare const Toggle: React.FC<Props>;
+export default Toggle;

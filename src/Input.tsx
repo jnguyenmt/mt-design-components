@@ -20,7 +20,7 @@ export type Props = {
 }
 
 // Component
-export const Input: React.FC<Props> = ({
+const Input: React.FC<Props> = ({
   value,
   placeholder,
   error,
@@ -35,6 +35,8 @@ export const Input: React.FC<Props> = ({
     onChange={onChange}
   />
 )
+
+export default Input;
 
 // Styles
 const StyledInput = styled.input`

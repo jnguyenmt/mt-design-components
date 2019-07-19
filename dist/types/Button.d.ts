@@ -9,4 +9,5 @@ export declare type Props = {
     /** Button kind */
     kind?: "default" | "primary" | "danger";
 };
-export declare const Button: React.FC<Props>;
+declare const Button: React.FC<Props>;
+export default Button;

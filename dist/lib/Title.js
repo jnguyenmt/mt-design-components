@@ -24,9 +24,10 @@ var __rest = (this && this.__rest) || function (s, e) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 // Component
-exports.Title = function (props) {
+var Title = function (props) {
     var text = props.text, className = props.className, rest = __rest(props, ["text", "className"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     return (React.createElement("h1", __assign({ className: "title " + className }, rest), text));
 };
+exports.default = Title;
 //# sourceMappingURL=Title.js.map

@@ -14,12 +14,14 @@ export type Props = {
 }
 
 // Component
-export const Toggle: React.FC<Props> = ({ disabled, on, onClick }) => (
+const Toggle: React.FC<Props> = ({ disabled, on, onClick }) => (
   <StyledToggle
     className={`${disabled ? "disabled" : ""} ${on ? "on" : ""}`}
     onClick={onClick}
   />
 )
+
+export default Toggle;
 
 // Styling
 const StyledToggle = styled.span`

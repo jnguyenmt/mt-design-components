@@ -1,46 +1,5 @@
 import styled from 'styled-components';
 
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-var __assign = function() {
-    __assign = Object.assign || function __assign(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-
-function __rest(s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-}
-
-function __makeTemplateObject(cooked, raw) {
-    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
-    return cooked;
-}
-
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
 }
@@ -2111,12 +2070,50 @@ var react_2 = react.cloneElement;
 
 // Component
 var Button = function (_a) {
-    var text = _a.text, fluid = _a.fluid, disabled = _a.disabled, children = _a.children, kind = _a.kind;
-    return (react_1(StyledButton, { className: (fluid ? "fluid" : "") + " " + (disabled ? "disabled" : "") + " " + (kind ? kind : "") }, text || children));
+    var text = _a.text, fluid = _a.fluid, disabled = _a.disabled, children = _a.children, kind = _a.kind, onClick = _a.onClick;
+    return (react_1("button", { className: "app-button " + (fluid ? "fluid" : "") + " " + (disabled ? "disabled" : "") + " " + (kind ? kind : ""), onClick: onClick }, text || children));
 };
-// Styles
-var StyledButton = styled.button(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  border-radius: 4px;\n  border: none;\n  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);\n  font-size: 15px;\n  font-weight: 600;\n  letter-spacing: -0.2px;\n  line-height: 1.1;\n  margin: 0;\n  text-align: center;\n  &:hover {\n    transition: box-shadow 0.2s, color 0.2s, background-color 0.2s;\n    box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.1),\n      0px 1px 1px 0px rgba(0, 0, 0, 0.05);\n  }\n  &:active {\n    transition: none;\n    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),\n      inset 0px 0px 0px 1px hsla(0, 0%, 0%, 0.05);\n  }\n  &.fluid {\n    width: 100%;\n  }\n  &.disabled {\n    pointer-events: none;\n  }\n\n  /* Primary styles */\n  &.primary {\n    color: #fff;\n  }\n  &.primary:hover {\n    color: rgba(255, 255, 255, 0.8);\n    box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.2),\n      0px 1px 1px 0px rgba(0, 0, 0, 0.15);\n  }\n  &.primary:active {\n    color: rgba(255, 255, 255, 0.7);\n    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.2),\n      inset 0px 0px 0px 1px hsla(0, 0%, 0%, 0.05);\n  }\n\n  /* Danger styles */\n  &.danger {\n    color: #fff;\n  }\n  &.danger:hover {\n    color: rgba(255, 255, 255, 0.8);\n    box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.2),\n      0px 1px 1px 0px rgba(0, 0, 0, 0.15);\n  }\n  &.danger:active {\n    color: rgba(255, 255, 255, 0.6);\n    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.2),\n      inset 0px 0px 0px 1px hsla(0, 0%, 0%, 0.05);\n  }\n"], ["\n  border-radius: 4px;\n  border: none;\n  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);\n  font-size: 15px;\n  font-weight: 600;\n  letter-spacing: -0.2px;\n  line-height: 1.1;\n  margin: 0;\n  text-align: center;\n  &:hover {\n    transition: box-shadow 0.2s, color 0.2s, background-color 0.2s;\n    box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.1),\n      0px 1px 1px 0px rgba(0, 0, 0, 0.05);\n  }\n  &:active {\n    transition: none;\n    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),\n      inset 0px 0px 0px 1px hsla(0, 0%, 0%, 0.05);\n  }\n  &.fluid {\n    width: 100%;\n  }\n  &.disabled {\n    pointer-events: none;\n  }\n\n  /* Primary styles */\n  &.primary {\n    color: #fff;\n  }\n  &.primary:hover {\n    color: rgba(255, 255, 255, 0.8);\n    box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.2),\n      0px 1px 1px 0px rgba(0, 0, 0, 0.15);\n  }\n  &.primary:active {\n    color: rgba(255, 255, 255, 0.7);\n    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.2),\n      inset 0px 0px 0px 1px hsla(0, 0%, 0%, 0.05);\n  }\n\n  /* Danger styles */\n  &.danger {\n    color: #fff;\n  }\n  &.danger:hover {\n    color: rgba(255, 255, 255, 0.8);\n    box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.2),\n      0px 1px 1px 0px rgba(0, 0, 0, 0.15);\n  }\n  &.danger:active {\n    color: rgba(255, 255, 255, 0.6);\n    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.2),\n      inset 0px 0px 0px 1px hsla(0, 0%, 0%, 0.05);\n  }\n"])));
-var templateObject_1;
+
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+}
+
+function __makeTemplateObject(cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+}
 
 // Component
 var Input = function (_a) {
@@ -2124,8 +2121,8 @@ var Input = function (_a) {
     return (react_1(StyledInput, { type: "text", value: value, placeholder: placeholder, className: (error ? "error" : "") + " " + (disabled ? "disabled" : ""), onChange: onChange }));
 };
 // Styles
-var StyledInput = styled.input(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(["\n  border-radius: 4px;\n  border: none;\n  box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),\n  font-size: 15px;\n  font-weight: 500;\n  margin: 0;\n  outline: 0;\n  overflow: visible;\n  transition: box-shadow 0.2s;\n  width: 100%;\n\n  &:focus {\n    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),\n  }\n  &:focus::placeholder {\n    opacity: 0.5;\n    transition: opacity 0.2s;\n  }\n\n  &.disabled {\n    pointer-events: none;\n  }\n\n  &.error {\n    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),\n  }\n  &.error:focus {\n    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),\n  }\n  &.error::placeholder {\n    opacity: 0.5;\n  }\n"], ["\n  border-radius: 4px;\n  border: none;\n  box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),\n  font-size: 15px;\n  font-weight: 500;\n  margin: 0;\n  outline: 0;\n  overflow: visible;\n  transition: box-shadow 0.2s;\n  width: 100%;\n\n  &:focus {\n    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),\n  }\n  &:focus::placeholder {\n    opacity: 0.5;\n    transition: opacity 0.2s;\n  }\n\n  &.disabled {\n    pointer-events: none;\n  }\n\n  &.error {\n    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),\n  }\n  &.error:focus {\n    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),\n  }\n  &.error::placeholder {\n    opacity: 0.5;\n  }\n"])));
-var templateObject_1$1;
+var StyledInput = styled.input(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  border-radius: 4px;\n  border: none;\n  box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),\n  font-size: 15px;\n  font-weight: 500;\n  margin: 0;\n  outline: 0;\n  overflow: visible;\n  transition: box-shadow 0.2s;\n  width: 100%;\n\n  &:focus {\n    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),\n  }\n  &:focus::placeholder {\n    opacity: 0.5;\n    transition: opacity 0.2s;\n  }\n\n  &.disabled {\n    pointer-events: none;\n  }\n\n  &.error {\n    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),\n  }\n  &.error:focus {\n    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),\n  }\n  &.error::placeholder {\n    opacity: 0.5;\n  }\n"], ["\n  border-radius: 4px;\n  border: none;\n  box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),\n  font-size: 15px;\n  font-weight: 500;\n  margin: 0;\n  outline: 0;\n  overflow: visible;\n  transition: box-shadow 0.2s;\n  width: 100%;\n\n  &:focus {\n    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),\n  }\n  &:focus::placeholder {\n    opacity: 0.5;\n    transition: opacity 0.2s;\n  }\n\n  &.disabled {\n    pointer-events: none;\n  }\n\n  &.error {\n    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),\n  }\n  &.error:focus {\n    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),\n  }\n  &.error::placeholder {\n    opacity: 0.5;\n  }\n"])));
+var templateObject_1;
 
 // Component
 var Toggle = function (_a) {
@@ -2133,8 +2130,8 @@ var Toggle = function (_a) {
     return (react_1(StyledToggle, { className: (disabled ? "disabled" : "") + " " + (on ? "on" : ""), onClick: onClick }));
 };
 // Styling
-var StyledToggle = styled.span(templateObject_1$2 || (templateObject_1$2 = __makeTemplateObject(["\n  border-radius: 18px;\n  box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),\n  cursor: pointer;\n  display: block;\n  font-size: 14px;\n  height: 36px;\n  position: relative;\n  transition: background-color 0.2s ease, box-shadow 0.2s ease;\n  width: 64px;\n\n  &:before {\n    content: \"\";\n    display: block;\n    position: absolute;\n    height: 30px;\n    width: 30px;\n    border-radius: 100%;\n    top: 3px;\n    left: 3px;\n    transition: left 0.2s ease;\n    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1),\n      0px 1px 2px 0px hsla(0, 0%, 0%, 0.08);\n  }\n  &.on:before {\n    left: 31px;\n  }\n  &.disabled {\n    pointer-events: none;\n    opacity: 0.5;\n  }\n"], ["\n  border-radius: 18px;\n  box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),\n  cursor: pointer;\n  display: block;\n  font-size: 14px;\n  height: 36px;\n  position: relative;\n  transition: background-color 0.2s ease, box-shadow 0.2s ease;\n  width: 64px;\n\n  &:before {\n    content: \"\";\n    display: block;\n    position: absolute;\n    height: 30px;\n    width: 30px;\n    border-radius: 100%;\n    top: 3px;\n    left: 3px;\n    transition: left 0.2s ease;\n    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1),\n      0px 1px 2px 0px hsla(0, 0%, 0%, 0.08);\n  }\n  &.on:before {\n    left: 31px;\n  }\n  &.disabled {\n    pointer-events: none;\n    opacity: 0.5;\n  }\n"])));
-var templateObject_1$2;
+var StyledToggle = styled.span(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(["\n  border-radius: 18px;\n  box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),\n  cursor: pointer;\n  display: block;\n  font-size: 14px;\n  height: 36px;\n  position: relative;\n  transition: background-color 0.2s ease, box-shadow 0.2s ease;\n  width: 64px;\n\n  &:before {\n    content: \"\";\n    display: block;\n    position: absolute;\n    height: 30px;\n    width: 30px;\n    border-radius: 100%;\n    top: 3px;\n    left: 3px;\n    transition: left 0.2s ease;\n    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1),\n      0px 1px 2px 0px hsla(0, 0%, 0%, 0.08);\n  }\n  &.on:before {\n    left: 31px;\n  }\n  &.disabled {\n    pointer-events: none;\n    opacity: 0.5;\n  }\n"], ["\n  border-radius: 18px;\n  box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),\n  cursor: pointer;\n  display: block;\n  font-size: 14px;\n  height: 36px;\n  position: relative;\n  transition: background-color 0.2s ease, box-shadow 0.2s ease;\n  width: 64px;\n\n  &:before {\n    content: \"\";\n    display: block;\n    position: absolute;\n    height: 30px;\n    width: 30px;\n    border-radius: 100%;\n    top: 3px;\n    left: 3px;\n    transition: left 0.2s ease;\n    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1),\n      0px 1px 2px 0px hsla(0, 0%, 0%, 0.08);\n  }\n  &.on:before {\n    left: 31px;\n  }\n  &.disabled {\n    pointer-events: none;\n    opacity: 0.5;\n  }\n"])));
+var templateObject_1$1;
 
 // Component
 var Tooltip = function (_a) {
@@ -2142,17 +2139,17 @@ var Tooltip = function (_a) {
     return (react_1(StyledTooltip, { className: (error ? "error" : "") + " " + (arrow ? arrow : "") }, children));
 };
 // Styling
-var StyledTooltip = styled.span(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject(["\n  font-size: 11px;\n  color: #fff;\n  padding: 5px;\n  border-radius: 3px;\n  font-weight: 600;\n  position: relative;\n  display: inline-block;\n\n  &:before {\n    content: \"\";\n    position: absolute;\n    width: 0;\n    height: 0;\n  }\n  &.top:before,\n  &.bottom:before {\n    border-left: 4px solid transparent;\n    border-right: 4px solid transparent;\n    left: 50%;\n    transform: translateX(-2px);\n  }\n  &.top:before {\n    top: -4px;\n  }\n  &.bottom:before {\n    bottom: -4px;\n  }\n  &.right:before,\n  &.left:before {\n    top: 7px;\n    border-top: 4px solid transparent;\n    border-bottom: 4px solid transparent;\n  }\n  &.right:before {\n    right: -4px;\n  }\n  &.left:before {\n    left: -4px;\n  }\n"], ["\n  font-size: 11px;\n  color: #fff;\n  padding: 5px;\n  border-radius: 3px;\n  font-weight: 600;\n  position: relative;\n  display: inline-block;\n\n  &:before {\n    content: \"\";\n    position: absolute;\n    width: 0;\n    height: 0;\n  }\n  &.top:before,\n  &.bottom:before {\n    border-left: 4px solid transparent;\n    border-right: 4px solid transparent;\n    left: 50%;\n    transform: translateX(-2px);\n  }\n  &.top:before {\n    top: -4px;\n  }\n  &.bottom:before {\n    bottom: -4px;\n  }\n  &.right:before,\n  &.left:before {\n    top: 7px;\n    border-top: 4px solid transparent;\n    border-bottom: 4px solid transparent;\n  }\n  &.right:before {\n    right: -4px;\n  }\n  &.left:before {\n    left: -4px;\n  }\n"])));
-var templateObject_1$3;
+var StyledTooltip = styled.span(templateObject_1$2 || (templateObject_1$2 = __makeTemplateObject(["\n  font-size: 11px;\n  color: #fff;\n  padding: 5px;\n  border-radius: 3px;\n  font-weight: 600;\n  position: relative;\n  display: inline-block;\n\n  &:before {\n    content: \"\";\n    position: absolute;\n    width: 0;\n    height: 0;\n  }\n  &.top:before,\n  &.bottom:before {\n    border-left: 4px solid transparent;\n    border-right: 4px solid transparent;\n    left: 50%;\n    transform: translateX(-2px);\n  }\n  &.top:before {\n    top: -4px;\n  }\n  &.bottom:before {\n    bottom: -4px;\n  }\n  &.right:before,\n  &.left:before {\n    top: 7px;\n    border-top: 4px solid transparent;\n    border-bottom: 4px solid transparent;\n  }\n  &.right:before {\n    right: -4px;\n  }\n  &.left:before {\n    left: -4px;\n  }\n"], ["\n  font-size: 11px;\n  color: #fff;\n  padding: 5px;\n  border-radius: 3px;\n  font-weight: 600;\n  position: relative;\n  display: inline-block;\n\n  &:before {\n    content: \"\";\n    position: absolute;\n    width: 0;\n    height: 0;\n  }\n  &.top:before,\n  &.bottom:before {\n    border-left: 4px solid transparent;\n    border-right: 4px solid transparent;\n    left: 50%;\n    transform: translateX(-2px);\n  }\n  &.top:before {\n    top: -4px;\n  }\n  &.bottom:before {\n    bottom: -4px;\n  }\n  &.right:before,\n  &.left:before {\n    top: 7px;\n    border-top: 4px solid transparent;\n    border-bottom: 4px solid transparent;\n  }\n  &.right:before {\n    right: -4px;\n  }\n  &.left:before {\n    left: -4px;\n  }\n"])));
+var templateObject_1$2;
 
 // Component
 var Link = function (_a) {
     var text = _a.text, url = _a.url, onClick = _a.onClick;
-    return (react_1(StyledButton$1, { href: url, onClick: onClick }, text));
+    return (react_1(StyledButton, { href: url, onClick: onClick }, text));
 };
 // Styles
-var StyledButton$1 = styled.a(templateObject_1$4 || (templateObject_1$4 = __makeTemplateObject(["\n  font-size: 12px;\n"], ["\n  font-size: 12px;\n"])));
-var templateObject_1$4;
+var StyledButton = styled.a(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject(["\n  font-size: 12px;\n"], ["\n  font-size: 12px;\n"])));
+var templateObject_1$3;
 
 // Component
 var Title = function (props) {
@@ -2160,22 +2157,6 @@ var Title = function (props) {
     // preserve given class value/s by tacking them onto our guaranteed class/s
     return (react_1("h1", __assign({ className: "title " + className }, rest), text));
 };
-
-// Import here Polyfills if needed. Recommended core-js (npm i -D core-js)
-// import Button from "./Button"
-// import Input from "./Input"
-// import Toggle from "./Toggle"
-// import Tooltip from "./Tooltip"
-// import Link from "./Link"
-// import Title from "./Title"
-// export {
-//   Button,
-//   Input,
-//   Toggle,
-//   Tooltip,
-//   Link,
-//   Title
-// }
 
 export { Button, Input, Toggle, Tooltip, Link, Title };
 //# sourceMappingURL=mt-design-components.es5.js.map

@@ -1,0 +1,22 @@
+{
+	"main": "dist/index.js",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/react": "^16.4.16"
+	},
+	"peerDependencies": {
+		"framer": "^0.10 || ^1",
+		"react": "^16.3.0",
+		"react-dom": "^16.3.0"
+	},
+	"version": "1.3.0",
+	"dependencies": {
+		"styled-components": "^4.2.0"
+	},
+	"framer": {
+		"id": "6d400c1c-361a-4a81-b592-45c1282fa0b5",
+		"displayName": "Designs"
+	},
+	"name": "@framer/justinnguyen.designs",
+	"author": "Justin Nguyen"
+}

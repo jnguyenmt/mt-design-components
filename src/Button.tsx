@@ -1,5 +1,4 @@
 import * as React from "react"
-import styled from "styled-components"
 
 // Types
 export type Props = {
@@ -14,6 +13,8 @@ export type Props = {
 
   /** Button kind */
   kind?: "default" | "primary" | "danger"
+
+  onClick?: () => { }
 }
 
 // Component
@@ -22,74 +23,17 @@ const Button: React.FC<Props> = ({
   fluid,
   disabled,
   children,
-  kind
+  kind,
+  onClick
 }) => (
-  <StyledButton
-    className={`${fluid ? "fluid" : ""} ${disabled ? "disabled" : ""} ${
+  <button
+    className={`app-button ${fluid ? "fluid" : ""} ${disabled ? "disabled" : ""} ${
       kind ? kind : ""
     }`}
+    onClick={onClick}
   >
     {text || children}
-  </StyledButton>
+  </button>
 );
 
 export default Button;
-
-// Styles
-const StyledButton = styled.button`
-  border-radius: 4px;
-  border: none;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: -0.2px;
-  line-height: 1.1;
-  margin: 0;
-  text-align: center;
-  &:hover {
-    transition: box-shadow 0.2s, color 0.2s, background-color 0.2s;
-    box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.1),
-      0px 1px 1px 0px rgba(0, 0, 0, 0.05);
-  }
-  &:active {
-    transition: none;
-    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),
-      inset 0px 0px 0px 1px hsla(0, 0%, 0%, 0.05);
-  }
-  &.fluid {
-    width: 100%;
-  }
-  &.disabled {
-    pointer-events: none;
-  }
-
-  /* Primary styles */
-  &.primary {
-    color: #fff;
-  }
-  &.primary:hover {
-    color: rgba(255, 255, 255, 0.8);
-    box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.2),
-      0px 1px 1px 0px rgba(0, 0, 0, 0.15);
-  }
-  &.primary:active {
-    color: rgba(255, 255, 255, 0.7);
-    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.2),
-      inset 0px 0px 0px 1px hsla(0, 0%, 0%, 0.05);
-  }
-
-  /* Danger styles */
-  &.danger {
-    color: #fff;
-  }
-  &.danger:hover {
-    color: rgba(255, 255, 255, 0.8);
-    box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.2),
-      0px 1px 1px 0px rgba(0, 0, 0, 0.15);
-  }
-  &.danger:active {
-    color: rgba(255, 255, 255, 0.6);
-    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.2),
-      inset 0px 0px 0px 1px hsla(0, 0%, 0%, 0.05);
-  }
-`

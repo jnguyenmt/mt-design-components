@@ -8,6 +8,7 @@ export declare type Props = {
     disabled?: boolean;
     /** Button kind */
     kind?: "default" | "primary" | "danger";
+    onClick?: () => {};
 };
 declare const Button: React.FC<Props>;
 export default Button;

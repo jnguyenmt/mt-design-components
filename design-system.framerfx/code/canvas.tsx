@@ -1,10 +1,6 @@
 // WARNING: this file is auto generated, any changes will be lost
 import { createDesignComponent, CanvasStore } from "framer"
 const canvas = CanvasStore.shared(); // CANVAS_DATA;
-export const Po_link = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_vEhtVA9Mg", {}, 24,24);
-export const Po_linked = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_uu01fE9FM", {}, 27,16);
-export const Po_match_green = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_A2crq9dV7", {}, 24,24);
-export const Po_mismatch = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_EgPgiHdWn", {}, 24,24);
 
 export const colors = Object.freeze({
     /** #FFFFFF */

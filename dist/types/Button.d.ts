@@ -1,4 +1,5 @@
 import * as React from "react";
+import './Button.css';
 export declare type Props = {
     /** Optional string that can be used to set the button value */
     text?: string;
@@ -8,7 +9,7 @@ export declare type Props = {
     disabled?: boolean;
     /** Button kind */
     kind?: "default" | "primary" | "danger";
-    onClick?: () => {};
+    onClick?: () => void;
 };
 declare const Button: React.FC<Props>;
 export default Button;

@@ -1,7 +1,7 @@
 .app-button {
   display: inline-block;
   cursor: pointer;
-  color: black;
+  color: red;
   font-size: 14px;
   line-height: 20px;
   vertical-align: middle;

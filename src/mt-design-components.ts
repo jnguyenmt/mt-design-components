@@ -4,3 +4,4 @@ export { default as Toggle, Props as ToggleProps } from './Toggle';
 export { default as Tooltip, Props as TooltipProps } from './Tooltip';
 export { default as Link, Props as LinkProps } from './Link';
 export { default as Title, Props as TitleProps } from './Title';
+export { default as InputField, Props as InputFieldProps } from './InputField';

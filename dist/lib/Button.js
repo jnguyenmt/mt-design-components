@@ -1,10 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = require("react");
+const React = require("react");
+require("./Button.css");
 // Component
-var Button = function (_a) {
-    var text = _a.text, fluid = _a.fluid, disabled = _a.disabled, children = _a.children, kind = _a.kind, onClick = _a.onClick;
-    return (React.createElement("button", { className: "app-button " + (fluid ? "fluid" : "") + " " + (disabled ? "disabled" : "") + " " + (kind ? kind : ""), onClick: onClick }, text || children));
-};
+const Button = ({ text, fluid, disabled, children, kind, onClick }) => (React.createElement("button", { className: `app-button ${fluid ? "fluid" : ""} ${disabled ? "disabled" : ""} ${kind ? kind : ""}`, onClick: onClick }, text || children));
 exports.default = Button;
 //# sourceMappingURL=Button.js.map

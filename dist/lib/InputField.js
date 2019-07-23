@@ -11,12 +11,13 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = require("react");
-// Component
-const Title = (props) => {
-    const { text, className } = props, rest = __rest(props, ["text", "className"]);
+const react_1 = require("react");
+const stringUtils_1 = require("./utils/stringUtils");
+require("./inputField.css");
+exports.InputField = (props) => {
+    const { className } = props, rest = __rest(props, ["className"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
-    return (React.createElement("h1", Object.assign({ className: `title ${className}` }, rest), text));
+    const givenClasses = stringUtils_1.getAppendAttributeValues(props.className);
+    return (react_1.default.createElement("input", Object.assign({ className: "input-field" + givenClasses }, rest)));
 };
-exports.default = Title;
-//# sourceMappingURL=Title.js.map
+//# sourceMappingURL=InputField.js.map

@@ -4,6 +4,7 @@ import sourceMaps from 'rollup-plugin-sourcemaps'
 import camelCase from 'lodash.camelcase'
 import typescript from 'rollup-plugin-typescript2'
 import json from 'rollup-plugin-json'
+import postcss from 'rollup-plugin-postcss'
 
 const pkg = require('./package.json')
 
@@ -35,6 +36,9 @@ export default {
 
       }
     ),
+    postcss({
+      extensions: ['.css', '.sss', '.pcss']
+    }),
     // Allow node_modules resolution, so you can use 'external' to control
     // which external modules to include in the bundle
     // https://github.com/rollup/rollup-plugin-node-resolve#usage

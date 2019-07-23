@@ -12,4 +12,6 @@ var Link_1 = require("./Link");
 exports.Link = Link_1.default;
 var Title_1 = require("./Title");
 exports.Title = Title_1.default;
+var InputField_1 = require("./InputField");
+exports.InputField = InputField_1.default;
 //# sourceMappingURL=mt-design-components.js.map

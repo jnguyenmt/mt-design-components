@@ -2095,7 +2095,7 @@ function styleInject(css, ref) {
   }
 }
 
-var css = ".app-button {\n  display: inline-block;\n  cursor: pointer;\n  color: black;\n  font-size: 14px;\n  line-height: 20px;\n  vertical-align: middle;\n  border-radius: 4px;\n  border: 1px solid #cccccc;\n  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);\n  text-decoration: none;\n  text-align: center;\n  margin: 0;\n  padding: 4px 12px;\n  background: linear-gradient(\n      to bottom,\n      var(--color4-button) 0%,\n      var(--color4-button-dark-fade) 84%);\n      /* hsl(var(--color1-primary-h), var(--color1-primary-s), calc(var(--color1-primary-l) - 6%)) 84%);  */\n      /* to #72bf44 */\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);\n}\n.app-button:hover {\n  background: linear-gradient(\n      to bottom,\n      var(--color4-button-dark-fade) 0%,\n      var(--color4-button) 84%);\n}\n.app-button:focus {\n  outline: 5px auto -webkit-focus-ring-color;\n  outline-offset: -2px;\n}\n.app-button:active {\n  outline: 0;\n  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05)\n}\n.app-button[disabled] {\n  background: linear-gradient(to bottom, #eeeeee 0%, #dddddd 84%);\n  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);\n  color: #888888;\n}\n";
+var css = ".app-button {\n  display: inline-block;\n  cursor: pointer;\n  color: red;\n  font-size: 14px;\n  line-height: 20px;\n  vertical-align: middle;\n  border-radius: 4px;\n  border: 1px solid #cccccc;\n  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);\n  text-decoration: none;\n  text-align: center;\n  margin: 0;\n  padding: 4px 12px;\n  background: linear-gradient(\n      to bottom,\n      var(--color4-button) 0%,\n      var(--color4-button-dark-fade) 84%);\n      /* hsl(var(--color1-primary-h), var(--color1-primary-s), calc(var(--color1-primary-l) - 6%)) 84%);  */\n      /* to #72bf44 */\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);\n}\n.app-button:hover {\n  background: linear-gradient(\n      to bottom,\n      var(--color4-button-dark-fade) 0%,\n      var(--color4-button) 84%);\n}\n.app-button:focus {\n  outline: 5px auto -webkit-focus-ring-color;\n  outline-offset: -2px;\n}\n.app-button:active {\n  outline: 0;\n  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05)\n}\n.app-button[disabled] {\n  background: linear-gradient(to bottom, #eeeeee 0%, #dddddd 84%);\n  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);\n  color: #888888;\n}\n";
 styleInject(css);
 
 // Component
@@ -2254,10 +2254,25 @@ function __rest(s, e) {
 
 // Component
 const Title = (props) => {
-    const { text, className } = props, rest = __rest(props, ["text", "className"]);
+    const { text, children, className } = props, rest = __rest(props, ["text", "children", "className"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
-    return (react_1("h1", Object.assign({ className: `title ${className}` }, rest), text));
+    return (react_1("h1", Object.assign({ className: `title ${className}` }, rest), text || children));
 };
 
-export { Button, Input, Toggle, Tooltip, Link, Title };
+const getAppendAttributeValues = (append) => {
+    const appenderString = (append) ? " " + append : "";
+    return appenderString;
+};
+
+var css$1 = ".input-field {\n  background-color: #ffffff;\n  color: #555555;\n  border: 1px solid #cccccc;\n  border-radius: 4px;\n  box-sizing: border-box;\n  height: 28px;\n  line-height: 22px;\n  padding: 4px 6px;\n  font-size: 14px;\n  vertical-align: middle;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n}\n";
+styleInject(css$1);
+
+const InputField = (props) => {
+    const rest = __rest(props, ["className", "children"]);
+    // preserve given class value/s by tacking them onto our guaranteed class/s
+    const givenClasses = getAppendAttributeValues(props.className);
+    return (react_1("input", Object.assign({ className: "input-field" + givenClasses }, rest)));
+};
+
+export { Button, Input, Toggle, Tooltip, Link, Title, InputField };
 //# sourceMappingURL=mt-design-components.es6.js.map

@@ -2,20 +2,23 @@ import * as React from "react"
 import * as System from "../../src/mt-design-components"
 import { ControlType, PropertyControls } from "framer"
 
-type Props = System.LinkProps;
+type Props = {
+  disabled?:  boolean;
+  text?: string;
+}
 
-export class Link extends React.Component<Props> {
+export class FormButton extends React.Component<Props> {
   render() {
-    return <System.Link {...this.props} />
+    return <System.FormButton {...this.props}>{this.props.text}</System.FormButton>
   }
 
   static defaultProps: Props = {
-    text: "HELP",
-    url: "https://msn.com"
+    disabled: false,
+    text: "Button"
   }
 
   static propertyControls: PropertyControls<Props> = {
     text: { type: ControlType.String, title: "Text" },
-    url: { type: ControlType.String, title: "URL" }
+    disabled: { type: ControlType.Boolean, title: "Disabled" },
   }
 }

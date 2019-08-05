@@ -1,0 +1,25 @@
+.card-panel {
+  background-color: white;
+  border-radius: 23px;
+  overflow: hidden;
+}
+
+.card {
+  background-image: url('https://b.mineraltree.com/mt_13633/MT/img/MT_background.png');
+  height: 178px;
+  border-radius: 0;
+}
+
+.info {
+  background-color: white;
+  height: 94px;
+}
+
+.header-text {
+  padding-left: 30px;
+}
+
+.info-text {
+  font-size: 16px;
+  padding-left: 30px;
+}

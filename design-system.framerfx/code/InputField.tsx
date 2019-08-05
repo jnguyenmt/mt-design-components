@@ -5,6 +5,8 @@ import { ControlType, PropertyControls } from "framer"
 type Props = {
   placeholder?: string;
   disabled?:  boolean;
+  width?: number;
+  height?: number;
 }
 
 type State = {
@@ -21,13 +23,14 @@ export class InputField extends React.Component<Props, State> {
 
 
   handleChange = event => {
-    window.console.log('event.target.value', event.target.value);
     this.setState({ value: event.target.value })
   }
 
   static defaultProps: Props = {
     disabled: false,
-    placeholder: "Email"
+    placeholder: "Email",
+    width: 190,
+    height: 28,
   }
 
   static propertyControls: PropertyControls<Props> = {

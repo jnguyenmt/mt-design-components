@@ -15,9 +15,9 @@ const Link: React.FC<Props> = ({
   url,
   onClick
 }) => (
-  <StyledButton href={url} onClick={onClick}>
+  <a href={url} onClick={onClick}>
     {text}
-  </StyledButton>
+  </a>
 )
 
 export default Link;

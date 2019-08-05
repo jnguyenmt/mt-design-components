@@ -1,6 +1,19 @@
 // WARNING: this file is auto generated, any changes will be lost
 import { createDesignComponent, CanvasStore } from "framer"
 const canvas = CanvasStore.shared(); // CANVAS_DATA;
+export const Card = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_xoLjZqdIK", {}, 278,284);
+export const Component = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_LfKXWQDTt", {}, 1152,720);
+export const ICON = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_R7FvNxnld", {}, 35,35);
+export const Ia_approved = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_zvJ_M1nrN", {}, 24,24);
+export const Ia_awaiting = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_jjs20dLBd", {}, 24,24);
+export const Ia_awaiting_1 = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_fWn1K7Lev", {}, 24,24);
+export const Ia_count = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_GQBxbuoFe", {}, 24,16);
+export const Icon_aging_1_30days = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_leZsIzdyq", {}, 16,16);
+export const Icon_aging_31_60days = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_oga6N_c7W", {}, 16,16);
+export const Icon_aging_90_days = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_vBEgSONM1", {}, 16,16);
+export const Icon_aging_90_days_1 = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_akmQ6SobF", {}, 16,16);
+export const Icon_aging_current = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_civGzQzd_", {}, 16,16);
+export const Mismatch = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_nR_oZQSp7", {}, 24,21);
 
 export const colors = Object.freeze({
     /** #FFFFFF */

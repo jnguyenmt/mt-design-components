@@ -1,5 +1,30 @@
 import styled from 'styled-components';
 
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+}
+
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
 }
@@ -2095,11 +2120,20 @@ function styleInject(css, ref) {
   }
 }
 
-var css = ".app-button {\n  display: inline-block;\n  cursor: pointer;\n  color: red;\n  font-size: 14px;\n  line-height: 20px;\n  vertical-align: middle;\n  border-radius: 4px;\n  border: 1px solid #cccccc;\n  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);\n  text-decoration: none;\n  text-align: center;\n  margin: 0;\n  padding: 4px 12px;\n  background: linear-gradient(\n      to bottom,\n      var(--color4-button) 0%,\n      var(--color4-button-dark-fade) 84%);\n      /* hsl(var(--color1-primary-h), var(--color1-primary-s), calc(var(--color1-primary-l) - 6%)) 84%);  */\n      /* to #72bf44 */\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);\n}\n.app-button:hover {\n  background: linear-gradient(\n      to bottom,\n      var(--color4-button-dark-fade) 0%,\n      var(--color4-button) 84%);\n}\n.app-button:focus {\n  outline: 5px auto -webkit-focus-ring-color;\n  outline-offset: -2px;\n}\n.app-button:active {\n  outline: 0;\n  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05)\n}\n.app-button[disabled] {\n  background: linear-gradient(to bottom, #eeeeee 0%, #dddddd 84%);\n  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);\n  color: #888888;\n}\n";
+var css = ".app-button {\n  display: inline-block;\n  cursor: pointer;\n  color: #222;\n  font-size: 14px;\n  line-height: 20px;\n  vertical-align: middle;\n  border-radius: 4px;\n  border: 1px solid #cccccc;\n  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);\n  text-decoration: none;\n  text-align: center;\n  margin: 0;\n  padding: 4px 12px;\n  background: linear-gradient(\n      to bottom,\n      var(--color4-button) 0%,\n      var(--color4-button-dark-fade) 84%);\n      /* hsl(var(--color1-primary-h), var(--color1-primary-s), calc(var(--color1-primary-l) - 6%)) 84%);  */\n      /* to #72bf44 */\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);\n}\n.app-button:hover {\n  background: linear-gradient(\n      to bottom,\n      var(--color4-button-dark-fade) 0%,\n      var(--color4-button) 84%);\n}\n.app-button:focus {\n  outline: 5px auto -webkit-focus-ring-color;\n  outline-offset: -2px;\n}\n.app-button:active {\n  outline: 0;\n  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05)\n}\n.app-button[disabled] {\n  background: linear-gradient(to bottom, #eeeeee 0%, #dddddd 84%);\n  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);\n  color: #888888;\n}\n";
 styleInject(css);
 
-// Component
-const Button = ({ text, fluid, disabled, children, kind, onClick }) => (react_1("button", { className: `app-button ${fluid ? "fluid" : ""} ${disabled ? "disabled" : ""} ${kind ? kind : ""}`, onClick: onClick }, text || children));
+const getAppendAttributeValues = (append) => {
+    const appenderString = (append) ? " " + append : "";
+    return appenderString;
+};
+
+const FormButton = (props) => {
+    const { className, children } = props, rest = __rest(props, ["className", "children"]);
+    // preserve given class value/s by tacking them onto our guaranteed class/s
+    const givenClasses = getAppendAttributeValues(props.className);
+    return (react_1("button", Object.assign({ className: "form-button app-button" + givenClasses }, rest), children));
+};
 
 // Component
 const Input = ({ value, placeholder, error, disabled, onChange }) => (react_1(StyledInput, { type: "text", value: value, placeholder: placeholder, className: `${error ? "error" : ""} ${disabled ? "disabled" : ""}`, onChange: onChange }));
@@ -2140,128 +2174,17 @@ const StyledInput = styled.input `
 `;
 
 // Component
-const Toggle = ({ disabled, on, onClick }) => (react_1(StyledToggle, { className: `${disabled ? "disabled" : ""} ${on ? "on" : ""}`, onClick: onClick }));
-// Styling
-const StyledToggle = styled.span `
-  border-radius: 18px;
-  box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),
-  cursor: pointer;
-  display: block;
-  font-size: 14px;
-  height: 36px;
-  position: relative;
-  transition: background-color 0.2s ease, box-shadow 0.2s ease;
-  width: 64px;
-
-  &:before {
-    content: "";
-    display: block;
-    position: absolute;
-    height: 30px;
-    width: 30px;
-    border-radius: 100%;
-    top: 3px;
-    left: 3px;
-    transition: left 0.2s ease;
-    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1),
-      0px 1px 2px 0px hsla(0, 0%, 0%, 0.08);
-  }
-  &.on:before {
-    left: 31px;
-  }
-  &.disabled {
-    pointer-events: none;
-    opacity: 0.5;
-  }
-`;
-
-// Component
-const Tooltip = ({ arrow = "left", error, children }) => (react_1(StyledTooltip, { className: `${error ? "error" : ""} ${arrow ? arrow : ""}` }, children));
-// Styling
-const StyledTooltip = styled.span `
-  font-size: 11px;
-  color: #fff;
-  padding: 5px;
-  border-radius: 3px;
-  font-weight: 600;
-  position: relative;
-  display: inline-block;
-
-  &:before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-  }
-  &.top:before,
-  &.bottom:before {
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    left: 50%;
-    transform: translateX(-2px);
-  }
-  &.top:before {
-    top: -4px;
-  }
-  &.bottom:before {
-    bottom: -4px;
-  }
-  &.right:before,
-  &.left:before {
-    top: 7px;
-    border-top: 4px solid transparent;
-    border-bottom: 4px solid transparent;
-  }
-  &.right:before {
-    right: -4px;
-  }
-  &.left:before {
-    left: -4px;
-  }
-`;
-
-// Component
-const Link = ({ text, url, onClick }) => (react_1(StyledButton, { href: url, onClick: onClick }, text));
+const Link = ({ text, url, onClick }) => (react_1("a", { href: url, onClick: onClick }, text));
 // Styles
 const StyledButton = styled.a `
   font-size: 12px;
 `;
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __rest(s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-}
 
 // Component
 const Title = (props) => {
     const { text, children, className } = props, rest = __rest(props, ["text", "children", "className"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     return (react_1("h1", Object.assign({ className: `title ${className}` }, rest), text || children));
-};
-
-const getAppendAttributeValues = (append) => {
-    const appenderString = (append) ? " " + append : "";
-    return appenderString;
 };
 
 var css$1 = ".input-field {\n  background-color: #ffffff;\n  color: #555555;\n  border: 1px solid #cccccc;\n  border-radius: 4px;\n  box-sizing: border-box;\n  height: 28px;\n  line-height: 22px;\n  padding: 4px 6px;\n  font-size: 14px;\n  vertical-align: middle;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n}\n";
@@ -2274,5 +2197,44 @@ const InputField = (props) => {
     return (react_1("input", Object.assign({ className: "input-field" + givenClasses }, rest)));
 };
 
-export { Button, Input, Toggle, Tooltip, Link, Title, InputField };
+var css$2 = ".secondary-form-button {\n  background: #f5f5f5;\n  color: #222222;\n  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);\n}\n\n.secondary-form-button:hover, .secondary-form-button.active {\n  background: #e6e6e6;\n  -webkit-transition: background-position 0.1s linear;\n  -moz-transition: background-position 0.1s linear;\n  -o-transition: background-position 0.1s linear;\n  transition: background-position 0.1s linear;\n}\n\n.secondary-form-button[disabled] {\n  background: #e6e6e6;\n  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);\n  cursor: default;\n  opacity: 0.8;\n}\n";
+styleInject(css$2);
+
+const SecondaryFormButton = (props) => {
+    const { className, children } = props, rest = __rest(props, ["className", "children"]);
+    // preserve given class value/s by tacking them onto our guaranteed class/s
+    const givenClasses = getAppendAttributeValues(props.className);
+    return (react_1("button", Object.assign({ className: "secondary-form-button app-button" + givenClasses }, rest), children));
+};
+
+var css$3 = ".mt-background {\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\n    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\n    sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  background-image: url('https://b.mineraltree.com/mt_13633/MT/img/MT_background.png');\n  background-repeat: repeat-x;\n  background-color: #ffffff\n}\n";
+styleInject(css$3);
+
+const MtBackground = (props) => {
+    const { className, children } = props, rest = __rest(props, ["className", "children"]);
+    // preserve given class value/s by tacking them onto our guaranteed class/s
+    const givenClasses = getAppendAttributeValues(props.className);
+    return (react_1("body", Object.assign({ className: "mt-background" + givenClasses }, rest), children));
+};
+
+var css$4 = ".card-panel {\n  background-color: white;\n  border-radius: 23px;\n  overflow: hidden;\n}\n\n.card {\n  background-image: url('https://b.mineraltree.com/mt_13633/MT/img/MT_background.png');\n  height: 178px;\n  border-radius: 0;\n}\n\n.info {\n  background-color: white;\n  height: 94px;\n}\n\n.header-text {\n  padding-left: 30px;\n}\n\n.info-text {\n  font-size: 16px;\n  padding-left: 30px;\n}\n";
+styleInject(css$4);
+
+const Card = (props) => {
+    const { className, children, text, title, textHeight, width, backgroundImgSrc, height } = props, rest = __rest(props, ["className", "children", "text", "title", "textHeight", "width", "backgroundImgSrc", "height"]);
+    return (react_1("div", { className: "card-panel", style: {
+            "width": width
+        } },
+        react_1("div", { className: "card", style: {
+                "height": height,
+                "backgroundImage": 'url(' + backgroundImgSrc + ')'
+            } }),
+        react_1("div", { className: "info", style: {
+                "height": textHeight
+            } },
+            react_1(Title, { className: "header-text" }, title),
+            react_1("div", { className: "info-text" }, text))));
+};
+
+export { FormButton, Input, Link, Title, InputField, SecondaryFormButton, MtBackground, Card };
 //# sourceMappingURL=mt-design-components.es6.js.map

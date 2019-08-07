@@ -4,12 +4,13 @@ import { getAppendAttributeValues } from "./utils/stringUtils";
 import "./InputField.css";
 
 const InputField = (props: React.ComponentProps<"input">): JSX.Element => {
-  const {className, children, ...rest} = props;
+  const {className, children, required, ...rest} = props;
   // preserve given class value/s by tacking them onto our guaranteed class/s
   const givenClasses =  getAppendAttributeValues(props.className);
   return (
       <input
-          className={"input-field" + givenClasses}
+          className={"mt-form__input" + givenClasses}
+          aria-required={required}
           {...rest}
       />
   )

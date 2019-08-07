@@ -20,12 +20,12 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __importStar(require("react"));
 const stringUtils_1 = require("./utils/stringUtils");
-require("./InputField.css");
-const InputField = (props) => {
+require("./InputLabel.css");
+exports.InputLabel = (props) => {
     const { className, children, required } = props, rest = __rest(props, ["className", "children", "required"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = stringUtils_1.getAppendAttributeValues(props.className);
-    return (React.createElement("input", Object.assign({ className: "mt-form__input" + givenClasses, "aria-required": required }, rest)));
+    return (React.createElement("label", { className: "mt-form__label" + givenClasses }, children));
 };
-exports.default = InputField;
-//# sourceMappingURL=InputField.js.map
+exports.default = exports.InputLabel;
+//# sourceMappingURL=InputLabel.js.map

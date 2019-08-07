@@ -1,0 +1,26 @@
+.mt-button {
+    appearance: none;
+    border: none;
+    background: #000;
+    color: #fff;
+    font-weight: 600;
+    padding: 10px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.mt-button:hover {
+    background: #98c080;
+}
+.mt-button:focus {
+    background: #318201;
+}
+.mt-button:disabled {
+    background: #dcdcdc;
+    cursor: default;
+}
+.mt-button--default {
+    background: #000;
+}
+.mt-button--primary {
+    background: #318201;
+}

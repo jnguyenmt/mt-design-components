@@ -1,0 +1,11 @@
+.mt-form__label {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: #666;
+}
+.mt-form__label--required::after {
+    display: inline-block;
+    content: '*';
+    color: #ff0000;
+}

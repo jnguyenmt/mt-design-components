@@ -3,6 +3,7 @@ import { createDesignComponent, CanvasStore } from "framer"
 const canvas = CanvasStore.shared(); // CANVAS_DATA;
 export const Card = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_xoLjZqdIK", {}, 278,284);
 export const Component = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_LfKXWQDTt", {}, 1152,720);
+export const Design_Components_InputElement = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_nuYFhGDkw", {}, 200,67);
 export const ICON = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_R7FvNxnld", {}, 35,35);
 export const Ia_approved = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_zvJ_M1nrN", {}, 24,24);
 export const Ia_awaiting = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string}>(canvas, "id_jjs20dLBd", {}, 24,24);

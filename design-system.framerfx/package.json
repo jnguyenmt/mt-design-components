@@ -9,7 +9,7 @@
 		"react": "^16.7.0",
 		"react-dom": "^16.7.0"
 	},
-	"version": "1.4.0",
+	"version": "1.0.0",
 	"dependencies": {
 		"styled-components": "^4.2.0"
 	},
@@ -17,6 +17,6 @@
 		"id": "6d400c1c-361a-4a81-b592-45c1282fa0b5",
 		"displayName": "Designs"
 	},
-	"name": "@framer/justinnguyen.designs",
+	"name": "@framer/ywallace.designs",
 	"author": "Justin Nguyen"
 }

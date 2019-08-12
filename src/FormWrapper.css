@@ -1,0 +1,15 @@
+.mt-form-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    height: 100%;
+}
+
+.mt-form-wrapper > div[data-framer-component-type] {
+    position: relative;
+}
+
+.mt-form-wrapper .mt-form__input {
+    margin: 10px 5px;
+    min-width: 150px; 
+}

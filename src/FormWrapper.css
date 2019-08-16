@@ -5,11 +5,6 @@
     height: 100%;
 }
 
-.mt-form-wrapper > div[data-framer-component-type] {
-    position: relative;
-}
-
 .mt-form-wrapper .mt-form__input {
-    margin: 10px 5px;
-    min-width: 150px; 
+    min-width: 150px;
 }

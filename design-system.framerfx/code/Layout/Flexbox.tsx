@@ -7,27 +7,26 @@ type Props = {
     flexWrap?: string
     alignItems?: string
     justifyContent?: string
-    inputMinWith?: string
     children: any
 }
 
-export class FormWrapper extends React.Component<any> {
+export class Flexbox extends React.Component<any> {
+
     static defaultProps: Props = {
         flexDirection: "mt-flex-direction--row",
         flexWrap: "mt-flex-wrap--nowrap",
         alignItems: "mt-align-items--stretch",
         justifyContent: "mt-justify-content--flex-start",
-        inputMinWith: "180",
         children: '',
     }
 
     static propertyControls: PropertyControls<Props> = {
         children: {
             type: ControlType.Array,
-            title: "Inputs",
+            title: "Children",
             propertyControl: {
                 type: ControlType.ComponentInstance,
-                title: "Form Wrapper"
+                title: "Flexbox"
             }
         },
         flexDirection: {
@@ -75,32 +74,20 @@ export class FormWrapper extends React.Component<any> {
                 "mt-justify-content--space-evenly",
             ],
             optionTitles: ["Flex Start", "Flex End", " Center", "Space Between", "Space Around", "Space Evenly"],
-        },
-        inputMinWith: {
-            type: ControlType.Number,
-            title: "Child Min-Width",
-            defaultValue: 0,
-            unit: "px",
-            step: 1,
-            displayStepper: true,
-        },
+        }
     }
 
     render() {
+        console.log(this.props)
         const childInputs = React.Children.map(this.props.children, (item: React.ReactElement<any>) => 
             React.cloneElement(item, {
                 style: {
                     position: 'relative',
                     top: 'auto',
-                    width: 'auto',
-                    boxSizing: 'border-box',
-                    flexShrink: 0,
-                    margin: '10px',
-                    minWidth: this.props.inputMinWith,
                 },
             })
         )
-
+        console.log(childInputs)
         return <System.Flexbox 
                     className={
                         this.props.flexDirection + ' ' +

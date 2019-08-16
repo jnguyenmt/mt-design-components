@@ -42,6 +42,11 @@
   resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.7.3.tgz#6310a047f12d21a1036fb031317219892440416f"
   integrity sha512-4zAPlpDEh2VwXswwr/t8xGNDGg8RQiPxtxZ3qQEXyQsBV39ptTdESCjuBvGze1nLMVrxmTIKmnO/nAV8Tqjjzg==
 
+"@framer/unsplash.unsplash@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.framer.com/@framer/unsplash.unsplash/-/@framer/unsplash.unsplash-1.0.0.tgz#ba5a419cd405a6d2bf7ee81bd760cdbe935de630"
+  integrity sha1-ulpBnNQFptK/fugb12DNvpNd5jA=
+
 "@types/prop-types@*":
   version "15.5.6"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.6.tgz#9c03d3fed70a8d517c191b7734da2879b50ca26c"

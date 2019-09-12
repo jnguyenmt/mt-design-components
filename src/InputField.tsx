@@ -10,6 +10,7 @@ const InputField = (props: React.ComponentProps<"input">): JSX.Element => {
   return (
       <input
           className={"mt-form__input" + givenClasses}
+          data-qa-element="qa-input-field"
           aria-required={required}
           {...rest}
       />

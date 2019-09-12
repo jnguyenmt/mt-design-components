@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,21 +9,13 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __importStar(require("react"));
-const stringUtils_1 = require("./utils/stringUtils");
-require("./InputCaption.css");
-exports.InputCaption = (props) => {
+import * as React from "react";
+import { getAppendAttributeValues } from "./utils/stringUtils";
+import "./InputCaption.css";
+export const InputCaption = (props) => {
     const { className, children, error, ariaLive } = props, rest = __rest(props, ["className", "children", "error", "ariaLive"]);
-    const givenClasses = stringUtils_1.getAppendAttributeValues(props.className);
+    const givenClasses = getAppendAttributeValues(props.className);
     return (React.createElement("span", { className: "mt-form__caption" + givenClasses, "aria-live": ariaLive }, children));
 };
-exports.default = exports.InputCaption;
+export default InputCaption;
 //# sourceMappingURL=InputCaption.js.map

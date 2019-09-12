@@ -13,7 +13,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "declarationDir": "dist/types",
-    "outDir": "dist/lib",
+    "outDir": "./dist/lib",
     "skipLibCheck": true,
     "typeRoots": [
       "node_modules/@types"
@@ -23,6 +23,7 @@
     "src"
   ],
   "exclude": [
-    "design-system.framerfx"
+    "design-system.framerfx",
+    "dist/lib/**/*",
   ]
 }

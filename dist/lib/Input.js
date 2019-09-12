@@ -1,22 +1,10 @@
-"use strict";
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __importStar(require("react"));
-const styled_components_1 = __importDefault(require("styled-components"));
+import * as React from "react";
+import styled from "styled-components";
 // Component
 const Input = ({ value, placeholder, error, disabled, onChange }) => (React.createElement(StyledInput, { type: "text", value: value, placeholder: placeholder, className: `${error ? "error" : ""} ${disabled ? "disabled" : ""}`, onChange: onChange }));
-exports.default = Input;
+export default Input;
 // Styles
-const StyledInput = styled_components_1.default.input `
+const StyledInput = styled.input `
   border-radius: 4px;
   border: none;
   box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),

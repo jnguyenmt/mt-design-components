@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAppendAttributeValues = (append) => {
+export const getAppendAttributeValues = (append) => {
     const appenderString = (append) ? " " + append : "";
     return appenderString;
 };

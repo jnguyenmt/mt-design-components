@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,22 +9,14 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __importStar(require("react"));
-const stringUtils_1 = require("./utils/stringUtils");
-require("./secondaryFormButton.css");
-exports.SecondaryFormButton = (props) => {
+import * as React from "react";
+import { getAppendAttributeValues } from "./utils/stringUtils";
+import "./secondaryFormButton.css";
+export const SecondaryFormButton = (props) => {
     const { className, children } = props, rest = __rest(props, ["className", "children"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
-    const givenClasses = stringUtils_1.getAppendAttributeValues(props.className);
+    const givenClasses = getAppendAttributeValues(props.className);
     return (React.createElement("button", Object.assign({ className: "secondary-form-button app-button" + givenClasses }, rest), children));
 };
-exports.default = exports.SecondaryFormButton;
+export default SecondaryFormButton;
 //# sourceMappingURL=SecondaryFormButton.js.map

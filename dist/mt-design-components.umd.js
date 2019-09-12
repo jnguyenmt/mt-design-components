@@ -26,8 +26,10 @@
         for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
             t[p] = s[p];
         if (s != null && typeof Object.getOwnPropertySymbols === "function")
-            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-                t[p[i]] = s[p[i]];
+            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+                if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                    t[p[i]] = s[p[i]];
+            }
         return t;
     }
 
@@ -124,22 +126,22 @@
     	return to;
     };
 
-    var n="function"===typeof Symbol&&Symbol.for,p=n?Symbol.for("react.element"):60103,q=n?Symbol.for("react.portal"):60106,r=n?Symbol.for("react.fragment"):60107,t=n?Symbol.for("react.strict_mode"):60108,u=n?Symbol.for("react.profiler"):60114,v=n?Symbol.for("react.provider"):60109,w=n?Symbol.for("react.context"):60110,x=n?Symbol.for("react.concurrent_mode"):60111,y=n?Symbol.for("react.forward_ref"):60112,z=n?Symbol.for("react.suspense"):60113,aa=n?Symbol.for("react.memo"):
-    60115,ba=n?Symbol.for("react.lazy"):60116,A="function"===typeof Symbol&&Symbol.iterator;function ca(a,b,d,c,e,g,h,f){if(!a){a=void 0;if(void 0===b)a=Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings.");else{var l=[d,c,e,g,h,f],m=0;a=Error(b.replace(/%s/g,function(){return l[m++]}));a.name="Invariant Violation";}a.framesToPop=1;throw a;}}
-    function B(a){for(var b=arguments.length-1,d="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=0;c<b;c++)d+="&args[]="+encodeURIComponent(arguments[c+1]);ca(!1,"Minified React error #"+a+"; visit %s for the full message or use the non-minified dev environment for full errors and additional helpful warnings. ",d);}var C={isMounted:function(){return !1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}},D={};
-    function E(a,b,d){this.props=a;this.context=b;this.refs=D;this.updater=d||C;}E.prototype.isReactComponent={};E.prototype.setState=function(a,b){"object"!==typeof a&&"function"!==typeof a&&null!=a?B("85"):void 0;this.updater.enqueueSetState(this,a,b,"setState");};E.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate");};function F(){}F.prototype=E.prototype;function G(a,b,d){this.props=a;this.context=b;this.refs=D;this.updater=d||C;}var H=G.prototype=new F;
-    H.constructor=G;objectAssign(H,E.prototype);H.isPureReactComponent=!0;var I={current:null},J={current:null},K=Object.prototype.hasOwnProperty,L={key:!0,ref:!0,__self:!0,__source:!0};
-    function M(a,b,d){var c=void 0,e={},g=null,h=null;if(null!=b)for(c in void 0!==b.ref&&(h=b.ref),void 0!==b.key&&(g=""+b.key),b)K.call(b,c)&&!L.hasOwnProperty(c)&&(e[c]=b[c]);var f=arguments.length-2;if(1===f)e.children=d;else if(1<f){for(var l=Array(f),m=0;m<f;m++)l[m]=arguments[m+2];e.children=l;}if(a&&a.defaultProps)for(c in f=a.defaultProps,f)void 0===e[c]&&(e[c]=f[c]);return {$$typeof:p,type:a,key:g,ref:h,props:e,_owner:J.current}}
+    var n="function"===typeof Symbol&&Symbol.for,p=n?Symbol.for("react.element"):60103,q=n?Symbol.for("react.portal"):60106,r=n?Symbol.for("react.fragment"):60107,t=n?Symbol.for("react.strict_mode"):60108,u=n?Symbol.for("react.profiler"):60114,v=n?Symbol.for("react.provider"):60109,w=n?Symbol.for("react.context"):60110,x=n?Symbol.for("react.forward_ref"):60112,y=n?Symbol.for("react.suspense"):60113,aa=n?Symbol.for("react.suspense_list"):60120,ba=n?Symbol.for("react.memo"):
+    60115,ca=n?Symbol.for("react.lazy"):60116;var z="function"===typeof Symbol&&Symbol.iterator;
+    function A(a){for(var b=a.message,d="https://reactjs.org/docs/error-decoder.html?invariant="+b,c=1;c<arguments.length;c++)d+="&args[]="+encodeURIComponent(arguments[c]);a.message="Minified React error #"+b+"; visit "+d+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings. ";return a}var B={isMounted:function(){return !1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}},C={};
+    function D(a,b,d){this.props=a;this.context=b;this.refs=C;this.updater=d||B;}D.prototype.isReactComponent={};D.prototype.setState=function(a,b){if("object"!==typeof a&&"function"!==typeof a&&null!=a)throw A(Error(85));this.updater.enqueueSetState(this,a,b,"setState");};D.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate");};function E(){}E.prototype=D.prototype;function F(a,b,d){this.props=a;this.context=b;this.refs=C;this.updater=d||B;}var G=F.prototype=new E;
+    G.constructor=F;objectAssign(G,D.prototype);G.isPureReactComponent=!0;var H={current:null},I={suspense:null},J={current:null},K=Object.prototype.hasOwnProperty,L={key:!0,ref:!0,__self:!0,__source:!0};
+    function M(a,b,d){var c=void 0,e={},g=null,k=null;if(null!=b)for(c in void 0!==b.ref&&(k=b.ref),void 0!==b.key&&(g=""+b.key),b)K.call(b,c)&&!L.hasOwnProperty(c)&&(e[c]=b[c]);var f=arguments.length-2;if(1===f)e.children=d;else if(1<f){for(var l=Array(f),m=0;m<f;m++)l[m]=arguments[m+2];e.children=l;}if(a&&a.defaultProps)for(c in f=a.defaultProps,f)void 0===e[c]&&(e[c]=f[c]);return {$$typeof:p,type:a,key:g,ref:k,props:e,_owner:J.current}}
     function da(a,b){return {$$typeof:p,type:a.type,key:b,ref:a.ref,props:a.props,_owner:a._owner}}function N(a){return "object"===typeof a&&null!==a&&a.$$typeof===p}function escape(a){var b={"=":"=0",":":"=2"};return "$"+(""+a).replace(/[=:]/g,function(a){return b[a]})}var O=/\/+/g,P=[];function Q(a,b,d,c){if(P.length){var e=P.pop();e.result=a;e.keyPrefix=b;e.func=d;e.context=c;e.count=0;return e}return {result:a,keyPrefix:b,func:d,context:c,count:0}}
     function R(a){a.result=null;a.keyPrefix=null;a.func=null;a.context=null;a.count=0;10>P.length&&P.push(a);}
-    function S(a,b,d,c){var e=typeof a;if("undefined"===e||"boolean"===e)a=null;var g=!1;if(null===a)g=!0;else switch(e){case "string":case "number":g=!0;break;case "object":switch(a.$$typeof){case p:case q:g=!0;}}if(g)return d(c,a,""===b?"."+T(a,0):b),1;g=0;b=""===b?".":b+":";if(Array.isArray(a))for(var h=0;h<a.length;h++){e=a[h];var f=b+T(e,h);g+=S(e,f,d,c);}else if(null===a||"object"!==typeof a?f=null:(f=A&&a[A]||a["@@iterator"],f="function"===typeof f?f:null),"function"===typeof f)for(a=f.call(a),h=
-    0;!(e=a.next()).done;)e=e.value,f=b+T(e,h++),g+=S(e,f,d,c);else"object"===e&&(d=""+a,B("31","[object Object]"===d?"object with keys {"+Object.keys(a).join(", ")+"}":d,""));return g}function U(a,b,d){return null==a?0:S(a,"",b,d)}function T(a,b){return "object"===typeof a&&null!==a&&null!=a.key?escape(a.key):b.toString(36)}function ea(a,b){a.func.call(a.context,b,a.count++);}
-    function fa(a,b,d){var c=a.result,e=a.keyPrefix;a=a.func.call(a.context,b,a.count++);Array.isArray(a)?V(a,c,d,function(a){return a}):null!=a&&(N(a)&&(a=da(a,e+(!a.key||b&&b.key===a.key?"":(""+a.key).replace(O,"$&/")+"/")+d)),c.push(a));}function V(a,b,d,c,e){var g="";null!=d&&(g=(""+d).replace(O,"$&/")+"/");b=Q(b,g,c,e);U(a,fa,b);R(b);}function W(){var a=I.current;null===a?B("321"):void 0;return a}
-    var X={Children:{map:function(a,b,d){if(null==a)return a;var c=[];V(a,c,null,b,d);return c},forEach:function(a,b,d){if(null==a)return a;b=Q(null,null,b,d);U(a,ea,b);R(b);},count:function(a){return U(a,function(){return null},null)},toArray:function(a){var b=[];V(a,b,null,function(a){return a});return b},only:function(a){N(a)?void 0:B("143");return a}},createRef:function(){return {current:null}},Component:E,PureComponent:G,createContext:function(a,b){void 0===b&&(b=null);a={$$typeof:w,_calculateChangedBits:b,
-    _currentValue:a,_currentValue2:a,_threadCount:0,Provider:null,Consumer:null};a.Provider={$$typeof:v,_context:a};return a.Consumer=a},forwardRef:function(a){return {$$typeof:y,render:a}},lazy:function(a){return {$$typeof:ba,_ctor:a,_status:-1,_result:null}},memo:function(a,b){return {$$typeof:aa,type:a,compare:void 0===b?null:b}},useCallback:function(a,b){return W().useCallback(a,b)},useContext:function(a,b){return W().useContext(a,b)},useEffect:function(a,b){return W().useEffect(a,b)},useImperativeHandle:function(a,
-    b,d){return W().useImperativeHandle(a,b,d)},useDebugValue:function(){},useLayoutEffect:function(a,b){return W().useLayoutEffect(a,b)},useMemo:function(a,b){return W().useMemo(a,b)},useReducer:function(a,b,d){return W().useReducer(a,b,d)},useRef:function(a){return W().useRef(a)},useState:function(a){return W().useState(a)},Fragment:r,StrictMode:t,Suspense:z,createElement:M,cloneElement:function(a,b,d){null===a||void 0===a?B("267",a):void 0;var c=void 0,e=objectAssign({},a.props),g=a.key,h=a.ref,f=a._owner;if(null!=
-    b){void 0!==b.ref&&(h=b.ref,f=J.current);void 0!==b.key&&(g=""+b.key);var l=void 0;a.type&&a.type.defaultProps&&(l=a.type.defaultProps);for(c in b)K.call(b,c)&&!L.hasOwnProperty(c)&&(e[c]=void 0===b[c]&&void 0!==l?l[c]:b[c]);}c=arguments.length-2;if(1===c)e.children=d;else if(1<c){l=Array(c);for(var m=0;m<c;m++)l[m]=arguments[m+2];e.children=l;}return {$$typeof:p,type:a.type,key:g,ref:h,props:e,_owner:f}},createFactory:function(a){var b=M.bind(null,a);b.type=a;return b},isValidElement:N,version:"16.8.6",
-    unstable_ConcurrentMode:x,unstable_Profiler:u,__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED:{ReactCurrentDispatcher:I,ReactCurrentOwner:J,assign:objectAssign}},Y={default:X},Z=Y&&X||Y;var react_production_min=Z.default||Z;
+    function S(a,b,d,c){var e=typeof a;if("undefined"===e||"boolean"===e)a=null;var g=!1;if(null===a)g=!0;else switch(e){case "string":case "number":g=!0;break;case "object":switch(a.$$typeof){case p:case q:g=!0;}}if(g)return d(c,a,""===b?"."+T(a,0):b),1;g=0;b=""===b?".":b+":";if(Array.isArray(a))for(var k=0;k<a.length;k++){e=a[k];var f=b+T(e,k);g+=S(e,f,d,c);}else if(null===a||"object"!==typeof a?f=null:(f=z&&a[z]||a["@@iterator"],f="function"===typeof f?f:null),"function"===typeof f)for(a=f.call(a),k=
+    0;!(e=a.next()).done;)e=e.value,f=b+T(e,k++),g+=S(e,f,d,c);else if("object"===e)throw d=""+a,A(Error(31),"[object Object]"===d?"object with keys {"+Object.keys(a).join(", ")+"}":d,"");return g}function U(a,b,d){return null==a?0:S(a,"",b,d)}function T(a,b){return "object"===typeof a&&null!==a&&null!=a.key?escape(a.key):b.toString(36)}function ea(a,b){a.func.call(a.context,b,a.count++);}
+    function fa(a,b,d){var c=a.result,e=a.keyPrefix;a=a.func.call(a.context,b,a.count++);Array.isArray(a)?V(a,c,d,function(a){return a}):null!=a&&(N(a)&&(a=da(a,e+(!a.key||b&&b.key===a.key?"":(""+a.key).replace(O,"$&/")+"/")+d)),c.push(a));}function V(a,b,d,c,e){var g="";null!=d&&(g=(""+d).replace(O,"$&/")+"/");b=Q(b,g,c,e);U(a,fa,b);R(b);}function W(){var a=H.current;if(null===a)throw A(Error(321));return a}
+    var X={Children:{map:function(a,b,d){if(null==a)return a;var c=[];V(a,c,null,b,d);return c},forEach:function(a,b,d){if(null==a)return a;b=Q(null,null,b,d);U(a,ea,b);R(b);},count:function(a){return U(a,function(){return null},null)},toArray:function(a){var b=[];V(a,b,null,function(a){return a});return b},only:function(a){if(!N(a))throw A(Error(143));return a}},createRef:function(){return {current:null}},Component:D,PureComponent:F,createContext:function(a,b){void 0===b&&(b=null);a={$$typeof:w,_calculateChangedBits:b,
+    _currentValue:a,_currentValue2:a,_threadCount:0,Provider:null,Consumer:null};a.Provider={$$typeof:v,_context:a};return a.Consumer=a},forwardRef:function(a){return {$$typeof:x,render:a}},lazy:function(a){return {$$typeof:ca,_ctor:a,_status:-1,_result:null}},memo:function(a,b){return {$$typeof:ba,type:a,compare:void 0===b?null:b}},useCallback:function(a,b){return W().useCallback(a,b)},useContext:function(a,b){return W().useContext(a,b)},useEffect:function(a,b){return W().useEffect(a,b)},useImperativeHandle:function(a,
+    b,d){return W().useImperativeHandle(a,b,d)},useDebugValue:function(){},useLayoutEffect:function(a,b){return W().useLayoutEffect(a,b)},useMemo:function(a,b){return W().useMemo(a,b)},useReducer:function(a,b,d){return W().useReducer(a,b,d)},useRef:function(a){return W().useRef(a)},useState:function(a){return W().useState(a)},Fragment:r,Profiler:u,StrictMode:t,Suspense:y,unstable_SuspenseList:aa,createElement:M,cloneElement:function(a,b,d){if(null===a||void 0===a)throw A(Error(267),a);var c=void 0,e=
+    objectAssign({},a.props),g=a.key,k=a.ref,f=a._owner;if(null!=b){void 0!==b.ref&&(k=b.ref,f=J.current);void 0!==b.key&&(g=""+b.key);var l=void 0;a.type&&a.type.defaultProps&&(l=a.type.defaultProps);for(c in b)K.call(b,c)&&!L.hasOwnProperty(c)&&(e[c]=void 0===b[c]&&void 0!==l?l[c]:b[c]);}c=arguments.length-2;if(1===c)e.children=d;else if(1<c){l=Array(c);for(var m=0;m<c;m++)l[m]=arguments[m+2];e.children=l;}return {$$typeof:p,type:a.type,key:g,ref:k,props:e,_owner:f}},createFactory:function(a){var b=M.bind(null,a);
+    b.type=a;return b},isValidElement:N,version:"16.9.0",unstable_withSuspenseConfig:function(a,b){var d=I.suspense;I.suspense=void 0===b?null:b;try{a();}finally{I.suspense=d;}},__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED:{ReactCurrentDispatcher:H,ReactCurrentBatchConfig:I,ReactCurrentOwner:J,IsSomeRendererActing:{current:!1},assign:objectAssign}},Y={default:X},Z=Y&&X||Y;var react_production_min=Z.default||Z;
 
     /**
      * Copyright (c) 2013-present, Facebook, Inc.
@@ -258,7 +260,7 @@
 
     // TODO: this is special because it gets imported during build.
 
-    var ReactVersion = '16.8.6';
+    var ReactVersion = '16.9.0';
 
     // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
     // nor polyfill, then a plain number is used for performance.
@@ -271,12 +273,17 @@
     var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
     var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
     var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace;
+    // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+    // (unstable) APIs that have been removed. Can we remove the symbols?
 
     var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
     var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
     var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
+    var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
     var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
     var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
+    var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
+    var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
 
     var MAYBE_ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
     var FAUX_ITERATOR_SYMBOL = '@@iterator';
@@ -292,6 +299,19 @@
       return null;
     }
 
+    // Do not require this module directly! Use normal `invariant` calls with
+    // template literal strings. The messages will be converted to ReactError during
+    // build, and in production they will be minified.
+
+    // Do not require this module directly! Use normal `invariant` calls with
+    // template literal strings. The messages will be converted to ReactError during
+    // build, and in production they will be minified.
+
+    function ReactError(error) {
+      error.name = 'Invariant Violation';
+      return error;
+    }
+
     /**
      * Use invariant() to assert state which your program assumes to be true.
      *
@@ -302,40 +322,6 @@
      * The invariant message will be stripped in production, but the invariant
      * will remain to ensure logic does not differ in production.
      */
-
-    var validateFormat = function () {};
-
-    {
-      validateFormat = function (format) {
-        if (format === undefined) {
-          throw new Error('invariant requires an error message argument');
-        }
-      };
-    }
-
-    function invariant(condition, format, a, b, c, d, e, f) {
-      validateFormat(format);
-
-      if (!condition) {
-        var error = void 0;
-        if (format === undefined) {
-          error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
-        } else {
-          var args = [a, b, c, d, e, f];
-          var argIndex = 0;
-          error = new Error(format.replace(/%s/g, function () {
-            return args[argIndex++];
-          }));
-          error.name = 'Invariant Violation';
-        }
-
-        error.framesToPop = 1; // we don't care about invariant's own frame
-        throw error;
-      }
-    }
-
-    // Relying on the `invariant()` implementation lets us
-    // preserve the format and params in the www builds.
 
     /**
      * Forked from fbjs/warning:
@@ -569,7 +555,13 @@
      * @protected
      */
     Component.prototype.setState = function (partialState, callback) {
-      !(typeof partialState === 'object' || typeof partialState === 'function' || partialState == null) ? invariant(false, 'setState(...): takes an object of state variables to update or a function which returns an object of state variables.') : void 0;
+      (function () {
+        if (!(typeof partialState === 'object' || typeof partialState === 'function' || partialState == null)) {
+          {
+            throw ReactError(Error('setState(...): takes an object of state variables to update or a function which returns an object of state variables.'));
+          }
+        }
+      })();
       this.updater.enqueueSetState(this, partialState, callback, 'setState');
     };
 
@@ -659,6 +651,14 @@
     };
 
     /**
+     * Keeps track of the current batch's configuration such as how long an update
+     * should suspend for if it needs to.
+     */
+    var ReactCurrentBatchConfig = {
+      suspense: null
+    };
+
+    /**
      * Keeps track of the current owner.
      *
      * The current owner is the component who should own any components that are
@@ -729,8 +729,6 @@
         return type;
       }
       switch (type) {
-        case REACT_CONCURRENT_MODE_TYPE:
-          return 'ConcurrentMode';
         case REACT_FRAGMENT_TYPE:
           return 'Fragment';
         case REACT_PORTAL_TYPE:
@@ -741,6 +739,8 @@
           return 'StrictMode';
         case REACT_SUSPENSE_TYPE:
           return 'Suspense';
+        case REACT_SUSPENSE_LIST_TYPE:
+          return 'SuspenseList';
       }
       if (typeof type === 'object') {
         switch (type.$$typeof) {
@@ -759,6 +759,7 @@
               if (resolvedThenable) {
                 return getComponentName(resolvedThenable);
               }
+              break;
             }
         }
       }
@@ -799,9 +800,19 @@
       };
     }
 
+    /**
+     * Used by act() to track whether you're inside an act() scope.
+     */
+
+    var IsSomeRendererActing = {
+      current: false
+    };
+
     var ReactSharedInternals = {
       ReactCurrentDispatcher: ReactCurrentDispatcher,
+      ReactCurrentBatchConfig: ReactCurrentBatchConfig,
       ReactCurrentOwner: ReactCurrentOwner,
+      IsSomeRendererActing: IsSomeRendererActing,
       // Used by renderers to avoid bundling object-assign twice in UMD bundles:
       assign: _assign
     };
@@ -915,8 +926,10 @@
      * if something is a React Element.
      *
      * @param {*} type
+     * @param {*} props
      * @param {*} key
      * @param {string|object} ref
+     * @param {*} owner
      * @param {*} self A *temporary* helper to detect places where `this` is
      * different from the `owner` when React.createElement is called, so that we
      * can warn. We want to get rid of owner and replace string `ref`s with arrow
@@ -924,8 +937,6 @@
      * change in behavior.
      * @param {*} source An annotation object (added by a transpiler or otherwise)
      * indicating filename, line number, and/or other information.
-     * @param {*} owner
-     * @param {*} props
      * @internal
      */
     var ReactElement = function (type, key, ref, self, source, owner, props) {
@@ -1075,7 +1086,13 @@
      * See https://reactjs.org/docs/react-api.html#cloneelement
      */
     function cloneElement(element, config, children) {
-      !!(element === null || element === undefined) ? invariant(false, 'React.cloneElement(...): The argument must be a React element, but you passed %s.', element) : void 0;
+      (function () {
+        if (!!(element === null || element === undefined)) {
+          {
+            throw ReactError(Error('React.cloneElement(...): The argument must be a React element, but you passed ' + element + '.'));
+          }
+        }
+      })();
 
       var propName = void 0;
 
@@ -1295,7 +1312,13 @@
             addendum = ' If you meant to render a collection of children, use an array ' + 'instead.' + ReactDebugCurrentFrame.getStackAddendum();
           }
           var childrenString = '' + children;
-          invariant(false, 'Objects are not valid as a React child (found: %s).%s', childrenString === '[object Object]' ? 'object with keys {' + Object.keys(children).join(', ') + '}' : childrenString, addendum);
+          (function () {
+            {
+              {
+                throw ReactError(Error('Objects are not valid as a React child (found: ' + (childrenString === '[object Object]' ? 'object with keys {' + Object.keys(children).join(', ') + '}' : childrenString) + ').' + addendum));
+              }
+            }
+          })();
         }
       }
 
@@ -1471,7 +1494,13 @@
      * structure.
      */
     function onlyChild(children) {
-      !isValidElement(children) ? invariant(false, 'React.Children.only expected to receive a single React element child.') : void 0;
+      (function () {
+        if (!isValidElement(children)) {
+          {
+            throw ReactError(Error('React.Children.only expected to receive a single React element child.'));
+          }
+        }
+      })();
       return children;
     }
 
@@ -1653,7 +1682,7 @@
     function isValidElementType(type) {
       return typeof type === 'string' || typeof type === 'function' ||
       // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
-      type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE);
+      type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE);
     }
 
     function memo(type, compare) {
@@ -1671,7 +1700,13 @@
 
     function resolveDispatcher() {
       var dispatcher = ReactCurrentDispatcher.current;
-      !(dispatcher !== null) ? invariant(false, 'Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://fb.me/react-invalid-hook-call for tips about how to debug and fix this problem.') : void 0;
+      (function () {
+        if (!(dispatcher !== null)) {
+          {
+            throw ReactError(Error('Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://fb.me/react-invalid-hook-call for tips about how to debug and fix this problem.'));
+          }
+        }
+      })();
       return dispatcher;
     }
 
@@ -1742,6 +1777,17 @@
       }
     }
 
+    // Within the scope of the callback, mark all updates as being allowed to suspend.
+    function withSuspenseConfig(scope, config) {
+      var previousConfig = ReactCurrentBatchConfig.suspense;
+      ReactCurrentBatchConfig.suspense = config === undefined ? null : config;
+      try {
+        scope();
+      } finally {
+        ReactCurrentBatchConfig.suspense = previousConfig;
+      }
+    }
+
     /**
      * ReactElementValidator provides a wrapper around a element factory
      * which validates the props passed to the element. This is intended to be
@@ -1765,12 +1811,18 @@
       return '';
     }
 
-    function getSourceInfoErrorAddendum(elementProps) {
-      if (elementProps !== null && elementProps !== undefined && elementProps.__source !== undefined) {
-        var source = elementProps.__source;
+    function getSourceInfoErrorAddendum(source) {
+      if (source !== undefined) {
         var fileName = source.fileName.replace(/^.*[\\\/]/, '');
         var lineNumber = source.lineNumber;
         return '\n\nCheck your code at ' + fileName + ':' + lineNumber + '.';
+      }
+      return '';
+    }
+
+    function getSourceInfoErrorAddendumForProps(elementProps) {
+      if (elementProps !== null && elementProps !== undefined) {
+        return getSourceInfoErrorAddendum(elementProps.__source);
       }
       return '';
     }
@@ -1946,7 +1998,7 @@
           info += ' You likely forgot to export your component from the file ' + "it's defined in, or you might have mixed up default and named imports.";
         }
 
-        var sourceInfo = getSourceInfoErrorAddendum(props);
+        var sourceInfo = getSourceInfoErrorAddendumForProps(props);
         if (sourceInfo) {
           info += sourceInfo;
         } else {
@@ -2025,6 +2077,44 @@
       return newElement;
     }
 
+    {
+      try {
+        var frozenObject = Object.freeze({});
+        var testMap = new Map([[frozenObject, null]]);
+        var testSet = new Set([frozenObject]);
+        // This is necessary for Rollup to not consider these unused.
+        // https://github.com/rollup/rollup/issues/1771
+        // TODO: we can remove these if Rollup fixes the bug.
+        testMap.set(0, 0);
+        testSet.add(0);
+      } catch (e) {
+      }
+    }
+
+    // We will enforce mocking scheduler with scheduler/unstable_mock at some point. (v17?)
+    // Till then, we warn about the missing mock, but still fallback to a sync mode compatible version
+
+    // Temporary flag to revert the fix in #15650
+
+
+    // For tests, we flush suspense fallbacks in an act scope;
+    // *except* in some of our own tests, where we test incremental loading states.
+
+
+    // Changes priority of some events like mousemove to user-blocking priority,
+    // but without making them discrete. The flag exists in case it causes
+    // starvation problems.
+
+
+    // Add a callback property to suspense to notify which promises are currently
+    // in the update queue. This allows reporting and tracing of what is causing
+    // the user to see a loading state.
+
+
+    // Part of the simplification of React.createElement so we can eventually move
+    // from React.createElement to React.jsx
+    // https://github.com/reactjs/rfcs/blob/createlement-rfc/text/0000-create-element-changes.md
+
     var React = {
       Children: {
         map: mapChildren,
@@ -2055,8 +2145,10 @@
       useState: useState,
 
       Fragment: REACT_FRAGMENT_TYPE,
+      Profiler: REACT_PROFILER_TYPE,
       StrictMode: REACT_STRICT_MODE_TYPE,
       Suspense: REACT_SUSPENSE_TYPE,
+      unstable_SuspenseList: REACT_SUSPENSE_LIST_TYPE,
 
       createElement: createElementWithValidation,
       cloneElement: cloneElementWithValidation,
@@ -2065,8 +2157,7 @@
 
       version: ReactVersion,
 
-      unstable_ConcurrentMode: REACT_CONCURRENT_MODE_TYPE,
-      unstable_Profiler: REACT_PROFILER_TYPE,
+      unstable_withSuspenseConfig: withSuspenseConfig,
 
       __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED: ReactSharedInternals
     };
@@ -2200,7 +2291,7 @@
         const { className, children, required } = props, rest = __rest(props, ["className", "children", "required"]);
         // preserve given class value/s by tacking them onto our guaranteed class/s
         const givenClasses = getAppendAttributeValues(props.className);
-        return (react_1("input", Object.assign({ className: "mt-form__input" + givenClasses, "aria-required": required }, rest)));
+        return (react_1("input", Object.assign({ className: "mt-form__input" + givenClasses, "data-qa-element": "qa-input-field", "aria-required": required }, rest)));
     };
 
     var css$2 = ".secondary-form-button {\n  background: #f5f5f5;\n  color: #222222;\n  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);\n}\n\n.secondary-form-button:hover, .secondary-form-button.active {\n  background: #e6e6e6;\n  -webkit-transition: background-position 0.1s linear;\n  -moz-transition: background-position 0.1s linear;\n  -o-transition: background-position 0.1s linear;\n  transition: background-position 0.1s linear;\n}\n\n.secondary-form-button[disabled] {\n  background: #e6e6e6;\n  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);\n  cursor: default;\n  opacity: 0.8;\n}\n";
@@ -2261,14 +2352,50 @@
         return (react_1("span", { className: "mt-form__caption" + givenClasses, "aria-live": ariaLive }, children));
     };
 
-    var css$7 = ".mt-button {\n    appearance: none;\n    border: none;\n    background: #000;\n    color: #fff;\n    font-weight: 600;\n    padding: 10px 8px;\n    border-radius: 6px;\n    cursor: pointer;\n}\n.mt-button:hover {\n    background: #98c080;\n}\n.mt-button:focus {\n    background: #318201;\n}\n.mt-button:disabled {\n    background: #dcdcdc;\n    cursor: default;\n}\n.mt-button--default {\n    background: #000;\n}\n.mt-button--primary {\n    background: #318201;\n}";
+    var css$7 = ".mt-button {\n    appearance: none;\n    border: none;\n    background: #000;\n    color: #fff;\n    font-size: 14px;\n    font-weight: 600;\n    font-family: 'Proxima Nova', sans-serif;\n    padding: 10px 8px;\n    border-radius: 6px;\n    cursor: pointer;\n}\n.mt-button:hover {\n    background: #98c080;\n}\n.mt-button:focus {\n    background: #318201;\n}\n.mt-button:disabled {\n    background: #dcdcdc;\n    cursor: default;\n}\n.mt-button--default {\n    background: #000;\n}\n.mt-button--primary {\n    background: #318201;\n}";
     styleInject(css$7);
 
     const Button = (props) => {
         const { className, children, disabled } = props, rest = __rest(props, ["className", "children", "disabled"]);
         // preserve given class value/s by tacking them onto our guaranteed class/s
         const givenClasses = getAppendAttributeValues(props.className);
-        return (react_1("button", { className: "mt-button" + givenClasses, disabled: disabled }, children));
+        return (react_1("button", { "data-qa-element": "qa-button", className: "mt-button" + givenClasses, disabled: disabled }, children));
+    };
+
+    var css$8 = ".mt-form-wrapper {\n    display: flex;\n    flex-wrap: wrap;\n    flex-direction: row;\n    height: 100%;\n}\n\n.mt-form-wrapper .mt-form__input {\n    min-width: 150px;\n}";
+    styleInject(css$8);
+
+    const FormWrapper = (props) => {
+        const { className, children } = props, rest = __rest(props
+        // preserve given class value/s by tacking them onto our guaranteed class/s
+        , ["className", "children"]);
+        // preserve given class value/s by tacking them onto our guaranteed class/s
+        const givenClasses = getAppendAttributeValues(props.className);
+        return (react_1("div", Object.assign({ className: "mt-form-wrapper" + givenClasses }, rest), children));
+    };
+
+    var css$9 = ".mt-flexbox {\n    display: flex;\n    height: 100%;\n    width: 100%;\n}\n.mt-flex-direction--row {\n    flex-direction: row;\n}\n.mt-flex-direction--row-reverse {\n    flex-direction: row-reverse;\n}\n.mt-flex-direction--column {\n    flex-direction: column;\n}\n.mt-flex-direction--column-reverse {\n    flex-direction: column-reverse;\n}\n.mt-flex-wrap--nowrap {\n    flex-wrap: nowrap;\n}\n.mt-flex-wrap--wrap {\n    flex-wrap: wrap;\n}\n.mt-flex-wrap--wrap-reverse {\n    flex-wrap: wrap-reverse;\n}\n.mt-align-items--stretch {\n    align-items: stretch;\n}\n.mt-align-items--flex-start {\n    align-items: flex-start;\n}\n.mt-align-items--flex-end {\n    align-items: flex-end;\n}\n.mt-align-items--center {\n    align-items: center;\n}\n.mt-align-items--baseline {\n    align-items: baseline;\n}\n.mt-justify-content--flex-start {\n    justify-content: flex-start;\n}\n.mt-justify-content--flex-end {\n    justify-content: flex-end;\n}\n.mt-justify-content--center {\n    justify-content: center;\n}\n.mt-justify-content--space-between {\n    justify-content: space-between;\n}\n.mt-justify-content--space-around {\n    justify-content: space-around;\n}\n.mt-justify-content--space-evenly {\n    justify-content: space-evenly;\n}";
+    styleInject(css$9);
+
+    const Flexbox = (props) => {
+        const { className, children } = props, rest = __rest(props
+        // preserve given class value/s by tacking them onto our guaranteed class/s
+        , ["className", "children"]);
+        // preserve given class value/s by tacking them onto our guaranteed class/s
+        const givenClasses = getAppendAttributeValues(props.className);
+        return (react_1("div", Object.assign({ className: "mt-flexbox" + givenClasses }, rest), children));
+    };
+
+    var css$a = ":root {\n    --mt-color-brand--primary: green;\n    --mt-color-brand--secondary: orange;\n    --mt-color-brand--tertiary: pink;\n}";
+    styleInject(css$a);
+
+    const page = (props) => {
+        const { className, children } = props, rest = __rest(props
+        // preserve given class value/s by tacking them onto our guaranteed class/s
+        , ["className", "children"]);
+        // preserve given class value/s by tacking them onto our guaranteed class/s
+        const givenClasses = getAppendAttributeValues(props.className);
+        return (react_1("div", { className: "mt-page" + givenClasses }, children));
     };
 
     exports.FormButton = FormButton;
@@ -2282,6 +2409,9 @@
     exports.InputLabel = InputLabel;
     exports.InputCaption = InputCaption;
     exports.Button = Button;
+    exports.FormWrapper = FormWrapper;
+    exports.Flexbox = Flexbox;
+    exports.Page = page;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

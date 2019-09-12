@@ -1,6 +1,7 @@
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import sourceMaps from 'rollup-plugin-sourcemaps'
+import babel from 'rollup-plugin-babel'
 import camelCase from 'lodash.camelcase'
 import typescript from 'rollup-plugin-typescript2'
 import json from 'rollup-plugin-json'
@@ -17,13 +18,16 @@ export default {
     { file: pkg.module, format: 'es', sourcemap: true },
   ],
   // Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
-  external: ['styled-components'],
+  external: [],
   watch: {
-    include: 'src/**',
+    include: 'src/**'
   },
   plugins: [
     // Allow json resolution
     json(),
+    babel({
+      exclude: 'node_modules/**' // only transpile our source code
+    }),
     // Compile TypeScript files
     typescript({ useTsconfigDeclarationDir: true }),
     // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)

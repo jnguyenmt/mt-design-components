@@ -7,7 +7,7 @@ export const Button = (props: React.ComponentProps<"button">): JSX.Element => {
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses =  getAppendAttributeValues(props.className);
     return (
-        <button className={"mt-button" + givenClasses} disabled={disabled}>{children}</button>
+        <button data-qa-element="qa-button" className={"mt-button" + givenClasses} disabled={disabled}>{children}</button>
     )
 }
 

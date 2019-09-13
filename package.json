@@ -1,6 +1,6 @@
 {
   "name": "mt-design-components",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "keywords": [],
   "main": "dist/mt-design-components.umd.js",
@@ -89,10 +89,6 @@
       "/src/utils/testing/"
     ]
   },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true
-  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
@@ -145,6 +141,6 @@
     "react-dom": "^16.7.0"
   },
   "publishConfig": {
-    "registry": "http://your-host:8081/repository/npm-private/"
+    "registry": "http://localhost:8081/nexus/repository/npm-private/"
   }
 }

@@ -1,0 +1,13 @@
+.form-panel {
+    padding: 40px;
+    font-size: 14px;
+    background-color: #f4f4f4;
+    border: 1px solid #eeeeee;
+    border-radius: 5px;
+}
+
+/* if a LoadingOverlay componenent is used within a FormPanel, 
+   make sure it's fading to the correct background color  */
+.form-panel .disable-overlay-wrapper .disable-overlay {
+    background-color: #f4f4f4;
+}

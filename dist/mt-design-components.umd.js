@@ -1,6 +1,6 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-    typeof define === 'function' && define.amd ? define(['exports'], factory) :
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('components/shared/design/shared/appButton.css')) :
+    typeof define === 'function' && define.amd ? define(['exports', 'components/shared/design/shared/appButton.css'], factory) :
     (factory((global.index = global.index || {}, global.index.ts = {})));
 }(this, (function (exports) { 'use strict';
 
@@ -2188,6 +2188,13 @@
     var react_1 = react.createElement;
     var react_2 = react.cloneElement;
 
+    // Component
+    const Title = (props) => {
+        const { text, children, className } = props, rest = __rest(props, ["text", "children", "className"]);
+        // preserve given class value/s by tacking them onto our guaranteed class/s
+        return (react_1("h1", Object.assign({ className: `title ${className}` }, rest), text || children));
+    };
+
     function styleInject(css, ref) {
       if ( ref === void 0 ) ref = {};
       var insertAt = ref.insertAt;
@@ -2215,30 +2222,13 @@
       }
     }
 
-    var css = ".app-button {\n  display: inline-block;\n  cursor: pointer;\n  color: #222;\n  font-size: 14px;\n  line-height: 20px;\n  vertical-align: middle;\n  border-radius: 4px;\n  border: 1px solid #cccccc;\n  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);\n  text-decoration: none;\n  text-align: center;\n  margin: 0;\n  padding: 4px 12px;\n  background: linear-gradient(\n      to bottom,\n      var(--color4-button) 0%,\n      var(--color4-button-dark-fade) 84%);\n      /* hsl(var(--color1-primary-h), var(--color1-primary-s), calc(var(--color1-primary-l) - 6%)) 84%);  */\n      /* to #72bf44 */\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);\n}\n.app-button:hover {\n  background: linear-gradient(\n      to bottom,\n      var(--color4-button-dark-fade) 0%,\n      var(--color4-button) 84%);\n}\n.app-button:focus {\n  outline: 5px auto -webkit-focus-ring-color;\n  outline-offset: -2px;\n}\n.app-button:active {\n  outline: 0;\n  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05)\n}\n.app-button[disabled] {\n  background: linear-gradient(to bottom, #eeeeee 0%, #dddddd 84%);\n  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);\n  color: #888888;\n}\n";
+    var css = ".mt-form__input {\n  position: relative;\n  background-color: #ffffff;\n  color: #495057;\n  border: 1px solid #cccccc;\n  border-radius: 6px;\n  box-sizing: border-box;\n  height: 32px;\n  width: 100%;\n  line-height: 22px;\n  padding: 10px 8px;\n  font-size: 14px;\n  vertical-align: middle;\n  box-shadow: none;\n}\n.mt-form__input--error {\n  border: 2px solid #f6c3c1;\n  background: url(./images/icon-error.png) no-repeat #fff;\n}\n.mt-form__input--focused,\n.mt-form__input:focus {\n  border: 2px solid #9cabd0;\n  box-shadow: 0 0 2px 1px #9cabd0;\n}";
     styleInject(css);
 
     const getAppendAttributeValues = (append) => {
         const appenderString = (append) ? " " + append : "";
         return appenderString;
     };
-
-    const FormButton = (props) => {
-        const { className, children } = props, rest = __rest(props, ["className", "children"]);
-        // preserve given class value/s by tacking them onto our guaranteed class/s
-        const givenClasses = getAppendAttributeValues(props.className);
-        return (react_1("button", Object.assign({ className: "form-button app-button" + givenClasses }, rest), children));
-    };
-
-    // Component
-    const Title = (props) => {
-        const { text, children, className } = props, rest = __rest(props, ["text", "children", "className"]);
-        // preserve given class value/s by tacking them onto our guaranteed class/s
-        return (react_1("h1", Object.assign({ className: `title ${className}` }, rest), text || children));
-    };
-
-    var css$1 = ".mt-form__input {\n  position: relative;\n  background-color: #ffffff;\n  color: #495057;\n  border: 1px solid #cccccc;\n  border-radius: 6px;\n  box-sizing: border-box;\n  height: 32px;\n  width: 100%;\n  line-height: 22px;\n  padding: 10px 8px;\n  font-size: 14px;\n  vertical-align: middle;\n  box-shadow: none;\n}\n.mt-form__input--error {\n  border: 2px solid #f6c3c1;\n  background: url(./images/icon-error.png) no-repeat #fff;\n}\n.mt-form__input--focused,\n.mt-form__input:focus {\n  border: 2px solid #9cabd0;\n  box-shadow: 0 0 2px 1px #9cabd0;\n}";
-    styleInject(css$1);
 
     const InputField = (props) => {
         const { className, children, required } = props, rest = __rest(props, ["className", "children", "required"]);
@@ -2247,8 +2237,8 @@
         return (react_1("input", Object.assign({ className: "mt-form__input" + givenClasses, "data-qa-element": "qa-input-field", "aria-required": required }, rest)));
     };
 
-    var css$2 = ".secondary-form-button {\n  background: #f5f5f5;\n  color: #222222;\n  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);\n}\n\n.secondary-form-button:hover, .secondary-form-button.active {\n  background: #e6e6e6;\n  -webkit-transition: background-position 0.1s linear;\n  -moz-transition: background-position 0.1s linear;\n  -o-transition: background-position 0.1s linear;\n  transition: background-position 0.1s linear;\n}\n\n.secondary-form-button[disabled] {\n  background: #e6e6e6;\n  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);\n  cursor: default;\n  opacity: 0.8;\n}\n";
-    styleInject(css$2);
+    var css$1 = ".secondary-form-button {\n  background: #f5f5f5;\n  color: #222222;\n  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);\n}\n\n.secondary-form-button:hover, .secondary-form-button.active {\n  background: #e6e6e6;\n  -webkit-transition: background-position 0.1s linear;\n  -moz-transition: background-position 0.1s linear;\n  -o-transition: background-position 0.1s linear;\n  transition: background-position 0.1s linear;\n}\n\n.secondary-form-button[disabled] {\n  background: #e6e6e6;\n  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);\n  cursor: default;\n  opacity: 0.8;\n}\n";
+    styleInject(css$1);
 
     const SecondaryFormButton = (props) => {
         const { className, children } = props, rest = __rest(props, ["className", "children"]);
@@ -2257,8 +2247,8 @@
         return (react_1("button", Object.assign({ className: "secondary-form-button app-button" + givenClasses }, rest), children));
     };
 
-    var css$3 = ".mt-background {\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\n    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\n    sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  background-image: url('https://b.mineraltree.com/mt_13633/MT/img/MT_background.png');\n  background-repeat: repeat-x;\n  background-color: #ffffff\n}\n";
-    styleInject(css$3);
+    var css$2 = ".mt-background {\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\n    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\n    sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  background-image: url('https://b.mineraltree.com/mt_13633/MT/img/MT_background.png');\n  background-repeat: repeat-x;\n  background-color: #ffffff\n}\n";
+    styleInject(css$2);
 
     const MtBackground = (props) => {
         const { className, children } = props, rest = __rest(props, ["className", "children"]);
@@ -2267,8 +2257,8 @@
         return (react_1("body", Object.assign({ className: "mt-background" + givenClasses }, rest), children));
     };
 
-    var css$4 = ".card-panel {\n  background-color: white;\n  border-radius: 23px;\n  overflow: hidden;\n}\n\n.card {\n  background-image: url('https://b.mineraltree.com/mt_13633/MT/img/MT_background.png');\n  height: 178px;\n  border-radius: 0;\n}\n\n.info {\n  background-color: white;\n  height: 94px;\n}\n\n.header-text {\n  padding-left: 30px;\n}\n\n.info-text {\n  font-size: 16px;\n  padding-left: 30px;\n}\n";
-    styleInject(css$4);
+    var css$3 = ".card-panel {\n  background-color: white;\n  border-radius: 23px;\n  overflow: hidden;\n}\n\n.card {\n  background-image: url('https://b.mineraltree.com/mt_13633/MT/img/MT_background.png');\n  height: 178px;\n  border-radius: 0;\n}\n\n.info {\n  background-color: white;\n  height: 94px;\n}\n\n.header-text {\n  padding-left: 30px;\n}\n\n.info-text {\n  font-size: 16px;\n  padding-left: 30px;\n}\n";
+    styleInject(css$3);
 
     const Card = (props) => {
         const { className, children, text, title, textHeight, width, backgroundImgSrc, height } = props, rest = __rest(props, ["className", "children", "text", "title", "textHeight", "width", "backgroundImgSrc", "height"]);
@@ -2279,8 +2269,8 @@
                 react_1("div", { className: "info-text" }, text))));
     };
 
-    var css$5 = ".mt-form__label {\n    font-size: 12px;\n    font-weight: 700;\n    line-height: 1;\n    color: #666;\n}\n.mt-form__label--required::after {\n    display: inline-block;\n    content: '*';\n    color: #ff0000;\n}";
-    styleInject(css$5);
+    var css$4 = ".mt-form__label {\n    font-size: 12px;\n    font-weight: 700;\n    line-height: 1;\n    color: #666;\n}\n.mt-form__label--required::after {\n    display: inline-block;\n    content: '*';\n    color: #ff0000;\n}";
+    styleInject(css$4);
 
     const InputLabel = (props) => {
         const { className, children, required } = props, rest = __rest(props, ["className", "children", "required"]);
@@ -2289,8 +2279,8 @@
         return (react_1("label", { className: "mt-form__label" + givenClasses }, children));
     };
 
-    var css$6 = ".mt-form__caption {\n    font-size: 10px;\n    color: #808080;\n    line-height: 1;\n}\n.mt-form__caption--error {\n    color: #ff0000;\n}";
-    styleInject(css$6);
+    var css$5 = ".mt-form__caption {\n    font-size: 10px;\n    color: #808080;\n    line-height: 1;\n}\n.mt-form__caption--error {\n    color: #ff0000;\n}";
+    styleInject(css$5);
 
     const InputCaption = (props) => {
         const { className, children, error, ariaLive } = props, rest = __rest(props, ["className", "children", "error", "ariaLive"]);
@@ -2298,8 +2288,8 @@
         return (react_1("span", { className: "mt-form__caption" + givenClasses, "aria-live": ariaLive }, children));
     };
 
-    var css$7 = ".mt-button {\n    appearance: none;\n    border: none;\n    background: #000;\n    color: #fff;\n    font-size: 14px;\n    font-weight: 600;\n    font-family: 'Proxima Nova', sans-serif;\n    padding: 10px 8px;\n    border-radius: 6px;\n    cursor: pointer;\n}\n.mt-button:hover {\n    background: #98c080;\n}\n.mt-button:focus {\n    background: #318201;\n}\n.mt-button:disabled {\n    background: #dcdcdc;\n    cursor: default;\n}\n.mt-button--default {\n    background: #000;\n}\n.mt-button--primary {\n    background: #318201;\n}";
-    styleInject(css$7);
+    var css$6 = ".mt-button {\n    appearance: none;\n    border: none;\n    background: #000;\n    color: #fff;\n    font-size: 14px;\n    font-weight: 600;\n    font-family: 'Proxima Nova', sans-serif;\n    padding: 10px 8px;\n    border-radius: 6px;\n    cursor: pointer;\n}\n.mt-button:hover {\n    background: #98c080;\n}\n.mt-button:focus {\n    background: #318201;\n}\n.mt-button:disabled {\n    background: #dcdcdc;\n    cursor: default;\n}\n.mt-button--default {\n    background: #000;\n}\n.mt-button--primary {\n    background: #318201;\n}";
+    styleInject(css$6);
 
     const Button = (props) => {
         const { className, children, disabled } = props, rest = __rest(props, ["className", "children", "disabled"]);
@@ -2308,8 +2298,8 @@
         return (react_1("button", { "data-qa-element": "qa-button", className: "mt-button" + givenClasses, disabled: disabled }, children));
     };
 
-    var css$8 = ".mt-form-wrapper {\n    display: flex;\n    flex-wrap: wrap;\n    flex-direction: row;\n    height: 100%;\n}\n\n.mt-form-wrapper .mt-form__input {\n    min-width: 150px;\n}";
-    styleInject(css$8);
+    var css$7 = ".mt-form-wrapper {\n    display: flex;\n    flex-wrap: wrap;\n    flex-direction: row;\n    height: 100%;\n}\n\n.mt-form-wrapper .mt-form__input {\n    min-width: 150px;\n}";
+    styleInject(css$7);
 
     const FormWrapper = (props) => {
         const { className, children } = props, rest = __rest(props, ["className", "children"]);
@@ -2318,8 +2308,8 @@
         return (react_1("div", Object.assign({ className: "mt-form-wrapper" + givenClasses }, rest), children));
     };
 
-    var css$9 = ".mt-flexbox {\n    display: flex;\n    height: 100%;\n    width: 100%;\n}\n.mt-flex-direction--row {\n    flex-direction: row;\n}\n.mt-flex-direction--row-reverse {\n    flex-direction: row-reverse;\n}\n.mt-flex-direction--column {\n    flex-direction: column;\n}\n.mt-flex-direction--column-reverse {\n    flex-direction: column-reverse;\n}\n.mt-flex-wrap--nowrap {\n    flex-wrap: nowrap;\n}\n.mt-flex-wrap--wrap {\n    flex-wrap: wrap;\n}\n.mt-flex-wrap--wrap-reverse {\n    flex-wrap: wrap-reverse;\n}\n.mt-align-items--stretch {\n    align-items: stretch;\n}\n.mt-align-items--flex-start {\n    align-items: flex-start;\n}\n.mt-align-items--flex-end {\n    align-items: flex-end;\n}\n.mt-align-items--center {\n    align-items: center;\n}\n.mt-align-items--baseline {\n    align-items: baseline;\n}\n.mt-justify-content--flex-start {\n    justify-content: flex-start;\n}\n.mt-justify-content--flex-end {\n    justify-content: flex-end;\n}\n.mt-justify-content--center {\n    justify-content: center;\n}\n.mt-justify-content--space-between {\n    justify-content: space-between;\n}\n.mt-justify-content--space-around {\n    justify-content: space-around;\n}\n.mt-justify-content--space-evenly {\n    justify-content: space-evenly;\n}";
-    styleInject(css$9);
+    var css$8 = ".mt-flexbox {\n    display: flex;\n    height: 100%;\n    width: 100%;\n}\n.mt-flex-direction--row {\n    flex-direction: row;\n}\n.mt-flex-direction--row-reverse {\n    flex-direction: row-reverse;\n}\n.mt-flex-direction--column {\n    flex-direction: column;\n}\n.mt-flex-direction--column-reverse {\n    flex-direction: column-reverse;\n}\n.mt-flex-wrap--nowrap {\n    flex-wrap: nowrap;\n}\n.mt-flex-wrap--wrap {\n    flex-wrap: wrap;\n}\n.mt-flex-wrap--wrap-reverse {\n    flex-wrap: wrap-reverse;\n}\n.mt-align-items--stretch {\n    align-items: stretch;\n}\n.mt-align-items--flex-start {\n    align-items: flex-start;\n}\n.mt-align-items--flex-end {\n    align-items: flex-end;\n}\n.mt-align-items--center {\n    align-items: center;\n}\n.mt-align-items--baseline {\n    align-items: baseline;\n}\n.mt-justify-content--flex-start {\n    justify-content: flex-start;\n}\n.mt-justify-content--flex-end {\n    justify-content: flex-end;\n}\n.mt-justify-content--center {\n    justify-content: center;\n}\n.mt-justify-content--space-between {\n    justify-content: space-between;\n}\n.mt-justify-content--space-around {\n    justify-content: space-around;\n}\n.mt-justify-content--space-evenly {\n    justify-content: space-evenly;\n}";
+    styleInject(css$8);
 
     const Flexbox = (props) => {
         const { className, children } = props, rest = __rest(props, ["className", "children"]);
@@ -2328,8 +2318,8 @@
         return (react_1("div", Object.assign({ className: "mt-flexbox" + givenClasses }, rest), children));
     };
 
-    var css$a = ":root {\n    --mt-color-brand--primary: green;\n    --mt-color-brand--secondary: orange;\n    --mt-color-brand--tertiary: pink;\n}";
-    styleInject(css$a);
+    var css$9 = ":root {\n    --mt-color-brand--primary: green;\n    --mt-color-brand--secondary: orange;\n    --mt-color-brand--tertiary: pink;\n}";
+    styleInject(css$9);
 
     const page = (props) => {
         const { className, children } = props, rest = __rest(props, ["className", "children"]);
@@ -2338,7 +2328,116 @@
         return (react_1("div", { className: "mt-page" + givenClasses }, children));
     };
 
-    exports.FormButton = FormButton;
+    var css$a = ".button-group {\n    position: relative;\n    display: inline-block;\n    font-size: 0;\n    white-space: nowrap;\n    vertical-align: middle;\n}\n\n.button-group+.button-group {\n    margin-left: 5px;\n}\n\n.button-group>.button {\n    position: relative;\n    border-radius: 0;\n}\n\n.button-group>.button+.button {\n    margin-left: -1px;\n}\n\n.button-group>.button:first-child {\n    margin-left: 0;\n    border-bottom-left-radius: 4px;\n    border-top-left-radius: 4px;\n}\n\n.button-group>.button:last-child {\n    border-top-right-radius: 4px;\n    border-bottom-right-radius: 4px;\n}\n\n.button-group>.button:hover,\n.button-group>.button:focus,\n.button-group>.button:active {\n    z-index: 2;\n}\n\n.button-group>.button:active,\n.button-group>.button.active {\n    outline: 0;\n    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);\n}\n";
+    styleInject(css$a);
+
+    const ButtonGroup = (props) => {
+        const { className, children } = props, rest = __rest(props, ["className", "children"]);
+        // preserve given class value/s by tacking them onto our guaranteed class/s
+        const givenClasses = getAppendAttributeValues(props.className);
+        return (react.createElement("div", Object.assign({ className: "button-group" + givenClasses }, rest), children));
+    };
+
+    var css$b = ":root {\n    --color4-button-dark-fade: \n        hsl(var(--color1-primary-h), var(--color1-primary-s), calc(var(--color1-primary-l) - 6%));\n}\n\n.app-button {\n    display: inline-block;\n    cursor: pointer;\n    color: #ffffff;\n    font-size: 14px;\n    line-height: 20px;\n    vertical-align: middle;\n    border-radius: 4px;\n    border: 1px solid #cccccc;\n    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);\n    text-decoration: none;\n    text-align: center;\n    margin: 0;\n    padding: 4px 12px;\n    background: linear-gradient(\n        to bottom, \n        var(--color4-button) 0%, \n        var(--color4-button-dark-fade) 84%);\n        /* hsl(var(--color1-primary-h), var(--color1-primary-s), calc(var(--color1-primary-l) - 6%)) 84%);  */\n        /* to #72bf44 */\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);\n}\n.app-button:hover {\n    background: linear-gradient(\n        to bottom, \n        var(--color4-button-dark-fade) 0%, \n        var(--color4-button) 84%);\n}\n.app-button:focus {\n    outline: 5px auto -webkit-focus-ring-color;\n    outline-offset: -2px;\n}\n.app-button:active {\n    outline: 0;\n    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05)\n}\n.app-button[disabled] {\n    background: linear-gradient(to bottom, #eeeeee 0%, #dddddd 84%);\n    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);\n    color: #888888;\n}\n";
+    styleInject(css$b);
+
+    const FormButton = (props) => {
+        const { className, children } = props, rest = __rest(props, ["className", "children"]);
+        // preserve given class value/s by tacking them onto our guaranteed class/s
+        const givenClasses = getAppendAttributeValues(props.className);
+        return (react.createElement("button", Object.assign({ className: "form-button app-button" + givenClasses }, rest),
+            "d",
+            children));
+    };
+
+    var css$c = ".button-link {\n    text-decoration: underline;\n    background-color: transparent;\n    border: none;\n    color: blue;\n    cursor: pointer;\n    font-family:inherit;\n    font-size:inherit;\n}\n";
+    styleInject(css$c);
+
+    const ButtonLink = (props) => {
+        const { className, children } = props, rest = __rest(props, ["className", "children"]);
+        // preserve given class value/s by tacking them onto our guaranteed class/s
+        const givenClasses = getAppendAttributeValues(props.className);
+        return (react.createElement("button", Object.assign({ className: "button-link" + givenClasses }, rest), children));
+    };
+
+    var css$d = ".button-row {\n    padding: 20px 12px 12px 12px;\n}";
+    styleInject(css$d);
+
+    const ButtonRow = (props) => {
+        const { className, children } = props, rest = __rest(props, ["className", "children"]);
+        // preserve given class value/s by tacking them onto our guaranteed class/s
+        const givenClasses = getAppendAttributeValues(props.className);
+        return (react.createElement("div", Object.assign({ className: "button-row" + givenClasses }, rest), children));
+    };
+
+    var css$e = ".secondary-form-button {\n    background: #f5f5f5;\n    color: #222222;\n    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);\n}\n\n.secondary-form-button:hover, .secondary-form-button.active {\n    background: #e6e6e6;\n    -webkit-transition: background-position 0.1s linear;\n    -moz-transition: background-position 0.1s linear;\n    -o-transition: background-position 0.1s linear;\n    transition: background-position 0.1s linear;\n}\n\n.secondary-form-button[disabled] {\n    background: #e6e6e6;\n    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);\n    cursor: default;\n    opacity: 0.8;\n}\n";
+    styleInject(css$e);
+
+    const SecondaryFormButton$1 = (props) => {
+        const { className, children } = props, rest = __rest(props, ["className", "children"]);
+        // preserve given class value/s by tacking them onto our guaranteed class/s
+        const givenClasses = getAppendAttributeValues(props.className);
+        return (react.createElement("button", Object.assign({ className: "secondary-form-button app-button" + givenClasses }, rest), children));
+    };
+
+    var css$f = "input[type=\"radio\"].toggle-switch {\n    display: none; \n}\n\ninput[type=\"radio\"].toggle-switch.active+label {\n    cursor: pointer; \n}\n";
+    styleInject(css$f);
+
+    const ToggleButtons = (props) => {
+        const { id, selected, items, onClick, disabled, className } = props, rest = __rest(props, ["id", "selected", "items", "onClick", "disabled", "className"]);
+        const isActive = (itemValue) => selected === itemValue && !disabled ? "active" : "";
+        const renderButton = (items.map((item) => (react.createElement(SecondaryFormButton$1, Object.assign({ "data-toggle-display-name": item.displayName, "data-toggle-btn-value": item.value, key: item.value, id: id, className: `button ${className} ${isActive(item.value)}`, onClick: onClick, value: item.value, disabled: disabled }, rest), item.displayName))));
+        return (react.createElement(ButtonGroup, null, renderButton));
+    };
+
+    var css$g = ".form-error {\n    color: #d30909;\n    margin: 12px;\n    padding: 12px 12px 12px 36px;\n    background-image: url(./icon_error.png);\n    background-repeat: no-repeat;\n    background-position: 0 13px;\n}\n";
+    styleInject(css$g);
+
+    const FormError = (props) => {
+        const { className, children } = props, rest = __rest(props, ["className", "children"]);
+        // preserve given class value/s by tacking them onto our guaranteed class/s
+        const givenClasses = getAppendAttributeValues(props.className);
+        return (react.createElement("div", Object.assign({ className: "form-error" + givenClasses }, rest), children));
+    };
+
+    var css$h = ".form-panel {\n    padding: 40px;\n    font-size: 14px;\n    background-color: #f4f4f4;\n    border: 1px solid #eeeeee;\n    border-radius: 5px;\n}\n\n/* if a LoadingOverlay componenent is used within a FormPanel, \n   make sure it's fading to the correct background color  */\n.form-panel .disable-overlay-wrapper .disable-overlay {\n    background-color: #f4f4f4;\n}";
+    styleInject(css$h);
+
+    const FormPanel = (props) => {
+        const { className, children } = props, rest = __rest(props, ["className", "children"]);
+        // preserve given class value/s by tacking them onto our guaranteed class/s
+        const givenClasses = getAppendAttributeValues(props.className);
+        return (react.createElement("div", Object.assign({ className: "form-panel" + givenClasses }, rest), children));
+    };
+
+    var css$i = ".input-field {\n    background-color: #ffffff;\n    color: #555555;\n    border: 1px solid #cccccc;\n    border-radius: 4px;\n    box-sizing: border-box;\n    height: 28px;\n    line-height: 22px;\n    padding: 4px 6px;\n    font-size: 14px;\n    vertical-align: middle;\n    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n}";
+    styleInject(css$i);
+
+    var css$j = ".input-field-row {\n    padding: 12px;\n    box-sizing: content-box;\n}";
+    styleInject(css$j);
+
+    const InputFieldRow = (props) => {
+        const { className, children } = props, rest = __rest(props, ["className", "children"]);
+        // preserve given class value/s by tacking them onto our guaranteed class/s
+        const givenClasses = getAppendAttributeValues(props.className);
+        return (react.createElement("div", Object.assign({ className: "input-field-row" + givenClasses }, rest), children));
+    };
+
+    var css$k = ".input-label {\n    color: #555555;\n    height: 28px;\n    line-height: 22px;\n    padding: 4px 6px;\n    font-size: 14px;\n    vertical-align: middle;\n}";
+    styleInject(css$k);
+
+    var css$l = ".disable-overlay-wrapper {\n    position: relative;\n}\n\n.disable-overlay-wrapper .disable-overlay {\n    display: none;\n    background-color: white;\n    opacity: 0.7;\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n}\n\n.disable-overlay-wrapper .loading-overlay {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    display: none; /* will be flex when visible */\n    justify-content: center;\n    align-items: center;\n}\n\n.disable-overlay-wrapper .loading-overlay .disable-msg {\n    height: 1em;\n    background-color: white;\n    box-shadow: 0 0 5px white;\n    opacity: 1.0;\n    padding: 8px;\n}\n\n.disable-overlay-wrapper.is-loading .disable-overlay {\n    display: block;\n}\n.disable-overlay-wrapper.is-loading .loading-overlay {\n    display: flex;\n}\n";
+    styleInject(css$l);
+
+    const LoadingOverlay = (props) => {
+        const isLoadingClass = (props.isLoading) ? " is-loading" : "";
+        return (react.createElement("div", { className: "disable-overlay-wrapper" + isLoadingClass, role: props.role },
+            react.createElement("div", { className: "disable-overlay" }),
+            react.createElement("div", { className: "loading-overlay" },
+                react.createElement("div", { className: "disable-msg" }, "Please Wait...")),
+            props.children));
+    };
+
     exports.Title = Title;
     exports.InputField = InputField;
     exports.SecondaryFormButton = SecondaryFormButton;
@@ -2350,6 +2449,15 @@
     exports.FormWrapper = FormWrapper;
     exports.Flexbox = Flexbox;
     exports.Page = page;
+    exports.ButtonGroup = ButtonGroup;
+    exports.FormButton = FormButton;
+    exports.ButtonLink = ButtonLink;
+    exports.ButtonRow = ButtonRow;
+    exports.ToggleButtons = ToggleButtons;
+    exports.FormError = FormError;
+    exports.FormPanel = FormPanel;
+    exports.InputFieldRow = InputFieldRow;
+    exports.LoadingOverlay = LoadingOverlay;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

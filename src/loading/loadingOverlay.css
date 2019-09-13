@@ -1,0 +1,40 @@
+.disable-overlay-wrapper {
+    position: relative;
+}
+
+.disable-overlay-wrapper .disable-overlay {
+    display: none;
+    background-color: white;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.disable-overlay-wrapper .loading-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none; /* will be flex when visible */
+    justify-content: center;
+    align-items: center;
+}
+
+.disable-overlay-wrapper .loading-overlay .disable-msg {
+    height: 1em;
+    background-color: white;
+    box-shadow: 0 0 5px white;
+    opacity: 1.0;
+    padding: 8px;
+}
+
+.disable-overlay-wrapper.is-loading .disable-overlay {
+    display: block;
+}
+.disable-overlay-wrapper.is-loading .loading-overlay {
+    display: flex;
+}

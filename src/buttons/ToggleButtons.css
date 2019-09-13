@@ -1,0 +1,7 @@
+input[type="radio"].toggle-switch {
+    display: none; 
+}
+
+input[type="radio"].toggle-switch.active+label {
+    cursor: pointer; 
+}

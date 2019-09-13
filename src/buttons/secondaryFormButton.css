@@ -1,0 +1,20 @@
+.secondary-form-button {
+    background: #f5f5f5;
+    color: #222222;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+
+.secondary-form-button:hover, .secondary-form-button.active {
+    background: #e6e6e6;
+    -webkit-transition: background-position 0.1s linear;
+    -moz-transition: background-position 0.1s linear;
+    -o-transition: background-position 0.1s linear;
+    transition: background-position 0.1s linear;
+}
+
+.secondary-form-button[disabled] {
+    background: #e6e6e6;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+    cursor: default;
+    opacity: 0.8;
+}

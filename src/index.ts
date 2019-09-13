@@ -1,4 +1,3 @@
-export { default as FormButton } from "./FormButton";
 export { default as Title, IProps as TitleProps } from "./Title";
 export { default as InputField } from "./InputField";
 export { default as SecondaryFormButton } from "./SecondaryFormButton";
@@ -10,3 +9,8 @@ export { default as Button } from "./Button";
 export { default as FormWrapper } from "./FormWrapper";
 export { default as Flexbox } from "./Flexbox";
 export { default as Page } from "./Page";
+
+export * from "./buttons";
+export * from "./errors";
+export * from "./forms";
+export * from "./loading";

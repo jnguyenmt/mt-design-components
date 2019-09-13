@@ -1,0 +1,8 @@
+.form-error {
+    color: #d30909;
+    margin: 12px;
+    padding: 12px 12px 12px 36px;
+    background-image: url(./icon_error.png);
+    background-repeat: no-repeat;
+    background-position: 0 13px;
+}

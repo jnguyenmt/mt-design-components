@@ -1,6 +1,6 @@
-import * as React from "react"
-import { Frame, useCycle, PropertyControls, ControlType } from "framer"
-import * as System from "../../src/mt-design-components"
+import { PropertyControls, ControlType } from "framer";
+import * as React from "react";
+import * as System from "../../src";
 
 type Props = {
     state?: boolean

@@ -1,6 +1,7 @@
-import * as React from "react"
-import * as System from "../../src/mt-design-components"
-import { ControlType, PropertyControls } from "framer"
+import { ControlType, PropertyControls } from "framer";
+
+import * as React from "react";
+import * as System from "../../src";
 
 type Props = {
   disabled?:  boolean;

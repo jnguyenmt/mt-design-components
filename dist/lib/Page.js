@@ -13,9 +13,7 @@ import * as React from "react";
 import "./Root.css";
 import { getAppendAttributeValues } from "./utils/stringUtils";
 export const page = (props) => {
-    const { className, children } = props, rest = __rest(props
-    // preserve given class value/s by tacking them onto our guaranteed class/s
-    , ["className", "children"]);
+    const { className, children } = props, rest = __rest(props, ["className", "children"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
     return (React.createElement("div", { className: "mt-page" + givenClasses }, children));

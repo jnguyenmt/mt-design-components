@@ -10,8 +10,8 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import * as React from "react";
-import { getAppendAttributeValues } from "./utils/stringUtils";
 import "./InputField.css";
+import { getAppendAttributeValues } from "./utils/stringUtils";
 const InputField = (props) => {
     const { className, children, required } = props, rest = __rest(props, ["className", "children", "required"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s

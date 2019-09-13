@@ -1,13 +1,13 @@
-import * as React from "react"
+import * as React from "react";
 // import "./Title.css";
 // Types
-export type Props = {
+export interface IProps {
   /** Optional string that can be used to set the button value */
-  text?: string
+  text?: string;
 }
 
 // Component
-const Title = (props: React.ComponentProps<"h1"> & Props): JSX.Element => {
+const Title = (props: React.ComponentProps<"h1"> & IProps): JSX.Element => {
     const {text, children, className, ...rest} = props;
     // preserve given class value/s by tacking them onto our guaranteed class/s
     return (
@@ -17,7 +17,7 @@ const Title = (props: React.ComponentProps<"h1"> & Props): JSX.Element => {
         >
             {text || children}
         </h1>
-    )
-}
+    );
+};
 
 export default Title;

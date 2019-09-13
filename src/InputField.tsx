@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import { getAppendAttributeValues } from "./utils/stringUtils";
 import "./InputField.css";
+import { getAppendAttributeValues } from "./utils/stringUtils";
 
 const InputField = (props: React.ComponentProps<"input">): JSX.Element => {
   const {className, children, required, ...rest} = props;
@@ -14,7 +14,7 @@ const InputField = (props: React.ComponentProps<"input">): JSX.Element => {
           aria-required={required}
           {...rest}
       />
-  )
-}
+  );
+};
 
 export default InputField;

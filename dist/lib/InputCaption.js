@@ -10,8 +10,8 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import * as React from "react";
-import { getAppendAttributeValues } from "./utils/stringUtils";
 import "./InputCaption.css";
+import { getAppendAttributeValues } from "./utils/stringUtils";
 export const InputCaption = (props) => {
     const { className, children, error, ariaLive } = props, rest = __rest(props, ["className", "children", "error", "ariaLive"]);
     const givenClasses = getAppendAttributeValues(props.className);

@@ -10,8 +10,8 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import * as React from "react";
-import { getAppendAttributeValues } from "./utils/stringUtils";
 import "./MtBackground.css";
+import { getAppendAttributeValues } from "./utils/stringUtils";
 export const MtBackground = (props) => {
     const { className, children } = props, rest = __rest(props, ["className", "children"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s

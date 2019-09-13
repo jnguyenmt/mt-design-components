@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import { getAppendAttributeValues } from "./utils/stringUtils";
 import "./secondaryFormButton.css";
+import { getAppendAttributeValues } from "./utils/stringUtils";
 
 export const SecondaryFormButton = (props: React.ComponentProps<"button">): JSX.Element => {
     const {className, children, ...rest} = props;

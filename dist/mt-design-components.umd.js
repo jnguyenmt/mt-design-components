@@ -1,10 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('styled-components')) :
-    typeof define === 'function' && define.amd ? define(['exports', 'styled-components'], factory) :
-    (factory((global.index = global.index || {}, global.index.ts = {}),global.styled));
-}(this, (function (exports,styled) { 'use strict';
-
-    styled = styled && styled.hasOwnProperty('default') ? styled['default'] : styled;
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+    typeof define === 'function' && define.amd ? define(['exports'], factory) :
+    (factory((global.index = global.index || {}, global.index.ts = {})));
+}(this, (function (exports) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -2233,51 +2231,6 @@
     };
 
     // Component
-    const Input = ({ value, placeholder, error, disabled, onChange }) => (react_1(StyledInput, { type: "text", value: value, placeholder: placeholder, className: `${error ? "error" : ""} ${disabled ? "disabled" : ""}`, onChange: onChange }));
-    // Styles
-    const StyledInput = styled.input `
-  border-radius: 4px;
-  border: none;
-  box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),
-  font-size: 15px;
-  font-weight: 500;
-  margin: 0;
-  outline: 0;
-  overflow: visible;
-  transition: box-shadow 0.2s;
-  width: 100%;
-
-  &:focus {
-    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),
-  }
-  &:focus::placeholder {
-    opacity: 0.5;
-    transition: opacity 0.2s;
-  }
-
-  &.disabled {
-    pointer-events: none;
-  }
-
-  &.error {
-    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),
-  }
-  &.error:focus {
-    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),
-  }
-  &.error::placeholder {
-    opacity: 0.5;
-  }
-`;
-
-    // Component
-    const Link = ({ text, url, onClick }) => (react_1("a", { href: url, onClick: onClick }, text));
-    // Styles
-    const StyledButton = styled.a `
-  font-size: 12px;
-`;
-
-    // Component
     const Title = (props) => {
         const { text, children, className } = props, rest = __rest(props, ["text", "children", "className"]);
         // preserve given class value/s by tacking them onto our guaranteed class/s
@@ -2319,16 +2272,9 @@
 
     const Card = (props) => {
         const { className, children, text, title, textHeight, width, backgroundImgSrc, height } = props, rest = __rest(props, ["className", "children", "text", "title", "textHeight", "width", "backgroundImgSrc", "height"]);
-        return (react_1("div", { className: "card-panel", style: {
-                "width": width
-            } },
-            react_1("div", { className: "card", style: {
-                    "height": height,
-                    "backgroundImage": 'url(' + backgroundImgSrc + ')'
-                } }),
-            react_1("div", { className: "info", style: {
-                    "height": textHeight
-                } },
+        return (react_1("div", { className: "card-panel", style: { width } },
+            react_1("div", { className: "card", style: { height, backgroundImage: "url(" + backgroundImgSrc + ")" } }),
+            react_1("div", { className: "info", style: { height: textHeight } },
                 react_1(Title, { className: "header-text" }, title),
                 react_1("div", { className: "info-text" }, text))));
     };
@@ -2366,9 +2312,7 @@
     styleInject(css$8);
 
     const FormWrapper = (props) => {
-        const { className, children } = props, rest = __rest(props
-        // preserve given class value/s by tacking them onto our guaranteed class/s
-        , ["className", "children"]);
+        const { className, children } = props, rest = __rest(props, ["className", "children"]);
         // preserve given class value/s by tacking them onto our guaranteed class/s
         const givenClasses = getAppendAttributeValues(props.className);
         return (react_1("div", Object.assign({ className: "mt-form-wrapper" + givenClasses }, rest), children));
@@ -2378,9 +2322,7 @@
     styleInject(css$9);
 
     const Flexbox = (props) => {
-        const { className, children } = props, rest = __rest(props
-        // preserve given class value/s by tacking them onto our guaranteed class/s
-        , ["className", "children"]);
+        const { className, children } = props, rest = __rest(props, ["className", "children"]);
         // preserve given class value/s by tacking them onto our guaranteed class/s
         const givenClasses = getAppendAttributeValues(props.className);
         return (react_1("div", Object.assign({ className: "mt-flexbox" + givenClasses }, rest), children));
@@ -2390,17 +2332,13 @@
     styleInject(css$a);
 
     const page = (props) => {
-        const { className, children } = props, rest = __rest(props
-        // preserve given class value/s by tacking them onto our guaranteed class/s
-        , ["className", "children"]);
+        const { className, children } = props, rest = __rest(props, ["className", "children"]);
         // preserve given class value/s by tacking them onto our guaranteed class/s
         const givenClasses = getAppendAttributeValues(props.className);
         return (react_1("div", { className: "mt-page" + givenClasses }, children));
     };
 
     exports.FormButton = FormButton;
-    exports.Input = Input;
-    exports.Link = Link;
     exports.Title = Title;
     exports.InputField = InputField;
     exports.SecondaryFormButton = SecondaryFormButton;

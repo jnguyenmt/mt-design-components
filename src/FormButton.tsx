@@ -1,5 +1,5 @@
-import * as React from "react"
-import './FormButton.css';
+import * as React from "react";
+import "./FormButton.css";
 
 import { getAppendAttributeValues } from "./utils/stringUtils";
 

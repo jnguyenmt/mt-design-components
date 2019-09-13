@@ -1,5 +1,10 @@
 {
-  "extends": [
-    "tslint-config-standard"
-  ]
+  "extends": ["tslint:latest", "tslint-react"],
+  "rules": {
+      "max-line-length": [true, {"limit": 100, "ignore-pattern": "^import (.*?)[^;]$|/* eslint-disable"}],
+      "trailing-comma": [false],
+      "object-literal-sort-keys": [false],
+      "no-implicit-dependencies": [false],
+      "no-submodule-imports": [false]
+  }
 }

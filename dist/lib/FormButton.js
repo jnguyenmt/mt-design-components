@@ -10,7 +10,7 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import * as React from "react";
-import './FormButton.css';
+import "./FormButton.css";
 import { getAppendAttributeValues } from "./utils/stringUtils";
 export const FormButton = (props) => {
     const { className, children } = props, rest = __rest(props, ["className", "children"]);

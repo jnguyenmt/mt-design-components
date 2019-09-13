@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
@@ -2227,51 +2225,6 @@ const FormButton = (props) => {
 };
 
 // Component
-const Input = ({ value, placeholder, error, disabled, onChange }) => (react_1(StyledInput, { type: "text", value: value, placeholder: placeholder, className: `${error ? "error" : ""} ${disabled ? "disabled" : ""}`, onChange: onChange }));
-// Styles
-const StyledInput = styled.input `
-  border-radius: 4px;
-  border: none;
-  box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),
-  font-size: 15px;
-  font-weight: 500;
-  margin: 0;
-  outline: 0;
-  overflow: visible;
-  transition: box-shadow 0.2s;
-  width: 100%;
-
-  &:focus {
-    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),
-  }
-  &:focus::placeholder {
-    opacity: 0.5;
-    transition: opacity 0.2s;
-  }
-
-  &.disabled {
-    pointer-events: none;
-  }
-
-  &.error {
-    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),
-  }
-  &.error:focus {
-    box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.05),
-  }
-  &.error::placeholder {
-    opacity: 0.5;
-  }
-`;
-
-// Component
-const Link = ({ text, url, onClick }) => (react_1("a", { href: url, onClick: onClick }, text));
-// Styles
-const StyledButton = styled.a `
-  font-size: 12px;
-`;
-
-// Component
 const Title = (props) => {
     const { text, children, className } = props, rest = __rest(props, ["text", "children", "className"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
@@ -2313,16 +2266,9 @@ styleInject(css$4);
 
 const Card = (props) => {
     const { className, children, text, title, textHeight, width, backgroundImgSrc, height } = props, rest = __rest(props, ["className", "children", "text", "title", "textHeight", "width", "backgroundImgSrc", "height"]);
-    return (react_1("div", { className: "card-panel", style: {
-            "width": width
-        } },
-        react_1("div", { className: "card", style: {
-                "height": height,
-                "backgroundImage": 'url(' + backgroundImgSrc + ')'
-            } }),
-        react_1("div", { className: "info", style: {
-                "height": textHeight
-            } },
+    return (react_1("div", { className: "card-panel", style: { width } },
+        react_1("div", { className: "card", style: { height, backgroundImage: "url(" + backgroundImgSrc + ")" } }),
+        react_1("div", { className: "info", style: { height: textHeight } },
             react_1(Title, { className: "header-text" }, title),
             react_1("div", { className: "info-text" }, text))));
 };
@@ -2360,9 +2306,7 @@ var css$8 = ".mt-form-wrapper {\n    display: flex;\n    flex-wrap: wrap;\n    f
 styleInject(css$8);
 
 const FormWrapper = (props) => {
-    const { className, children } = props, rest = __rest(props
-    // preserve given class value/s by tacking them onto our guaranteed class/s
-    , ["className", "children"]);
+    const { className, children } = props, rest = __rest(props, ["className", "children"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
     return (react_1("div", Object.assign({ className: "mt-form-wrapper" + givenClasses }, rest), children));
@@ -2372,9 +2316,7 @@ var css$9 = ".mt-flexbox {\n    display: flex;\n    height: 100%;\n    width: 10
 styleInject(css$9);
 
 const Flexbox = (props) => {
-    const { className, children } = props, rest = __rest(props
-    // preserve given class value/s by tacking them onto our guaranteed class/s
-    , ["className", "children"]);
+    const { className, children } = props, rest = __rest(props, ["className", "children"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
     return (react_1("div", Object.assign({ className: "mt-flexbox" + givenClasses }, rest), children));
@@ -2384,13 +2326,11 @@ var css$a = ":root {\n    --mt-color-brand--primary: green;\n    --mt-color-bran
 styleInject(css$a);
 
 const page = (props) => {
-    const { className, children } = props, rest = __rest(props
-    // preserve given class value/s by tacking them onto our guaranteed class/s
-    , ["className", "children"]);
+    const { className, children } = props, rest = __rest(props, ["className", "children"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
     return (react_1("div", { className: "mt-page" + givenClasses }, children));
 };
 
-export { FormButton, Input, Link, Title, InputField, SecondaryFormButton, MtBackground, Card, InputLabel, InputCaption, Button, FormWrapper, Flexbox, page as Page };
+export { FormButton, Title, InputField, SecondaryFormButton, MtBackground, Card, InputLabel, InputCaption, Button, FormWrapper, Flexbox, page as Page };
 //# sourceMappingURL=mt-design-components.es6.js.map

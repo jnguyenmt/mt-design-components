@@ -10,20 +10,13 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import * as React from "react";
-import './Card.css';
+import "./Card.css";
 import Title from "./Title";
 export const Card = (props) => {
     const { className, children, text, title, textHeight, width, backgroundImgSrc, height } = props, rest = __rest(props, ["className", "children", "text", "title", "textHeight", "width", "backgroundImgSrc", "height"]);
-    return (React.createElement("div", { className: "card-panel", style: {
-            "width": width
-        } },
-        React.createElement("div", { className: "card", style: {
-                "height": height,
-                "backgroundImage": 'url(' + backgroundImgSrc + ')'
-            } }),
-        React.createElement("div", { className: "info", style: {
-                "height": textHeight
-            } },
+    return (React.createElement("div", { className: "card-panel", style: { width } },
+        React.createElement("div", { className: "card", style: { height, backgroundImage: "url(" + backgroundImgSrc + ")" } }),
+        React.createElement("div", { className: "info", style: { height: textHeight } },
             React.createElement(Title, { className: "header-text" }, title),
             React.createElement("div", { className: "info-text" }, text))));
 };

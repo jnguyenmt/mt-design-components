@@ -13,9 +13,7 @@ import * as React from "react";
 import "./Flexbox.css";
 import { getAppendAttributeValues } from "./utils/stringUtils";
 export const Flexbox = (props) => {
-    const { className, children } = props, rest = __rest(props
-    // preserve given class value/s by tacking them onto our guaranteed class/s
-    , ["className", "children"]);
+    const { className, children } = props, rest = __rest(props, ["className", "children"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
     return (React.createElement("div", Object.assign({ className: "mt-flexbox" + givenClasses }, rest), children));

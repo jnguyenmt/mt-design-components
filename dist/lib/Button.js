@@ -10,7 +10,7 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import * as React from "react";
-import { getAppendAttributeValues } from "./utils/stringUtils";
+import { getAppendAttributeValues } from "utils/stringUtils";
 import "./Button.css";
 export const Button = (props) => {
     const { className, children, disabled } = props, rest = __rest(props, ["className", "children", "disabled"]);

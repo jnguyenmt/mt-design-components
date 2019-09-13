@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import { getAppendAttributeValues } from "./utils/stringUtils";
 import "./MtBackground.css";
+import { getAppendAttributeValues } from "./utils/stringUtils";
 
 export const MtBackground = (props: React.ComponentProps<"body">): JSX.Element => {
     const {className, children, ...rest} = props;

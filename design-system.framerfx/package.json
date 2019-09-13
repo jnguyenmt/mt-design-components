@@ -1,17 +1,17 @@
 {
 	"main": "dist/index.js",
+  "version": "1.0.0",
 	"license": "MIT",
+  "peerDependencies": {
+    "framer": "^1.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
 	"devDependencies": {
 		"@types/react": "^16.7.20"
 	},
-	"peerDependencies": {
-		"framer": "^0.10 || ^1",
-		"react": "^16.7.0",
-		"react-dom": "^16.7.0"
-	},
-	"version": "1.0.0",
 	"dependencies": {
-		"@framer/unsplash.unsplash": "^1.0.0",
+		"framer": "^0.10 || ^1",
 		"styled-components": "^4.2.0"
 	},
 	"framer": {

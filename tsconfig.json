@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "moduleResolution": "node",
     "target": "es6",
     "module":"es2015",
@@ -10,8 +11,6 @@
     "declaration": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
     "declarationDir": "dist/types",
     "outDir": "./dist/lib",
     "skipLibCheck": true,
@@ -20,10 +19,13 @@
     ]
   },
   "include": [
-    "src"
+    "src/**/*.tsx"
   ],
   "exclude": [
     "design-system.framerfx",
     "dist/lib/**/*",
+    "src/**/*.test.*",
+    "src/**/*.spec.*",
+    "src/utils/testing/**/*"
   ]
 }

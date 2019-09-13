@@ -1,7 +1,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('styled-components')) :
     typeof define === 'function' && define.amd ? define(['exports', 'styled-components'], factory) :
-    (factory((global.mtDesignComponents = {}),global.styled));
+    (factory((global.index = global.index || {}, global.index.ts = {}),global.styled));
 }(this, (function (exports,styled) { 'use strict';
 
     styled = styled && styled.hasOwnProperty('default') ? styled['default'] : styled;

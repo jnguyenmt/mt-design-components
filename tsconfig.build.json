@@ -1,0 +1,12 @@
+{
+    "extends": "./tsconfig.json",
+    "exclude": [
+      "design-system.framerfx",
+      "dist/lib/**/*",
+      "src/setupTests.ts",
+      "src/**/*.test.*",
+      "src/**/*.spec.*",
+      "src/utils/testing/**/*"
+    ]
+  }
+  

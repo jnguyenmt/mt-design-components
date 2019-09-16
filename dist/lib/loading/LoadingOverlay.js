@@ -2,7 +2,7 @@ import React from "react";
 import "./loadingOverlay.css";
 export const LoadingOverlay = (props) => {
     const isLoadingClass = (props.isLoading) ? " is-loading" : "";
-    return (React.createElement("div", { className: "disable-overlay-wrapper" + isLoadingClass, role: props.role },
+    return (React.createElement("div", { "data-qa-element": "loading-overlay-wrapper", "data-loading-overlay-is-enabled": props.isLoading, className: "disable-overlay-wrapper" + isLoadingClass, role: props.role },
         React.createElement("div", { className: "disable-overlay" }),
         React.createElement("div", { className: "loading-overlay" },
             React.createElement("div", { className: "disable-msg" }, "Please Wait...")),

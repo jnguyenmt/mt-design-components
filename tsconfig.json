@@ -16,13 +16,6 @@
     "skipLibCheck": true
   },
   "include": [
-    "src/**/*.tsx"
-  ],
-  "exclude": [
-    "design-system.framerfx",
-    "dist/lib/**/*",
-    "src/**/*.test.*",
-    "src/**/*.spec.*",
-    "src/utils/testing/**/*"
+    "src/**/*"
   ]
 }

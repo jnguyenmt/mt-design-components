@@ -10,13 +10,13 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React from "react";
-import "components/shared/design/shared/appButton.css";
+import "shared/appButton.css";
 import { getAppendAttributeValues } from "utils/stringUtils";
 import "./secondaryFormButton.css";
 export const SecondaryFormButton = (props) => {
     const { className, children } = props, rest = __rest(props, ["className", "children"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
-    return (React.createElement("button", Object.assign({ className: "secondary-form-button app-button" + givenClasses }, rest), children));
+    return (React.createElement("button", Object.assign({ "data-qa-element": "secondary-form-button", className: "secondary-form-button app-button" + givenClasses }, rest), children));
 };
 //# sourceMappingURL=SecondaryFormButton.js.map

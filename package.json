@@ -19,82 +19,22 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "build": "tsc --module es6 && rollup -c rollup.config.ts",
+    "prebuild": "rimraf dist",
+    "build": "tsc --module es6 --p tsconfig.build.json && rollup -c rollup.config.ts",
     "start": "rollup -c rollup.config.ts -w",
-    "test": "jest --coverage",
-    "test:watch": "jest --coverage --watch",
+    "test": "jest --config jest.config.json --coverage",
+    "test:watch": "jest --config jest.config.json --coverage --watch",
     "test:prod": "npm run lint && npm run test -- --no-cache",
     "lint": "tslint -c tslint.json --project . --format verbose",
     "lint-fix": "tslint -c tslint.json --project . --fix --format verbose"
   },
-  "jest": {
-    "coverageThreshold": {
-      "global": {
-        "branches": 90,
-        "functions": 95,
-        "lines": 95,
-        "statements": 95
-      }
-    },
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}",
-      "!src/utils/**/*.{js,jsx,ts,tsx}",
-      "!src/**/*.d.ts"
-    ],
-    "moduleNameMapper": {
-      "^.(css|sass|scss)$": "identity-obj-proxy"
-    },
-    "transform": {
-      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-      "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js",
-      "^.+\\.(js|jsx|ts|tsx)$": "ts-jest"
-    },
-    "setupFilesAfterEnv": [
-      "<rootDir>/src/setupTests.ts"
-    ],
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
-      "^.+\\.module\\.(css|sass|scss)$"
-    ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
-      "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
-    ],
-    "testEnvironment": "jest-environment-jsdom-fourteen",
-    "moduleFileExtensions": [
-      "web.js",
-      "js",
-      "web.ts",
-      "ts",
-      "web.tsx",
-      "tsx",
-      "json",
-      "web.jsx",
-      "jsx",
-      "node"
-    ],
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/test/",
-      "/src/setupTests.ts",
-      "/src/utils/testing/"
-    ]
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
   "devDependencies": {
-    "@commitlint/cli": "^7.1.2",
-    "@commitlint/config-conventional": "^7.1.2",
     "@types/enzyme": "^3.10.3",
     "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/jest": "^23.3.2",
     "@types/node": "^10.11.0",
     "@types/react": "^16.7.20",
     "@types/react-dom": "^16.0.11",
-    "commitizen": "^3.0.0",
     "cross-env": "^5.2.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
@@ -103,8 +43,6 @@
     "jest-config": "24.8.0",
     "jest-environment-jsdom-fourteen": "0.1.0",
     "jest-resolve": "24.8.0",
-    "prompt": "^1.0.0",
-    "replace-in-file": "^3.4.2",
     "rimraf": "^2.6.2",
     "rollup": "^0.67.0",
     "rollup-plugin-babel": "^4.3.3",
@@ -114,7 +52,6 @@
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-sourcemaps": "^0.4.2",
     "rollup-plugin-typescript2": "^0.24.1",
-    "semantic-release": "^15.13.24",
     "ts-jest": "^24.0.2",
     "ts-node": "^7.0.1",
     "tslint": "^5.14.0",

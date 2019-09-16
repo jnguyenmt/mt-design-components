@@ -1,6 +1,6 @@
 import React, { ComponentProps } from "react";
 
-import "components/shared/design/shared/appButton.css";
+import "shared/appButton.css";
 import { getAppendAttributeValues } from "utils/stringUtils";
 import "./secondaryFormButton.css";
 
@@ -10,6 +10,7 @@ export const SecondaryFormButton = (props: ComponentProps<"button">): JSX.Elemen
     const givenClasses =  getAppendAttributeValues(props.className);
     return (
         <button
+            data-qa-element="secondary-form-button"
             className={"secondary-form-button app-button" + givenClasses}
             {...rest}
         >

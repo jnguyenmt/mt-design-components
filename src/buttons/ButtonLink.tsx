@@ -10,6 +10,7 @@ export const ButtonLink = (props: ComponentProps<"button">): JSX.Element => {
     const givenClasses =  getAppendAttributeValues(props.className);
     return (
         <button
+            data-qa-element="button-link"
             className={"button-link" + givenClasses}
             {...rest}
         >

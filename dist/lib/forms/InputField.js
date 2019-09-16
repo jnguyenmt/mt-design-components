@@ -16,6 +16,6 @@ export const InputField = (props) => {
     const { className } = props, rest = __rest(props, ["className"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
-    return (React.createElement("input", Object.assign({ className: "input-field" + givenClasses }, rest)));
+    return (React.createElement("input", Object.assign({ "data-qa-element": "input-field", className: "input-field" + givenClasses }, rest)));
 };
 //# sourceMappingURL=InputField.js.map

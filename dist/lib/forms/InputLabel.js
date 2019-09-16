@@ -16,6 +16,6 @@ export const InputLabel = (props) => {
     const { className, children } = props, rest = __rest(props, ["className", "children"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
-    return (React.createElement("label", Object.assign({ className: "input-label" + givenClasses }, rest), children));
+    return (React.createElement("label", Object.assign({ "data-qa-element": "input-label", className: "input-label" + givenClasses }, rest), children));
 };
 //# sourceMappingURL=InputLabel.js.map

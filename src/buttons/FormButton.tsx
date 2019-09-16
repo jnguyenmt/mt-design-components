@@ -10,6 +10,7 @@ export const FormButton = (props: ComponentProps<"button">): JSX.Element => {
     const givenClasses =  getAppendAttributeValues(props.className);
     return (
         <button
+            data-qa-element="form-button"
             className={"form-button app-button" + givenClasses}
             {...rest}
         >

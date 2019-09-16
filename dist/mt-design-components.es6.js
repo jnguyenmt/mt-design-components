@@ -1,4 +1,4 @@
-import 'components/shared/design/shared/appButton.css';
+import 'shared/appButton.css';
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -2331,7 +2331,7 @@ const ButtonGroup = (props) => {
     const { className, children } = props, rest = __rest(props, ["className", "children"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
-    return (react.createElement("div", Object.assign({ className: "button-group" + givenClasses }, rest), children));
+    return (react.createElement("div", Object.assign({ "data-qa-element": "button-group", className: "button-group" + givenClasses }, rest), children));
 };
 
 var css$b = ":root {\n    --color4-button-dark-fade: \n        hsl(var(--color1-primary-h), var(--color1-primary-s), calc(var(--color1-primary-l) - 6%));\n}\n\n.app-button {\n    display: inline-block;\n    cursor: pointer;\n    color: #ffffff;\n    font-size: 14px;\n    line-height: 20px;\n    vertical-align: middle;\n    border-radius: 4px;\n    border: 1px solid #cccccc;\n    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);\n    text-decoration: none;\n    text-align: center;\n    margin: 0;\n    padding: 4px 12px;\n    background: linear-gradient(\n        to bottom, \n        var(--color4-button) 0%, \n        var(--color4-button-dark-fade) 84%);\n        /* hsl(var(--color1-primary-h), var(--color1-primary-s), calc(var(--color1-primary-l) - 6%)) 84%);  */\n        /* to #72bf44 */\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);\n}\n.app-button:hover {\n    background: linear-gradient(\n        to bottom, \n        var(--color4-button-dark-fade) 0%, \n        var(--color4-button) 84%);\n}\n.app-button:focus {\n    outline: 5px auto -webkit-focus-ring-color;\n    outline-offset: -2px;\n}\n.app-button:active {\n    outline: 0;\n    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05)\n}\n.app-button[disabled] {\n    background: linear-gradient(to bottom, #eeeeee 0%, #dddddd 84%);\n    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);\n    color: #888888;\n}\n";
@@ -2341,7 +2341,7 @@ const FormButton = (props) => {
     const { className, children } = props, rest = __rest(props, ["className", "children"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
-    return (react.createElement("button", Object.assign({ className: "form-button app-button" + givenClasses }, rest),
+    return (react.createElement("button", Object.assign({ "data-qa-element": "form-button", className: "form-button app-button" + givenClasses }, rest),
         "d",
         children));
 };
@@ -2353,7 +2353,7 @@ const ButtonLink = (props) => {
     const { className, children } = props, rest = __rest(props, ["className", "children"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
-    return (react.createElement("button", Object.assign({ className: "button-link" + givenClasses }, rest), children));
+    return (react.createElement("button", Object.assign({ "data-qa-element": "button-link", className: "button-link" + givenClasses }, rest), children));
 };
 
 var css$d = ".button-row {\n    padding: 20px 12px 12px 12px;\n}";
@@ -2363,7 +2363,7 @@ const ButtonRow = (props) => {
     const { className, children } = props, rest = __rest(props, ["className", "children"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
-    return (react.createElement("div", Object.assign({ className: "button-row" + givenClasses }, rest), children));
+    return (react.createElement("div", Object.assign({ "data-qa-element": "button-row", className: "button-row" + givenClasses }, rest), children));
 };
 
 var css$e = ".secondary-form-button {\n    background: #f5f5f5;\n    color: #222222;\n    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);\n}\n\n.secondary-form-button:hover, .secondary-form-button.active {\n    background: #e6e6e6;\n    -webkit-transition: background-position 0.1s linear;\n    -moz-transition: background-position 0.1s linear;\n    -o-transition: background-position 0.1s linear;\n    transition: background-position 0.1s linear;\n}\n\n.secondary-form-button[disabled] {\n    background: #e6e6e6;\n    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);\n    cursor: default;\n    opacity: 0.8;\n}\n";
@@ -2373,7 +2373,7 @@ const SecondaryFormButton$1 = (props) => {
     const { className, children } = props, rest = __rest(props, ["className", "children"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
-    return (react.createElement("button", Object.assign({ className: "secondary-form-button app-button" + givenClasses }, rest), children));
+    return (react.createElement("button", Object.assign({ "data-qa-element": "secondary-form-button", className: "secondary-form-button app-button" + givenClasses }, rest), children));
 };
 
 var css$f = "input[type=\"radio\"].toggle-switch {\n    display: none; \n}\n\ninput[type=\"radio\"].toggle-switch.active+label {\n    cursor: pointer; \n}\n";
@@ -2393,7 +2393,7 @@ const FormError = (props) => {
     const { className, children } = props, rest = __rest(props, ["className", "children"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
-    return (react.createElement("div", Object.assign({ className: "form-error" + givenClasses }, rest), children));
+    return (react.createElement("div", Object.assign({ "data-qa-element": "form-error", className: "form-error" + givenClasses }, rest), children));
 };
 
 var css$h = ".form-panel {\n    padding: 40px;\n    font-size: 14px;\n    background-color: #f4f4f4;\n    border: 1px solid #eeeeee;\n    border-radius: 5px;\n}\n\n/* if a LoadingOverlay componenent is used within a FormPanel, \n   make sure it's fading to the correct background color  */\n.form-panel .disable-overlay-wrapper .disable-overlay {\n    background-color: #f4f4f4;\n}";
@@ -2403,7 +2403,7 @@ const FormPanel = (props) => {
     const { className, children } = props, rest = __rest(props, ["className", "children"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
-    return (react.createElement("div", Object.assign({ className: "form-panel" + givenClasses }, rest), children));
+    return (react.createElement("div", Object.assign({ "data-qa-element": "form-panel", className: "form-panel" + givenClasses }, rest), children));
 };
 
 var css$i = ".input-field {\n    background-color: #ffffff;\n    color: #555555;\n    border: 1px solid #cccccc;\n    border-radius: 4px;\n    box-sizing: border-box;\n    height: 28px;\n    line-height: 22px;\n    padding: 4px 6px;\n    font-size: 14px;\n    vertical-align: middle;\n    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n}";
@@ -2416,7 +2416,7 @@ const InputFieldRow = (props) => {
     const { className, children } = props, rest = __rest(props, ["className", "children"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
-    return (react.createElement("div", Object.assign({ className: "input-field-row" + givenClasses }, rest), children));
+    return (react.createElement("div", Object.assign({ "data-qa-element": "input-field-row", className: "input-field-row" + givenClasses }, rest), children));
 };
 
 var css$k = ".input-label {\n    color: #555555;\n    height: 28px;\n    line-height: 22px;\n    padding: 4px 6px;\n    font-size: 14px;\n    vertical-align: middle;\n}";
@@ -2427,7 +2427,7 @@ styleInject(css$l);
 
 const LoadingOverlay = (props) => {
     const isLoadingClass = (props.isLoading) ? " is-loading" : "";
-    return (react.createElement("div", { className: "disable-overlay-wrapper" + isLoadingClass, role: props.role },
+    return (react.createElement("div", { "data-qa-element": "loading-overlay-wrapper", "data-loading-overlay-is-enabled": props.isLoading, className: "disable-overlay-wrapper" + isLoadingClass, role: props.role },
         react.createElement("div", { className: "disable-overlay" }),
         react.createElement("div", { className: "loading-overlay" },
             react.createElement("div", { className: "disable-msg" }, "Please Wait...")),

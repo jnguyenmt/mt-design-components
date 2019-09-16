@@ -10,6 +10,7 @@ export const InputLabel = (props: ComponentProps<"label">): JSX.Element => {
     const givenClasses =  getAppendAttributeValues(props.className);
     return (
         <label
+            data-qa-element="input-label"
             className={"input-label" + givenClasses}
             {...rest}
         >

@@ -16,7 +16,7 @@ export const FormButton = (props) => {
     const { className, children } = props, rest = __rest(props, ["className", "children"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
-    return (React.createElement("button", Object.assign({ className: "form-button app-button" + givenClasses }, rest),
+    return (React.createElement("button", Object.assign({ "data-qa-element": "form-button", className: "form-button app-button" + givenClasses }, rest),
         "d",
         children));
 };

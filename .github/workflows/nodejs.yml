@@ -19,6 +19,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: npm install, build, and test
       run: |
+        ssh -f -N -L 8081:10.1.0.59:8081 jnguyen@eng-jump.mineraltree.com
         npm install
         npm run build
         npm test

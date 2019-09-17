@@ -19,7 +19,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Update Server Repo
       uses: "maddox/actions/ssh@master"
-      env:
       PRIVATE_KEY: "b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAACFwAAAAdzc2gtcn
         NhAAAAAwEAAQAAAgEAzqxaSe8ZZNqnw2v/ECny/4J9KmKeBHnIVqHkYHvP9ST/bDvAgvz8
         ONGtQv9F9ReXTPM/iWEnfnUKW6ji1ghO6DtSCYPQ3tOkS766EseV4DYAteHsSqs8CFZYuX

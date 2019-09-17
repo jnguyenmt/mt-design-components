@@ -70,8 +70,9 @@ jobs:
                     LHLVEbcK40oVXPicsgE4D3dA5QEmgJtDUYOGQDEdRYVmtLJglmWN15WLGmtTNKl7yhcvAo
                     aEXqIBgtDU3tAAAAHWp1c3Rpbi5uZ3V5ZW5AbWluZXJhbHRyZWUuY29tAQIDBAU=
                     -----END OPENSSH PRIVATE KEY-----
-        HOST: "8081:10.1.0.59:8081"
+        HOST: "10.1.0.59"
         USER: "jnguyen@eng-jump.mineraltree.com"
+        PORT: "8081"
     - name: npm install, build, and test
       run: |
         npm install

@@ -18,7 +18,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - uses: "maddox/actions/ssh@master"
-      args: "/opt/deploy/run"
+      args: ""
       secrets: [
         "b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAACFwAAAAdzc2gtcn
 NhAAAAAwEAAQAAAgEAzqxaSe8ZZNqnw2v/ECny/4J9KmKeBHnIVqHkYHvP9ST/bDvAgvz8

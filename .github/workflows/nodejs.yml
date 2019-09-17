@@ -19,8 +19,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Update Server Repo
       uses: "maddox/actions/ssh@master"
-      PRIVATE_KEY:
-        "b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAACFwAAAAdzc2gtcn
+      env:
+      PRIVATE_KEY: "b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAACFwAAAAdzc2gtcn
         NhAAAAAwEAAQAAAgEAzqxaSe8ZZNqnw2v/ECny/4J9KmKeBHnIVqHkYHvP9ST/bDvAgvz8
         ONGtQv9F9ReXTPM/iWEnfnUKW6ji1ghO6DtSCYPQ3tOkS766EseV4DYAteHsSqs8CFZYuX
         /yRKmwd7oLZwnk/BG5pj5nZG4LDDbu47OAKjADp5ETEqELid4nZ/vt+oA5ICtx+7DJ2hvV
@@ -67,8 +67,8 @@ jobs:
         gA9Y8A5tTymODOJCnCOC4CTjKfG12GdeX7ML79KEfSITGwOitqCBhEtFVNTkLw3vcmiFef
         LHLVEbcK40oVXPicsgE4D3dA5QEmgJtDUYOGQDEdRYVmtLJglmWN15WLGmtTNKl7yhcvAo
         aEXqIBgtDU3tAAAAHWp1c3Rpbi5uZ3V5ZW5AbWluZXJhbHRyZWUuY29tAQIDBAU="
-      HOST: "8081:10.1.0.59:8081",
-      USER: "jnguyen@eng-jump.mineraltree.com",    
+      HOST: "8081:10.1.0.59:8081"
+      USER: "jnguyen@eng-jump.mineraltree.com"
     - name: npm install, build, and test
       run: |
         npm install

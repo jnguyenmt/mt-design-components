@@ -1,3 +1,4 @@
-import React from "react";
+/// <reference types="react" />
+import { FormControlLabelProps } from "@material-ui/core/FormControlLabel";
 import "./inputLabel.css";
-export declare const InputLabel: (props: React.DetailedHTMLProps<React.LabelHTMLAttributes<HTMLLabelElement>, HTMLLabelElement>) => JSX.Element;
+export declare const InputLabel: (props: FormControlLabelProps) => JSX.Element;

@@ -10,7 +10,6 @@ export const ButtonRow = (props: ComponentProps<"div">): JSX.Element => {
     const givenClasses =  getAppendAttributeValues(props.className);
     return (
         <div
-            data-qa-element="button-row"
             className={"button-row" + givenClasses}
             {...rest}
         >

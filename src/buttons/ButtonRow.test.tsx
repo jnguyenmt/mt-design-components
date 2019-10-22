@@ -1,11 +1,13 @@
 import React from "react";
 
-import { fullDomMount } from "utils/testing/mountUtils";
+import { fullDomMount, jsxCleanup } from "utils/testing/mountUtils";
 import { ButtonRow } from "./ButtonRow";
+
+afterEach(jsxCleanup);
 
 describe("ButtonRow", () => {
   it("ButtonRow is instantiable", () => {
-    const wrapper = fullDomMount(<ButtonRow />);
-    expect(wrapper.exists(`div[data-qa-element="button-row"]`)).toBeTruthy();
+    const wrapper = fullDomMount(<ButtonRow id="buttonRowTestId" />);
+    expect(wrapper.exists("#buttonRowTestId")).toBeTruthy();
   });
 });

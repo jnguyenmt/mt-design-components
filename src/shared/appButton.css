@@ -1,8 +1,17 @@
+/* TODO: remove this rule once all button variants converted to Material-UI wrappers */
 :root {
     --color4-button-dark-fade: 
         hsl(var(--color1-primary-h), var(--color1-primary-s), calc(var(--color1-primary-l) - 6%));
 }
 
+.MuiButton-containedPrimary {
+    background-color: var(--color1-primary);
+}
+.MuiButton-containedPrimary:hover {
+    background-color: hsl(var(--color1-primary-h), var(--color1-primary-s), calc(var(--color1-primary-l) - 6%));
+}
+
+/* TODO: remove all these .app0button rules once all button variants converted to Material-UI wrappers */
 .app-button {
     display: inline-block;
     cursor: pointer;

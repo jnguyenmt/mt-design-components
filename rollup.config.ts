@@ -31,7 +31,8 @@ export default {
       {
         include: "node_modules/**",
         namedExports: {
-          "node_modules/react/index.js": ["createElement", "cloneElement"]
+          "node_modules/react/index.js": ["createElement", "cloneElement", "isValidElement", "Children"],
+          "node_modules/react-is/index.js": ["isElement", "isValidElementType", "ForwardRef"]
         }
 
       }

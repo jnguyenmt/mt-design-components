@@ -16,6 +16,6 @@ export const FormError = (props) => {
     const { className, children } = props, rest = __rest(props, ["className", "children"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
-    return (React.createElement("div", Object.assign({ "data-qa-element": "form-error", className: "form-error" + givenClasses }, rest), children));
+    return (React.createElement("div", Object.assign({ className: "form-error" + givenClasses }, rest), children));
 };
 //# sourceMappingURL=FormError.js.map

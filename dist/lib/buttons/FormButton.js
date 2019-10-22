@@ -9,15 +9,14 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+import Button from "@material-ui/core/Button";
 import React from "react";
+import "shared/appButton.css";
 import { getAppendAttributeValues } from "utils/stringUtils";
-import "../shared/appButton.css";
 export const FormButton = (props) => {
-    const { className, children } = props, rest = __rest(props, ["className", "children"]);
+    const { className, children, color, ref } = props, rest = __rest(props, ["className", "children", "color", "ref"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
-    return (React.createElement("button", Object.assign({ "data-qa-element": "form-button", className: "form-button app-button" + givenClasses }, rest),
-        "d",
-        children));
+    return (React.createElement(Button, Object.assign({ className: givenClasses, ref: ref, color: "primary", variant: "contained" }, rest), children));
 };
 //# sourceMappingURL=FormButton.js.map

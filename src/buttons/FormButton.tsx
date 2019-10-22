@@ -1,20 +1,22 @@
+import Button from "@material-ui/core/Button";
 import React, { ComponentProps } from "react";
 
+import "shared/appButton.css";
 import { getAppendAttributeValues } from "utils/stringUtils";
 
-import "../shared/appButton.css";
-
 export const FormButton = (props: ComponentProps<"button">): JSX.Element => {
-    const {className, children, ...rest} = props;
+    const {className, children, color, ref, ...rest} = props;
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses =  getAppendAttributeValues(props.className);
     return (
-        <button
-            data-qa-element="form-button"
-            className={"form-button app-button" + givenClasses}
+        <Button
+            className={givenClasses}
+            ref={ref as any}
+            color="primary"
+            variant="contained"
             {...rest}
         >
-            d{children}
-        </button>
+            {children}
+        </Button>
     );
 };

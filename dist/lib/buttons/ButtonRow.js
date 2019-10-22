@@ -16,6 +16,6 @@ export const ButtonRow = (props) => {
     const { className, children } = props, rest = __rest(props, ["className", "children"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
-    return (React.createElement("div", Object.assign({ "data-qa-element": "button-row", className: "button-row" + givenClasses }, rest), children));
+    return (React.createElement("div", Object.assign({ className: "button-row" + givenClasses }, rest), children));
 };
 //# sourceMappingURL=ButtonRow.js.map

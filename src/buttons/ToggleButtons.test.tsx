@@ -1,7 +1,9 @@
 import React from "react";
 
-import { fullDomMount } from "utils/testing/mountUtils";
+import { fullDomMount, jsxCleanup } from "utils/testing/mountUtils";
 import { IToggleButtonItem, ToggleButtons } from "./ToggleButtons";
+
+afterEach(jsxCleanup);
 
 describe("ToggleButtons", () => {
   it("ToggleButtons is instantiable", () => {
@@ -14,9 +16,8 @@ describe("ToggleButtons", () => {
             displayName: "Khaleesi",
             value: "motherofdragons"
         }
-    ]
-    const wrapper = fullDomMount(<ToggleButtons selected="snow"  items={items} />);
-    expect(wrapper.exists(`button[data-qa-element="secondary-form-button"]`)).toBeTruthy();
-    // expect(wrapper.exists(`div[data-qa-element="button-group"]`)).toBeTruthy();
+    ];
+    const wrapper = fullDomMount(<ToggleButtons id="buttonTestId" selected="snow" items={items} />);
+    expect(wrapper.exists("#buttonTestId")).toBeTruthy();
   });
 });

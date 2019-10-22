@@ -1,11 +1,13 @@
 import React from "react";
 
-import { fullDomMount } from "utils/testing/mountUtils";
+import { fullDomMount, jsxCleanup } from "utils/testing/mountUtils";
 import { FormError } from "./FormError";
+
+afterEach(jsxCleanup);
 
 describe("FormError", () => {
   it("FormError is instantiable", () => {
-    const wrapper = fullDomMount(<FormError />);
-    expect(wrapper.exists(`div[data-qa-element="form-error"]`)).toBeTruthy();
+    const wrapper = fullDomMount(<FormError id="formErrorTestId" />);
+    expect(wrapper.exists("#formErrorTestId")).toBeTruthy();
   });
 });

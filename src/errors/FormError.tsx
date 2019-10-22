@@ -10,7 +10,6 @@ export const FormError = (props: ComponentProps<any>): JSX.Element => {
     const givenClasses =  getAppendAttributeValues(props.className);
     return (
         <div
-            data-qa-element="form-error"
             className={"form-error" + givenClasses}
             {...rest}
         >

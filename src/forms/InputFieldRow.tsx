@@ -10,7 +10,6 @@ export const InputFieldRow = (props: ComponentProps<"div">): JSX.Element => {
     const givenClasses =  getAppendAttributeValues(props.className);
     return (
         <div
-            data-qa-element="input-field-row"
             className={"input-field-row" + givenClasses}
             {...rest}
         >

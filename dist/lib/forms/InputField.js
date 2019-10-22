@@ -9,13 +9,29 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+import TextField from "@material-ui/core/TextField";
 import React from "react";
 import { getAppendAttributeValues } from "utils/stringUtils";
 import "./inputField.css";
 export const InputField = (props) => {
-    const { className } = props, rest = __rest(props, ["className"]);
+    const { className, ref, validationState, validationMessage, validationMessageFormatter } = props, rest = __rest(props, ["className", "ref", "validationState", "validationMessage", "validationMessageFormatter"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
-    return (React.createElement("input", Object.assign({ "data-qa-element": "input-field", className: "input-field" + givenClasses }, rest)));
+    const optionalProps = {};
+    if (validationState === "Error") {
+        optionalProps.error = true;
+        optionalProps.helperText =
+            React.createElement("span", { "data-qa-element": "field-validation-error" }, validationMessage);
+    }
+    else if (validationState === "Warning") {
+        const vMsg = validationMessage || "???"; // just a fail-safe
+        let vMsgElement = vMsg;
+        if (validationMessageFormatter) {
+            vMsgElement = validationMessageFormatter(vMsg);
+        }
+        optionalProps.helperText =
+            React.createElement("span", { "data-qa-element": "field-validation-warning" }, vMsgElement);
+    }
+    return (React.createElement(TextField, Object.assign({ variant: "outlined", margin: "dense", ref: ref, className: givenClasses }, optionalProps, rest)));
 };
 //# sourceMappingURL=InputField.js.map

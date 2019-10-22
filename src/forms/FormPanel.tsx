@@ -10,7 +10,6 @@ export const FormPanel = (props: ComponentProps<"div">): JSX.Element => {
     const givenClasses =  getAppendAttributeValues(props.className);
     return (
         <div
-            data-qa-element="form-panel"
             className={"form-panel" + givenClasses}
             {...rest}
         >

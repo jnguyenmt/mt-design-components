@@ -9,13 +9,14 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import React from "react";
 import { getAppendAttributeValues } from "utils/stringUtils";
 import "./inputLabel.css";
 export const InputLabel = (props) => {
-    const { className, children } = props, rest = __rest(props, ["className", "children"]);
+    const { className, control, label } = props, rest = __rest(props, ["className", "control", "label"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
-    return (React.createElement("label", Object.assign({ "data-qa-element": "input-label", className: "input-label" + givenClasses }, rest), children));
+    return (React.createElement(FormControlLabel, Object.assign({ className: "input-label" + givenClasses, control: control, label: label }, rest)));
 };
 //# sourceMappingURL=InputLabel.js.map

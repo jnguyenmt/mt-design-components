@@ -1,7 +1,9 @@
 import React from "react";
 
-import { fullDomMount } from "../utils/testing/mountUtils";
+import { fullDomMount, jsxCleanup } from "../utils/testing/mountUtils";
 import { LoadingOverlay } from "./LoadingOverlay";
+
+afterEach(jsxCleanup);
 
 describe("LoadingOverlay", () => {
   it("LoadingOverlay is showing", () => {

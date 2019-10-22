@@ -10,7 +10,6 @@ export const SecondaryFormButton = (props: ComponentProps<"button">): JSX.Elemen
     const givenClasses =  getAppendAttributeValues(props.className);
     return (
         <button
-            data-qa-element="secondary-form-button"
             className={"secondary-form-button app-button" + givenClasses}
             {...rest}
         >

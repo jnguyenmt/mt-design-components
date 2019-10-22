@@ -16,7 +16,7 @@
 .disable-overlay-wrapper .loading-overlay {
     position: absolute;
     top: 0;
-    bottom: 0;
+    bottom: 50px;
     left: 0;
     right: 0;
     display: none; /* will be flex when visible */
@@ -25,11 +25,10 @@
 }
 
 .disable-overlay-wrapper .loading-overlay .disable-msg {
-    height: 1em;
     background-color: white;
     box-shadow: 0 0 5px white;
     opacity: 1.0;
-    padding: 8px;
+    padding: 15px 30px;
 }
 
 .disable-overlay-wrapper.is-loading .disable-overlay {
@@ -37,4 +36,9 @@
 }
 .disable-overlay-wrapper.is-loading .loading-overlay {
     display: flex;
+}
+
+.disable-overlay-wrapper .loading-overlay .disable-msg .progress-circle {
+    padding: 8px;
+    text-align: center;
 }

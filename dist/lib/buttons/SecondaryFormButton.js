@@ -17,6 +17,6 @@ export const SecondaryFormButton = (props) => {
     const { className, children } = props, rest = __rest(props, ["className", "children"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
     const givenClasses = getAppendAttributeValues(props.className);
-    return (React.createElement("button", Object.assign({ "data-qa-element": "secondary-form-button", className: "secondary-form-button app-button" + givenClasses }, rest), children));
+    return (React.createElement("button", Object.assign({ className: "secondary-form-button app-button" + givenClasses }, rest), children));
 };
 //# sourceMappingURL=SecondaryFormButton.js.map

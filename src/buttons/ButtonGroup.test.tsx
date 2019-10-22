@@ -1,16 +1,18 @@
 import React from "react";
 
-import { fullDomMount } from "utils/testing/mountUtils";
+import { fullDomMount, jsxCleanup } from "utils/testing/mountUtils";
 import { ButtonGroup } from "./ButtonGroup";
 import { FormButton } from "./FormButton";
+
+afterEach(jsxCleanup);
 
 describe("ButtonGroup", () => {
   it("ButtonGroup is instantiable", () => {
     const wrapper = fullDomMount(
-        <ButtonGroup>
+        <ButtonGroup id="buttonGroupTestId">
             <FormButton>Hello</FormButton>
         </ButtonGroup>
     );
-    expect(wrapper.exists(`div[data-qa-element="button-group"]`)).toBeTruthy();
+    expect(wrapper.exists("#buttonGroupTestId")).toBeTruthy();
   });
 });

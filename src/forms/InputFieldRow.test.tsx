@@ -1,11 +1,13 @@
 import React from "react";
 
-import { fullDomMount } from "utils/testing/mountUtils";
+import { fullDomMount, jsxCleanup } from "utils/testing/mountUtils";
 import { InputFieldRow } from "./InputFieldRow";
+
+afterEach(jsxCleanup);
 
 describe("InputFieldRow", () => {
   it("InputFieldRow is instantiable", () => {
-    const wrapper = fullDomMount(<InputFieldRow />);
-    expect(wrapper.exists(`div[data-qa-element="input-field-row"]`)).toBeTruthy();
+    const wrapper = fullDomMount(<InputFieldRow id="inputFieldRowTestId" />);
+    expect(wrapper.exists("#inputFieldRowTestId")).toBeTruthy();
   });
 });

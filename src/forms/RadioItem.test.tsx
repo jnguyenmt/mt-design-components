@@ -1,14 +1,15 @@
 import "jest-dom/extend-expect";
 import React from "react";
+import { WrappedFieldInputProps, WrappedFieldMetaProps } from "redux-form";
 import { fullDomMount, jsxCleanup } from "utils/testing/mountUtils";
 
-import { WrappedFieldInputProps, WrappedFieldMetaProps } from "redux-form";
-import { CheckboxItem } from "./CheckboxItem";
+import { RadioItem } from "./RadioItem";
 
 afterEach(jsxCleanup);
 
-describe("CheckboxItem", () => {
-    it("renders checkbox field", () => {
+describe("RadioItem", () => {
+    it("renders radio field", () => {
+
         const inputArgs: Partial<WrappedFieldInputProps> = {
             name: "testField",
             value: "123",
@@ -24,14 +25,14 @@ describe("CheckboxItem", () => {
         } as Partial<WrappedFieldMetaProps> as WrappedFieldMetaProps;
 
         const wrapper = fullDomMount(
-            <CheckboxItem
+            <RadioItem
                 input={inputArgs as WrappedFieldInputProps}
-                meta={meta}
                 label={"test label"}
-                id="testRadioButtonId"
+                meta={meta}
+                id="radioButtonTestId"
                 data-qa-element="test-field"
             />
         );
-        expect(wrapper.exists("#testRadioButtonId")).toBeTruthy();
+        expect(wrapper.exists("#radioButtonTestId")).toBeTruthy();
     });
 });

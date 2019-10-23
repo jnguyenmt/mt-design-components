@@ -1,4 +1,4 @@
-import Checkbox from "@material-ui/core/Checkbox";
+import Radio from "@material-ui/core/Radio";
 import React from "react";
 import { WrappedFieldProps } from "redux-form";
 
@@ -8,26 +8,28 @@ interface IInputProps {
     label: string;
     id: string;
     className?: string;
+    defaultChecked?: boolean;
     disabled?: boolean;
     "data-qa-element": string;
 }
 
-export const CheckboxItem = ({
-    input, label, disabled, className, id, ...rest
+export const RadioItem = ({
+    input, label, defaultChecked, disabled, className, id, ...rest
 }: WrappedFieldProps & IInputProps) => {
-    const checkBoxItem = (
-        <Checkbox
+    const radioItem = (
+        <Radio
             id={id}
             className={className}
             color="primary"
+            defaultChecked={defaultChecked}
             disabled={disabled}
             {...input}
             {...rest}
         />
     );
     return (
-        <div className="checkbox-field-wrapper">
-            <InputLabel control={checkBoxItem} label={label} />
+        <div className="radio-field-wrapper">
+            <InputLabel control={radioItem} label={label} />
         </div>
     );
 };

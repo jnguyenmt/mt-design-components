@@ -1,8 +1,8 @@
 import Button from "@material-ui/core/Button";
 import React, { ComponentProps } from "react";
 
-import "shared/appButton.css";
 import { getAppendAttributeValues } from "utils/stringUtils";
+import "../shared/appButton.css";
 
 export const FormButton = (props: ComponentProps<"button">): JSX.Element => {
     const {className, children, color, ref, ...rest} = props;

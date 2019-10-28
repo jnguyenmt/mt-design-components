@@ -1,3 +1,14 @@
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -13,10 +24,10 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import React from "react";
 import { getAppendAttributeValues } from "utils/stringUtils";
 import "./inputLabel.css";
-export const InputLabel = (props) => {
-    const { className, control, label } = props, rest = __rest(props, ["className", "control", "label"]);
+export var InputLabel = function (props) {
+    var className = props.className, control = props.control, label = props.label, rest = __rest(props, ["className", "control", "label"]);
     // preserve given class value/s by tacking them onto our guaranteed class/s
-    const givenClasses = getAppendAttributeValues(props.className);
-    return (React.createElement(FormControlLabel, Object.assign({ className: "input-label" + givenClasses, control: control, label: label }, rest)));
+    var givenClasses = getAppendAttributeValues(props.className);
+    return (React.createElement(FormControlLabel, __assign({ className: "input-label" + givenClasses, control: control, label: label }, rest)));
 };
 //# sourceMappingURL=InputLabel.js.map

@@ -1,11 +1,16 @@
+import { CircularProgress } from "@material-ui/core";
 import React from "react";
 import "./loadingOverlay.css";
-export const LoadingOverlay = (props) => {
-    const isLoadingClass = (props.isLoading) ? " is-loading" : "";
-    return (React.createElement("div", { "data-qa-element": "loading-overlay-wrapper", "data-loading-overlay-is-enabled": props.isLoading, className: "disable-overlay-wrapper" + isLoadingClass, role: props.role },
+export var LoadingOverlay = function (props) {
+    var isLoading = props.isLoading, children = props.children, i18n = props.i18n;
+    var isLoadingClass = (isLoading) ? " is-loading" : "";
+    return (React.createElement("div", { className: "disable-overlay-wrapper" + isLoadingClass, "data-qa-element": "loading-overlay", "data-qa-loading-overlay-is-enabled": isLoading },
+        children,
         React.createElement("div", { className: "disable-overlay" }),
         React.createElement("div", { className: "loading-overlay" },
-            React.createElement("div", { className: "disable-msg" }, "Please Wait...")),
-        props.children));
+            React.createElement("div", { className: "disable-msg" },
+                React.createElement("div", { className: "progress-circle" },
+                    React.createElement(CircularProgress, null)),
+                i18n.loadingPleaseWaitTemplate ? i18n.loadingPleaseWaitTemplate : "Please Wait..."))));
 };
 //# sourceMappingURL=LoadingOverlay.js.map

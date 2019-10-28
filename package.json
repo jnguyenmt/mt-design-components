@@ -45,6 +45,8 @@
     "jest-dom": "^3.1.2",
     "jest-environment-jsdom-fourteen": "0.1.0",
     "jest-resolve": "24.8.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
     "rimraf": "^2.6.2",
     "rollup": "^0.67.0",
     "rollup-plugin-babel": "^4.3.3",
@@ -61,7 +63,9 @@
     "typescript": "^3.0.3"
   },
   "dependencies": {
-    "@material-ui/core": "^4.3.3",
+    "@material-ui/core": "^4.3.3"
+  },
+  "peerDependencies": {
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   },

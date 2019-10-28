@@ -1,5 +1,5 @@
-export const getAppendAttributeValues = (append) => {
-    const appenderString = (append) ? " " + append : "";
+export var getAppendAttributeValues = function (append) {
+    var appenderString = (append) ? " " + append : "";
     return appenderString;
 };
 //# sourceMappingURL=stringUtils.js.map

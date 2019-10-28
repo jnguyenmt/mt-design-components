@@ -13,11 +13,15 @@ const index = "index.ts";
 export default {
   input: `src/${index}`,
   output: [
-    { file: pkg.main, name: index, format: "umd", sourcemap: true },
-    { file: pkg.module, format: "es", sourcemap: true }
+    { file: pkg.main, name: index, format: "umd", sourcemap: true, globals: {
+      "react": "React",
+      "react-dom": "ReactDOM",
+      "@material-ui/core": "@material-ui/core"
+    } },
+    { file: pkg.module, format: "es", sourcemap: true },
   ],
   // Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
-  external: [],
+  external: ["react", "react-dom", "@material-ui/core"],
   watch: {
     include: "src/**"
   },
@@ -26,13 +30,18 @@ export default {
     json(),
     // Compile TypeScript files
     typescript({ useTsconfigDeclarationDir: true }),
+    // Allow node_modules resolution, so you can use 'external' to control
+    // which external modules to include in the bundle
+    // https://github.com/rollup/rollup-plugin-node-resolve#usage
+    resolve(),
     // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
     commonjs(
       {
         include: "node_modules/**",
         namedExports: {
           "node_modules/react/index.js": ["createElement", "cloneElement", "isValidElement", "Children"],
-          "node_modules/react-is/index.js": ["isElement", "isValidElementType", "ForwardRef"]
+          "node_modules/react-is/index.js": ["isElement", "isValidElementType", "ForwardRef"],
+          "node_modules/prop-types/index.js": ["elementType"]
         }
 
       }
@@ -40,11 +49,6 @@ export default {
     postcss({
       extensions: [".css", ".sss", ".pcss"]
     }),
-    // Allow node_modules resolution, so you can use 'external' to control
-    // which external modules to include in the bundle
-    // https://github.com/rollup/rollup-plugin-node-resolve#usage
-    resolve(),
-
     // Resolve source maps to the original source
     sourceMaps()
   ]

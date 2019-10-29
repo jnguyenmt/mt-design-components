@@ -1,8 +1,8 @@
 import React from "react";
 
 import { fullDomMount, jsxCleanup } from "utils/testing/mountUtils";
-import { InputField, ValidationMessageFormatter } from "./InputField";
 import { hasQaElement } from "utils/testing/qaElementUtils";
+import { InputField, ValidationMessageFormatter } from "./InputField";
 
 afterEach(jsxCleanup);
 

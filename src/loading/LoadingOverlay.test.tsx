@@ -1,9 +1,9 @@
 import React from "react";
 
 import { ILoadingOverlayI18n } from "loading/models";
+import { hasQaElement } from "utils/testing/qaElementUtils";
 import { fullDomMount, jsxCleanup } from "../utils/testing/mountUtils";
 import { LoadingOverlay } from "./LoadingOverlay";
-import { hasQaElement } from "utils/testing/qaElementUtils";
 
 afterEach(jsxCleanup);
 

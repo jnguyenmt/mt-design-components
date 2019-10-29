@@ -3,8 +3,8 @@ import React from "react";
 import { WrappedFieldInputProps, WrappedFieldMetaProps } from "redux-form";
 import { fullDomMount, jsxCleanup } from "utils/testing/mountUtils";
 
-import { RadioItem } from "./RadioItem";
 import { hasQaElement } from "utils/testing/qaElementUtils";
+import { RadioItem } from "./RadioItem";
 
 afterEach(jsxCleanup);
 

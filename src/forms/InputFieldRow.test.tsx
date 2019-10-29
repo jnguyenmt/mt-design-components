@@ -1,8 +1,8 @@
 import React from "react";
 
 import { fullDomMount, jsxCleanup } from "utils/testing/mountUtils";
-import { InputFieldRow } from "./InputFieldRow";
 import { hasQaElement } from "utils/testing/qaElementUtils";
+import { InputFieldRow } from "./InputFieldRow";
 
 afterEach(jsxCleanup);
 

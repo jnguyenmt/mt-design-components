@@ -1,8 +1,8 @@
 import React from "react";
 
 import { fullDomMount, jsxCleanup } from "utils/testing/mountUtils";
-import { SecondaryFormButton } from "./SecondaryFormButton";
 import { hasQaElement } from "utils/testing/qaElementUtils";
+import { SecondaryFormButton } from "./SecondaryFormButton";
 
 afterEach(jsxCleanup);
 

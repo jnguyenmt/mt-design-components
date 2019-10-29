@@ -4,8 +4,8 @@ import { WrappedFieldInputProps, WrappedFieldMetaProps } from "redux-form";
 import { CheckboxItem } from "forms/CheckboxItem";
 import { fullDomMount, jsxCleanup } from "utils/testing/mountUtils";
 
-import { InputLabel } from "./InputLabel";
 import { hasQaElement } from "utils/testing/qaElementUtils";
+import { InputLabel } from "./InputLabel";
 
 afterEach(jsxCleanup);
 

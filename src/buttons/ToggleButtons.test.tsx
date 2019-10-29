@@ -1,8 +1,8 @@
 import React from "react";
 
 import { fullDomMount, jsxCleanup } from "utils/testing/mountUtils";
-import { IToggleButtonItem, ToggleButtons } from "./ToggleButtons";
 import { hasQaElement } from "utils/testing/qaElementUtils";
+import { IToggleButtonItem, ToggleButtons } from "./ToggleButtons";
 
 afterEach(jsxCleanup);
 

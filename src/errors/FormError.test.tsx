@@ -1,8 +1,8 @@
 import React from "react";
 
 import { fullDomMount, jsxCleanup } from "utils/testing/mountUtils";
-import { FormError } from "./FormError";
 import { hasQaElement } from "utils/testing/qaElementUtils";
+import { FormError } from "./FormError";
 
 afterEach(jsxCleanup);
 

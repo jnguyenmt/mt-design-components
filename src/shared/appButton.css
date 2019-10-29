@@ -4,10 +4,10 @@
         hsl(var(--color1-primary-h), var(--color1-primary-s), calc(var(--color1-primary-l) - 6%));
 }
 
-.mt-app .MuiButton-containedPrimary {
+.MuiButton-containedPrimary {
     background-color: var(--color1-primary);
 }
-.mt-app .MuiButton-containedPrimary:hover {
+.MuiButton-containedPrimary:hover {
     background-color: hsl(var(--color1-primary-h), var(--color1-primary-s), calc(var(--color1-primary-l) - 6%));
 }
 

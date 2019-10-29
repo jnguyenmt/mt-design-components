@@ -2,18 +2,19 @@ import React from "react";
 
 import { fullDomMount, jsxCleanup } from "utils/testing/mountUtils";
 import { InputField, ValidationMessageFormatter } from "./InputField";
+import { hasQaElement } from "utils/testing/qaElementUtils";
 
 afterEach(jsxCleanup);
 
 describe("InputField", () => {
     it("InputField is instantiable with validationState OK", () => {
-        const wrapper = fullDomMount(<InputField id="testInputField" validationState="OK" />);
-        expect(wrapper.exists(`#testInputField`)).toBeTruthy();
+        const wrapper = fullDomMount(<InputField data-qa-element="testInputField" validationState="OK" />);
+        expect(hasQaElement(wrapper, "testInputField")).toBeTruthy();
     });
 
     it("InputField is instantiable with validationState Error", () => {
-        const wrapper = fullDomMount(<InputField id="testInputField" validationState="Error" />);
-        expect(wrapper.exists(`#testInputField`)).toBeTruthy();
+        const wrapper = fullDomMount(<InputField data-qa-element="testInputField" validationState="Error" />);
+        expect(hasQaElement(wrapper, "testInputField")).toBeTruthy();
     });
 
     it("InputField is instantiable with validationState Warning and with formatter", () => {
@@ -26,21 +27,21 @@ describe("InputField", () => {
         };
         const wrapper = fullDomMount(
             <InputField
-                id="testInputField"
+                data-qa-element="testInputField"
                 validationState="Warning"
                 validationMessageFormatter={formatter}
             />
         );
-        expect(wrapper.exists(`#testInputField`)).toBeTruthy();
+        expect(hasQaElement(wrapper, "testInputField")).toBeTruthy();
     });
 
     it("InputField is instantiable with validationState Warning and with no formatter", () => {
         const wrapper = fullDomMount(
             <InputField
-                id="testInputField"
+                data-qa-element="testInputField"
                 validationState="Warning"
             />
         );
-        expect(wrapper.exists(`#testInputField`)).toBeTruthy();
+        expect(hasQaElement(wrapper, "testInputField")).toBeTruthy();
     });
 });

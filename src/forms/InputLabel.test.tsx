@@ -5,6 +5,7 @@ import { CheckboxItem } from "forms/CheckboxItem";
 import { fullDomMount, jsxCleanup } from "utils/testing/mountUtils";
 
 import { InputLabel } from "./InputLabel";
+import { hasQaElement } from "utils/testing/qaElementUtils";
 
 afterEach(jsxCleanup);
 
@@ -34,7 +35,9 @@ describe("InputLabel", () => {
                 meta={meta}
             />
         );
-        const wrapper = fullDomMount(<InputLabel id="inputLabelTestId" control={control} label="testLabel" />);
-        expect(wrapper.exists("#inputLabelTestId")).toBeTruthy();
+        const wrapper = fullDomMount(
+            <InputLabel data-qa-element="inputLabelTestId" control={control} label="testLabel" />
+        );
+        expect(hasQaElement(wrapper, "inputLabelTestId")).toBeTruthy();
     });
 });

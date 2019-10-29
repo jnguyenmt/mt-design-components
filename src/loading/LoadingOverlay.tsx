@@ -13,7 +13,7 @@ export const LoadingOverlay = (props: ComponentProps<"div"> & ILoadingPanelProps
         <div
             className={"disable-overlay-wrapper" + isLoadingClass}
             data-qa-element="loading-overlay"
-            data-qa-loading-overlay-is-enabled={isLoading}
+            data-qa-loading-enabled={isLoading}
         >
             {children}
             <div className="disable-overlay" />

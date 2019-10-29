@@ -3,6 +3,7 @@ import React from "react";
 import { ILoadingOverlayI18n } from "loading/models";
 import { fullDomMount, jsxCleanup } from "../utils/testing/mountUtils";
 import { LoadingOverlay } from "./LoadingOverlay";
+import { hasQaElement } from "utils/testing/qaElementUtils";
 
 afterEach(jsxCleanup);
 
@@ -13,8 +14,8 @@ describe("LoadingOverlay", () => {
         loadingPleaseWaitTemplate: "Please Wait..."
     };
     const wrapper = fullDomMount(<LoadingOverlay isLoading={isLoading} i18n={i18n} />);
-    expect(wrapper.exists(`div[data-qa-element="loading-overlay"]`)).toBeTruthy();
-    expect(wrapper.exists(`div[data-loading-overlay-is-enabled=${isLoading}]`)).toBeTruthy();
+    expect(hasQaElement(wrapper, "loading-overlay")).toBeTruthy();
+    expect(wrapper.exists(`div[data-qa-loading-enabled=${isLoading}]`)).toBeTruthy();
   });
 
   it("LoadingOverlay is not showing", () => {
@@ -24,8 +25,8 @@ describe("LoadingOverlay", () => {
     };
     const wrapper = fullDomMount(<LoadingOverlay isLoading={isLoading} i18n={i18n} />);
 
-    expect(wrapper.exists(`div[data-qa-element="loading-overlay"]`)).toBeTruthy();
-    expect(wrapper.exists(`div[data-loading-overlay-is-enabled=${isLoading}]`)).toBeTruthy();
+    expect(hasQaElement(wrapper, "loading-overlay")).toBeTruthy();
+    expect(wrapper.exists(`div[data-qa-loading-enabled=${isLoading}]`)).toBeTruthy();
   });
 
   it("LoadingOverlay is not showing", () => {
@@ -37,7 +38,7 @@ describe("LoadingOverlay", () => {
         <LoadingOverlay isLoading={isLoading} i18n={i18n as unknown as ILoadingOverlayI18n} />
     );
 
-    expect(wrapper.exists(`div[data-qa-element="loading-overlay"]`)).toBeTruthy();
-    expect(wrapper.exists(`div[data-loading-overlay-is-enabled=${isLoading}]`)).toBeTruthy();
+    expect(hasQaElement(wrapper, "loading-overlay")).toBeTruthy();
+    expect(wrapper.exists(`div[data-qa-loading-enabled=${isLoading}]`)).toBeTruthy();
   });
 });

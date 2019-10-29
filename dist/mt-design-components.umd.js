@@ -5947,6 +5947,151 @@
 
     var hoistNonReactStatics_cjs = hoistNonReactStatics;
 
+    function omit(input, fields) {
+      var output = {};
+      Object.keys(input).forEach(function (prop) {
+        if (fields.indexOf(prop) === -1) {
+          output[prop] = input[prop];
+        }
+      });
+      return output;
+    } // styled-components's API removes the mapping between components and styles.
+    // Using components as a low-level styling construct can be simpler.
+
+
+    function styled(Component) {
+      var componentCreator = function componentCreator(style) {
+        var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+        var name = options.name,
+            stylesOptions = _objectWithoutProperties(options, ["name"]);
+
+        if (process.env.NODE_ENV !== 'production' && Component === undefined) {
+          throw new Error(['You are calling styled(Component)(style) with an undefined component.', 'You may have forgotten to import it.'].join('\n'));
+        }
+
+        var classNamePrefix = name;
+
+        if (process.env.NODE_ENV !== 'production') {
+          if (!name) {
+            // Provide a better DX outside production.
+            var displayName = getDisplayName(Component);
+
+            if (displayName !== undefined) {
+              classNamePrefix = displayName;
+            }
+          }
+        }
+
+        var stylesOrCreator = typeof style === 'function' ? function (theme) {
+          return {
+            root: function root(props) {
+              return style(_extends({
+                theme: theme
+              }, props));
+            }
+          };
+        } : {
+          root: style
+        };
+        var useStyles = makeStyles(stylesOrCreator, _extends({
+          Component: Component,
+          name: name || Component.displayName,
+          classNamePrefix: classNamePrefix
+        }, stylesOptions));
+        var filterProps;
+        var propTypes$$1 = {};
+
+        if (style.filterProps) {
+          filterProps = style.filterProps;
+          delete style.filterProps;
+        }
+        /* eslint-disable react/forbid-foreign-prop-types */
+
+
+        if (style.propTypes) {
+          propTypes$$1 = style.propTypes;
+          delete style.propTypes;
+        }
+        /* eslint-enable react/forbid-foreign-prop-types */
+
+
+        var StyledComponent = React__default.forwardRef(function StyledComponent(props, ref) {
+          var children = props.children,
+              classNameProp = props.className,
+              clone = props.clone,
+              ComponentProp = props.component,
+              other = _objectWithoutProperties(props, ["children", "className", "clone", "component"]);
+
+          var classes = useStyles(props);
+          var className = clsx(classes.root, classNameProp);
+          var spread = other;
+
+          if (filterProps) {
+            spread = omit(spread, filterProps);
+          }
+
+          if (clone) {
+            return React__default.cloneElement(children, _extends({
+              className: clsx(children.props.className, className)
+            }, spread));
+          }
+
+          if (typeof children === 'function') {
+            return children(_extends({
+              className: className
+            }, spread));
+          }
+
+          var FinalComponent = ComponentProp || Component;
+          return React__default.createElement(FinalComponent, _extends({
+            ref: ref,
+            className: className
+          }, spread), children);
+        });
+        process.env.NODE_ENV !== "production" ? StyledComponent.propTypes = _extends({
+          /**
+           * A render function or node.
+           */
+          children: propTypes.oneOfType([propTypes.node, propTypes.func]),
+
+          /**
+           * @ignore
+           */
+          className: propTypes.string,
+
+          /**
+           * If `true`, the component will recycle it's children DOM element.
+           * It's using `React.cloneElement` internally.
+           *
+           * This prop will be deprecated and removed in v5
+           */
+          clone: chainPropTypes(propTypes.bool, function (props) {
+            if (props.clone && props.component) {
+              return new Error('You can not use the clone and component prop at the same time.');
+            }
+
+            return null;
+          }),
+
+          /**
+           * The component used for the root node.
+           * Either a string to use a DOM element or a component.
+           */
+          component: propTypes.elementType
+        }, propTypes$$1) : void 0;
+
+        if (process.env.NODE_ENV !== 'production') {
+          StyledComponent.displayName = "Styled(".concat(classNamePrefix, ")");
+        }
+
+        hoistNonReactStatics_cjs(StyledComponent, Component);
+        return StyledComponent;
+      };
+
+      return componentCreator;
+    }
+
     function mergeOuterLocalTheme(outerTheme, localTheme) {
       if (typeof localTheme === 'function') {
         var mergedTheme = localTheme(outerTheme);
@@ -10319,7 +10464,7 @@
       name: 'MuiButton'
     })(Button);
 
-    var css$2 = "/* TODO: remove this rule once all button variants converted to Material-UI wrappers */\n:root {\n    --color4-button-dark-fade: \n        hsl(var(--color1-primary-h), var(--color1-primary-s), calc(var(--color1-primary-l) - 6%));\n}\n\n.MuiButton-containedPrimary {\n    background-color: var(--color1-primary);\n}\n.MuiButton-containedPrimary:hover {\n    background-color: hsl(var(--color1-primary-h), var(--color1-primary-s), calc(var(--color1-primary-l) - 6%));\n}\n\n/* TODO: remove all these .app0button rules once all button variants converted to Material-UI wrappers */\n.app-button {\n    display: inline-block;\n    cursor: pointer;\n    color: #ffffff;\n    font-size: 14px;\n    line-height: 20px;\n    vertical-align: middle;\n    border-radius: 4px;\n    border: 1px solid #cccccc;\n    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);\n    text-decoration: none;\n    text-align: center;\n    margin: 0;\n    padding: 4px 12px;\n    background: linear-gradient(\n        to bottom, \n        var(--color4-button) 0%, \n        var(--color4-button-dark-fade) 84%);\n        /* hsl(var(--color1-primary-h), var(--color1-primary-s), calc(var(--color1-primary-l) - 6%)) 84%);  */\n        /* to #72bf44 */\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);\n}\n.app-button:hover {\n    background: linear-gradient(\n        to bottom, \n        var(--color4-button-dark-fade) 0%, \n        var(--color4-button) 84%);\n}\n.app-button:focus {\n    outline: 5px auto -webkit-focus-ring-color;\n    outline-offset: -2px;\n}\n.app-button:active {\n    outline: 0;\n    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05)\n}\n.app-button[disabled] {\n    background: linear-gradient(to bottom, #eeeeee 0%, #dddddd 84%);\n    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);\n    color: #888888;\n}\n";
+    var css$2 = "/* TODO: remove this rule once all button variants converted to Material-UI wrappers */\n:root {\n    --color4-button-dark-fade: \n        hsl(var(--color1-primary-h), var(--color1-primary-s), calc(var(--color1-primary-l) - 6%));\n}\n\n.mt-app .MuiButton-containedPrimary {\n    background-color: var(--color1-primary);\n}\n.mt-app .MuiButton-containedPrimary:hover {\n    background-color: hsl(var(--color1-primary-h), var(--color1-primary-s), calc(var(--color1-primary-l) - 6%));\n}\n\n/* TODO: remove all these .app0button rules once all button variants converted to Material-UI wrappers */\n.app-button {\n    display: inline-block;\n    cursor: pointer;\n    color: #ffffff;\n    font-size: 14px;\n    line-height: 20px;\n    vertical-align: middle;\n    border-radius: 4px;\n    border: 1px solid #cccccc;\n    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);\n    text-decoration: none;\n    text-align: center;\n    margin: 0;\n    padding: 4px 12px;\n    background: linear-gradient(\n        to bottom, \n        var(--color4-button) 0%, \n        var(--color4-button-dark-fade) 84%);\n        /* hsl(var(--color1-primary-h), var(--color1-primary-s), calc(var(--color1-primary-l) - 6%)) 84%);  */\n        /* to #72bf44 */\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);\n}\n.app-button:hover {\n    background: linear-gradient(\n        to bottom, \n        var(--color4-button-dark-fade) 0%, \n        var(--color4-button) 84%);\n}\n.app-button:focus {\n    outline: 5px auto -webkit-focus-ring-color;\n    outline-offset: -2px;\n}\n.app-button:active {\n    outline: 0;\n    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05)\n}\n.app-button[disabled] {\n    background: linear-gradient(to bottom, #eeeeee 0%, #dddddd 84%);\n    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);\n    color: #888888;\n}\n";
     styleInject(css$2);
 
     var FormButton = function (props) {
@@ -16661,7 +16806,7 @@
       name: 'MuiTextField'
     })(TextField);
 
-    var css$9 = ".MuiOutlinedInput-root {\n    background-color: #ffffff;\n}\n";
+    var css$9 = ".mt-app .MuiOutlinedInput-root {\n    background-color: #ffffff;\n}\n";
     styleInject(css$9);
 
     var InputField = function (props) {
@@ -17119,7 +17264,7 @@
     var LoadingOverlay = function (props) {
         var isLoading = props.isLoading, children = props.children, i18n = props.i18n;
         var isLoadingClass = (isLoading) ? " is-loading" : "";
-        return (React__default.createElement("div", { className: "disable-overlay-wrapper" + isLoadingClass, "data-qa-element": "loading-overlay", "data-qa-loading-overlay-is-enabled": isLoading },
+        return (React__default.createElement("div", { className: "disable-overlay-wrapper" + isLoadingClass, "data-qa-element": "loading-overlay", "data-qa-loading-enabled": isLoading },
             children,
             React__default.createElement("div", { className: "disable-overlay" }),
             React__default.createElement("div", { className: "loading-overlay" },
@@ -17127,6 +17272,1721 @@
                     React__default.createElement("div", { className: "progress-circle" },
                         React__default.createElement(core.CircularProgress, null)),
                     i18n.loadingPleaseWaitTemplate ? i18n.loadingPleaseWaitTemplate : "Please Wait..."))));
+    };
+
+    var responsivePropType = process.env.NODE_ENV !== 'production' ? propTypes.oneOfType([propTypes.number, propTypes.string, propTypes.object, propTypes.array]) : {};
+
+    function merge(acc, item) {
+      if (!item) {
+        return acc;
+      }
+
+      return cjs(acc, item, {
+        clone: false // No need to clone deep, it's way faster.
+
+      });
+    }
+
+    // For instance with the first breakpoint xs: [xs, sm[.
+
+    var values$1 = {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920
+    };
+    var defaultBreakpoints = {
+      // Sorted ASC by size. That's important.
+      // It can't be configured as it's used statically for propTypes.
+      keys: ['xs', 'sm', 'md', 'lg', 'xl'],
+      up: function up(key) {
+        return "@media (min-width:".concat(values$1[key], "px)");
+      }
+    };
+    function handleBreakpoints(props, propValue, styleFromPropValue) {
+      if (process.env.NODE_ENV !== 'production') {
+        if (!props.theme) {
+          console.error('@material-ui/system: you are calling a style function without a theme value.');
+        }
+      }
+
+      if (Array.isArray(propValue)) {
+        var themeBreakpoints = props.theme.breakpoints || defaultBreakpoints;
+        return propValue.reduce(function (acc, item, index) {
+          acc[themeBreakpoints.up(themeBreakpoints.keys[index])] = styleFromPropValue(propValue[index]);
+          return acc;
+        }, {});
+      }
+
+      if (_typeof(propValue) === 'object') {
+        var _themeBreakpoints = props.theme.breakpoints || defaultBreakpoints;
+
+        return Object.keys(propValue).reduce(function (acc, breakpoint) {
+          acc[_themeBreakpoints.up(breakpoint)] = styleFromPropValue(propValue[breakpoint]);
+          return acc;
+        }, {});
+      }
+
+      var output = styleFromPropValue(propValue);
+      return output;
+    }
+
+    function getPath(obj, path) {
+      if (!path || typeof path !== 'string') {
+        return null;
+      }
+
+      return path.split('.').reduce(function (acc, item) {
+        return acc && acc[item] ? acc[item] : null;
+      }, obj);
+    }
+
+    function style$1(options) {
+      var prop = options.prop,
+          _options$cssProperty = options.cssProperty,
+          cssProperty = _options$cssProperty === void 0 ? options.prop : _options$cssProperty,
+          themeKey = options.themeKey,
+          transform = options.transform;
+
+      var fn = function fn(props) {
+        if (props[prop] == null) {
+          return null;
+        }
+
+        var propValue = props[prop];
+        var theme = props.theme;
+        var themeMapping = getPath(theme, themeKey) || {};
+
+        var styleFromPropValue = function styleFromPropValue(propValueFinal) {
+          var value;
+
+          if (typeof themeMapping === 'function') {
+            value = themeMapping(propValueFinal);
+          } else if (Array.isArray(themeMapping)) {
+            value = themeMapping[propValueFinal];
+          } else {
+            value = getPath(themeMapping, propValueFinal) || propValueFinal;
+
+            if (transform) {
+              value = transform(value);
+            }
+          }
+
+          if (cssProperty === false) {
+            return value;
+          }
+
+          return _defineProperty({}, cssProperty, value);
+        };
+
+        return handleBreakpoints(props, propValue, styleFromPropValue);
+      };
+
+      fn.propTypes = process.env.NODE_ENV !== 'production' ? _defineProperty({}, prop, responsivePropType) : {};
+      fn.filterProps = [prop];
+      return fn;
+    }
+
+    function compose() {
+      for (var _len = arguments.length, styles = new Array(_len), _key = 0; _key < _len; _key++) {
+        styles[_key] = arguments[_key];
+      }
+
+      var fn = function fn(props) {
+        return styles.reduce(function (acc, style) {
+          var output = style(props);
+
+          if (output) {
+            return merge(acc, output);
+          }
+
+          return acc;
+        }, {});
+      }; // Alternative approach that doesn't yield any performance gain.
+      // const handlers = styles.reduce((acc, style) => {
+      //   style.filterProps.forEach(prop => {
+      //     acc[prop] = style;
+      //   });
+      //   return acc;
+      // }, {});
+      // const fn = props => {
+      //   return Object.keys(props).reduce((acc, prop) => {
+      //     if (handlers[prop]) {
+      //       return merge(acc, handlers[prop](props));
+      //     }
+      //     return acc;
+      //   }, {});
+      // };
+
+
+      fn.propTypes = process.env.NODE_ENV !== 'production' ? styles.reduce(function (acc, style) {
+        return _extends(acc, style.propTypes);
+      }, {}) : {};
+      fn.filterProps = styles.reduce(function (acc, style) {
+        return acc.concat(style.filterProps);
+      }, []);
+      return fn;
+    }
+
+    function getBorder(value) {
+      if (typeof value !== 'number') {
+        return value;
+      }
+
+      return "".concat(value, "px solid");
+    }
+
+    var border = style$1({
+      prop: 'border',
+      themeKey: 'borders',
+      transform: getBorder
+    });
+    var borderTop = style$1({
+      prop: 'borderTop',
+      themeKey: 'borders',
+      transform: getBorder
+    });
+    var borderRight = style$1({
+      prop: 'borderRight',
+      themeKey: 'borders',
+      transform: getBorder
+    });
+    var borderBottom = style$1({
+      prop: 'borderBottom',
+      themeKey: 'borders',
+      transform: getBorder
+    });
+    var borderLeft = style$1({
+      prop: 'borderLeft',
+      themeKey: 'borders',
+      transform: getBorder
+    });
+    var borderColor = style$1({
+      prop: 'borderColor',
+      themeKey: 'palette'
+    });
+    var borderRadius = style$1({
+      prop: 'borderRadius',
+      themeKey: 'shape'
+    });
+    var borders = compose(border, borderTop, borderRight, borderBottom, borderLeft, borderColor, borderRadius);
+
+    function omit$1(input, fields) {
+      var output = {};
+      Object.keys(input).forEach(function (prop) {
+        if (fields.indexOf(prop) === -1) {
+          output[prop] = input[prop];
+        }
+      });
+      return output;
+    }
+
+    function css$d(styleFunction) {
+      var newStyleFunction = function newStyleFunction(props) {
+        var output = styleFunction(props);
+
+        if (props.css) {
+          return _extends({}, merge(output, styleFunction(_extends({
+            theme: props.theme
+          }, props.css))), {}, omit$1(props.css, [styleFunction.filterProps]));
+        }
+
+        return output;
+      };
+
+      newStyleFunction.propTypes = process.env.NODE_ENV !== 'production' ? _extends({}, styleFunction.propTypes, {
+        css: propTypes.object
+      }) : {};
+      newStyleFunction.filterProps = ['css'].concat(_toConsumableArray(styleFunction.filterProps));
+      return newStyleFunction;
+    }
+
+    var displayPrint = style$1({
+      prop: 'displayPrint',
+      cssProperty: false,
+      transform: function transform(value) {
+        return {
+          '@media print': {
+            display: value
+          }
+        };
+      }
+    });
+    var displayRaw = style$1({
+      prop: 'display'
+    });
+    var overflow = style$1({
+      prop: 'overflow'
+    });
+    var textOverflow = style$1({
+      prop: 'textOverflow'
+    });
+    var visibility = style$1({
+      prop: 'visibility'
+    });
+    var whiteSpace = style$1({
+      prop: 'whiteSpace'
+    });
+    var display = compose(displayPrint, displayRaw, overflow, textOverflow, visibility, whiteSpace);
+
+    var flexBasis = style$1({
+      prop: 'flexBasis'
+    });
+    var flexDirection = style$1({
+      prop: 'flexDirection'
+    });
+    var flexWrap = style$1({
+      prop: 'flexWrap'
+    });
+    var justifyContent = style$1({
+      prop: 'justifyContent'
+    });
+    var alignItems = style$1({
+      prop: 'alignItems'
+    });
+    var alignContent = style$1({
+      prop: 'alignContent'
+    });
+    var order = style$1({
+      prop: 'order'
+    });
+    var flex = style$1({
+      prop: 'flex'
+    });
+    var flexGrow = style$1({
+      prop: 'flexGrow'
+    });
+    var flexShrink = style$1({
+      prop: 'flexShrink'
+    });
+    var alignSelf = style$1({
+      prop: 'alignSelf'
+    });
+    var justifyItems = style$1({
+      prop: 'justifyItems'
+    });
+    var justifySelf = style$1({
+      prop: 'justifySelf'
+    });
+    var flexbox = compose(flexBasis, flexDirection, flexWrap, justifyContent, alignItems, alignContent, order, flex, flexGrow, flexShrink, alignSelf, justifyItems, justifySelf);
+
+    var color = style$1({
+      prop: 'color',
+      themeKey: 'palette'
+    });
+    var bgcolor = style$1({
+      prop: 'bgcolor',
+      cssProperty: 'backgroundColor',
+      themeKey: 'palette'
+    });
+    var palette = compose(color, bgcolor);
+
+    var position = style$1({
+      prop: 'position'
+    });
+    var zIndex$1 = style$1({
+      prop: 'zIndex',
+      themeKey: 'zIndex'
+    });
+    var top = style$1({
+      prop: 'top'
+    });
+    var right = style$1({
+      prop: 'right'
+    });
+    var bottom = style$1({
+      prop: 'bottom'
+    });
+    var left = style$1({
+      prop: 'left'
+    });
+    var positions = compose(position, zIndex$1, top, right, bottom, left);
+
+    var boxShadow = style$1({
+      prop: 'boxShadow',
+      themeKey: 'shadows'
+    });
+
+    function transform$1(value) {
+      return value <= 1 ? "".concat(value * 100, "%") : value;
+    }
+
+    var width = style$1({
+      prop: 'width',
+      transform: transform$1
+    });
+    var maxWidth = style$1({
+      prop: 'maxWidth',
+      transform: transform$1
+    });
+    var minWidth = style$1({
+      prop: 'minWidth',
+      transform: transform$1
+    });
+    var height = style$1({
+      prop: 'height',
+      transform: transform$1
+    });
+    var maxHeight = style$1({
+      prop: 'maxHeight',
+      transform: transform$1
+    });
+    var minHeight = style$1({
+      prop: 'minHeight',
+      transform: transform$1
+    });
+    var sizeWidth = style$1({
+      prop: 'size',
+      cssProperty: 'width',
+      transform: transform$1
+    });
+    var sizeHeight = style$1({
+      prop: 'size',
+      cssProperty: 'height',
+      transform: transform$1
+    });
+    var sizing = compose(width, maxWidth, minWidth, height, maxHeight, minHeight);
+
+    function _arrayWithHoles(arr) {
+      if (Array.isArray(arr)) return arr;
+    }
+
+    function _iterableToArrayLimit(arr, i) {
+      if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
+        return;
+      }
+
+      var _arr = [];
+      var _n = true;
+      var _d = false;
+      var _e = undefined;
+
+      try {
+        for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+          _arr.push(_s.value);
+
+          if (i && _arr.length === i) break;
+        }
+      } catch (err) {
+        _d = true;
+        _e = err;
+      } finally {
+        try {
+          if (!_n && _i["return"] != null) _i["return"]();
+        } finally {
+          if (_d) throw _e;
+        }
+      }
+
+      return _arr;
+    }
+
+    function _nonIterableRest() {
+      throw new TypeError("Invalid attempt to destructure non-iterable instance");
+    }
+
+    function _slicedToArray(arr, i) {
+      return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
+    }
+
+    function memoize$1(fn) {
+      var cache = {};
+      return function (arg) {
+        if (cache[arg] === undefined) {
+          cache[arg] = fn(arg);
+        }
+
+        return cache[arg];
+      };
+    }
+
+    var properties = {
+      m: 'margin',
+      p: 'padding'
+    };
+    var directions = {
+      t: 'Top',
+      r: 'Right',
+      b: 'Bottom',
+      l: 'Left',
+      x: ['Left', 'Right'],
+      y: ['Top', 'Bottom']
+    };
+    var aliases = {
+      marginX: 'mx',
+      marginY: 'my',
+      paddingX: 'px',
+      paddingY: 'py'
+    }; // memoize() impact:
+    // From 300,000 ops/sec
+    // To 350,000 ops/sec
+
+    var getCssProperties = memoize$1(function (prop) {
+      // It's not a shorthand notation.
+      if (prop.length > 2) {
+        if (aliases[prop]) {
+          prop = aliases[prop];
+        } else {
+          return [prop];
+        }
+      }
+
+      var _prop$split = prop.split(''),
+          _prop$split2 = _slicedToArray(_prop$split, 2),
+          a = _prop$split2[0],
+          b = _prop$split2[1];
+
+      var property = properties[a];
+      var direction = directions[b] || '';
+      return Array.isArray(direction) ? direction.map(function (dir) {
+        return property + dir;
+      }) : [property + direction];
+    });
+    var spacingKeys = ['m', 'mt', 'mr', 'mb', 'ml', 'mx', 'my', 'p', 'pt', 'pr', 'pb', 'pl', 'px', 'py', 'margin', 'marginTop', 'marginRight', 'marginBottom', 'marginLeft', 'marginX', 'marginY', 'padding', 'paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft', 'paddingX', 'paddingY'];
+
+    function getTransformer(theme) {
+      var themeSpacing = theme.spacing || 8;
+
+      if (typeof themeSpacing === 'number') {
+        return function (abs) {
+          return themeSpacing * abs;
+        };
+      }
+
+      if (Array.isArray(themeSpacing)) {
+        return function (abs) {
+          if (process.env.NODE_ENV !== 'production') {
+            if (abs > themeSpacing.length - 1) {
+              console.error(["@material-ui/system: the value provided (".concat(abs, ") overflows."), "The supported values are: ".concat(JSON.stringify(themeSpacing), "."), "".concat(abs, " > ").concat(themeSpacing.length - 1, ", you need to add the missing values.")].join('\n'));
+            }
+          }
+
+          return themeSpacing[abs];
+        };
+      }
+
+      if (typeof themeSpacing === 'function') {
+        return themeSpacing;
+      }
+
+      if (process.env.NODE_ENV !== 'production') {
+        console.error(["@material-ui/system: the `theme.spacing` value (".concat(themeSpacing, ") is invalid."), 'It should be a number, an array or a function.'].join('\n'));
+      }
+
+      return function () {
+        return undefined;
+      };
+    }
+
+    function getValue(transformer, propValue) {
+      if (typeof propValue === 'string') {
+        return propValue;
+      }
+
+      var abs = Math.abs(propValue);
+      var transformed = transformer(abs);
+
+      if (propValue >= 0) {
+        return transformed;
+      }
+
+      if (typeof transformed === 'number') {
+        return -transformed;
+      }
+
+      return "-".concat(transformed);
+    }
+
+    function getStyleFromPropValue(cssProperties, transformer) {
+      return function (propValue) {
+        return cssProperties.reduce(function (acc, cssProperty) {
+          acc[cssProperty] = getValue(transformer, propValue);
+          return acc;
+        }, {});
+      };
+    }
+
+    function spacing(props) {
+      var theme = props.theme;
+      var transformer = getTransformer(theme);
+      return Object.keys(props).map(function (prop) {
+        // Using a hash computation over an array iteration could be faster, but with only 28 items,
+        // it's doesn't worth the bundle size.
+        if (spacingKeys.indexOf(prop) === -1) {
+          return null;
+        }
+
+        var cssProperties = getCssProperties(prop);
+        var styleFromPropValue = getStyleFromPropValue(cssProperties, transformer);
+        var propValue = props[prop];
+        return handleBreakpoints(props, propValue, styleFromPropValue);
+      }).reduce(merge, {});
+    }
+
+    spacing.propTypes = process.env.NODE_ENV !== 'production' ? spacingKeys.reduce(function (obj, key) {
+      obj[key] = responsivePropType;
+      return obj;
+    }, {}) : {};
+    spacing.filterProps = spacingKeys;
+
+    var fontFamily = style$1({
+      prop: 'fontFamily',
+      themeKey: 'typography'
+    });
+    var fontSize = style$1({
+      prop: 'fontSize',
+      themeKey: 'typography'
+    });
+    var fontStyle = style$1({
+      prop: 'fontStyle',
+      themeKey: 'typography'
+    });
+    var fontWeight = style$1({
+      prop: 'fontWeight',
+      themeKey: 'typography'
+    });
+    var letterSpacing = style$1({
+      prop: 'letterSpacing'
+    });
+    var lineHeight = style$1({
+      prop: 'lineHeight'
+    });
+    var textAlign = style$1({
+      prop: 'textAlign'
+    });
+    var typography = compose(fontFamily, fontSize, fontStyle, fontWeight, letterSpacing, lineHeight, textAlign);
+
+    /** @license Material-UI v4.4.3
+     *
+     * This source code is licensed under the MIT license found in the
+     * LICENSE file in the root directory of this source tree.
+     */
+
+    var styled$1 = function styled$$1(Component) {
+      var componentCreator = styled(Component);
+      return function (style, options) {
+        return componentCreator(style, _extends({
+          defaultTheme: defaultTheme
+        }, options));
+      };
+    };
+
+    var styleFunction = css$d(compose(borders, display, flexbox, positions, palette, boxShadow, sizing, spacing, typography));
+    /**
+     * @ignore - do not document.
+     */
+
+    var Box = styled$1('div')(styleFunction, {
+      name: 'MuiBox'
+    });
+
+    function unsupportedProp(props, propName, componentName, location, propFullName) {
+      if (process.env.NODE_ENV === 'production') {
+        return null;
+      }
+
+      var propFullNameSafe = propFullName || propName;
+
+      if (typeof props[propName] !== 'undefined') {
+        return new Error("The prop `".concat(propFullNameSafe, "` is not supported. Please remove it."));
+      }
+
+      return null;
+    }
+
+    var styles$q = function styles(theme) {
+      var _extends2;
+
+      return {
+        /* Styles applied to the root element. */
+        root: _extends({}, theme.typography.button, (_extends2 = {
+          maxWidth: 264,
+          minWidth: 72,
+          position: 'relative',
+          boxSizing: 'border-box',
+          minHeight: 48,
+          flexShrink: 0,
+          padding: '6px 12px'
+        }, _defineProperty(_extends2, theme.breakpoints.up('sm'), {
+          padding: '6px 24px'
+        }), _defineProperty(_extends2, "overflow", 'hidden'), _defineProperty(_extends2, "whiteSpace", 'normal'), _defineProperty(_extends2, "textAlign", 'center'), _defineProperty(_extends2, theme.breakpoints.up('sm'), {
+          fontSize: theme.typography.pxToRem(13),
+          minWidth: 160
+        }), _extends2)),
+
+        /* Styles applied to the root element if both `icon` and `label` are provided. */
+        labelIcon: {
+          minHeight: 72,
+          paddingTop: 9,
+          '& $wrapper > *:first-child': {
+            marginBottom: 6
+          }
+        },
+
+        /* Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="inherit"`. */
+        textColorInherit: {
+          color: 'inherit',
+          opacity: 0.7,
+          '&$selected': {
+            opacity: 1
+          },
+          '&$disabled': {
+            opacity: 0.4
+          }
+        },
+
+        /* Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="primary"`. */
+        textColorPrimary: {
+          color: theme.palette.text.secondary,
+          '&$selected': {
+            color: theme.palette.primary.main
+          },
+          '&$disabled': {
+            color: theme.palette.text.disabled
+          }
+        },
+
+        /* Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="secondary"`. */
+        textColorSecondary: {
+          color: theme.palette.text.secondary,
+          '&$selected': {
+            color: theme.palette.secondary.main
+          },
+          '&$disabled': {
+            color: theme.palette.text.disabled
+          }
+        },
+
+        /* Pseudo-class applied to the root element if `selected={true}` (controlled by the Tabs component). */
+        selected: {},
+
+        /* Pseudo-class applied to the root element if `disabled={true}` (controlled by the Tabs component). */
+        disabled: {},
+
+        /* Styles applied to the root element if `fullWidth={true}` (controlled by the Tabs component). */
+        fullWidth: {
+          flexShrink: 1,
+          flexGrow: 1,
+          flexBasis: 0,
+          maxWidth: 'none'
+        },
+
+        /* Styles applied to the root element if `wrapped={true}`. */
+        wrapped: {
+          fontSize: theme.typography.pxToRem(12),
+          lineHeight: 1.5
+        },
+
+        /* Styles applied to the `icon` and `label`'s wrapper element. */
+        wrapper: {
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+          flexDirection: 'column'
+        }
+      };
+    };
+    var Tab = React__default.forwardRef(function Tab(props, ref) {
+      var classes = props.classes,
+          className = props.className,
+          _props$disabled = props.disabled,
+          disabled = _props$disabled === void 0 ? false : _props$disabled,
+          _props$disableFocusRi = props.disableFocusRipple,
+          disableFocusRipple = _props$disableFocusRi === void 0 ? false : _props$disableFocusRi,
+          fullWidth = props.fullWidth,
+          icon = props.icon,
+          indicator = props.indicator,
+          label = props.label,
+          onChange = props.onChange,
+          onClick = props.onClick,
+          selected = props.selected,
+          _props$textColor = props.textColor,
+          textColor = _props$textColor === void 0 ? 'inherit' : _props$textColor,
+          value = props.value,
+          _props$wrapped = props.wrapped,
+          wrapped = _props$wrapped === void 0 ? false : _props$wrapped,
+          other = _objectWithoutProperties(props, ["classes", "className", "disabled", "disableFocusRipple", "fullWidth", "icon", "indicator", "label", "onChange", "onClick", "selected", "textColor", "value", "wrapped"]);
+
+      var handleChange = function handleChange(event) {
+        if (onChange) {
+          onChange(event, value);
+        }
+
+        if (onClick) {
+          onClick(event);
+        }
+      };
+
+      return React__default.createElement(ButtonBase$1, _extends({
+        focusRipple: !disableFocusRipple,
+        className: clsx(classes.root, classes["textColor".concat(capitalize(textColor))], className, disabled && classes.disabled, selected && classes.selected, label && icon && classes.labelIcon, fullWidth && classes.fullWidth, wrapped && classes.wrapped),
+        ref: ref,
+        role: "tab",
+        "aria-selected": selected,
+        disabled: disabled,
+        onClick: handleChange
+      }, other), React__default.createElement("span", {
+        className: classes.wrapper
+      }, icon, label), indicator);
+    });
+    process.env.NODE_ENV !== "production" ? Tab.propTypes = {
+      /**
+       * This prop isn't supported.
+       * Use the `component` prop if you need to change the children structure.
+       */
+      children: unsupportedProp,
+
+      /**
+       * Override or extend the styles applied to the component.
+       * See [CSS API](#css) below for more details.
+       */
+      classes: propTypes.object.isRequired,
+
+      /**
+       * @ignore
+       */
+      className: propTypes.string,
+
+      /**
+       * If `true`, the tab will be disabled.
+       */
+      disabled: propTypes.bool,
+
+      /**
+       * If `true`, the  keyboard focus ripple will be disabled.
+       * `disableRipple` must also be true.
+       */
+      disableFocusRipple: propTypes.bool,
+
+      /**
+       * If `true`, the ripple effect will be disabled.
+       */
+      disableRipple: propTypes.bool,
+
+      /**
+       * @ignore
+       */
+      fullWidth: propTypes.bool,
+
+      /**
+       * The icon element.
+       */
+      icon: propTypes.node,
+
+      /**
+       * @ignore
+       * For server-side rendering consideration, we let the selected tab
+       * render the indicator.
+       */
+      indicator: propTypes.node,
+
+      /**
+       * The label element.
+       */
+      label: propTypes.node,
+
+      /**
+       * @ignore
+       */
+      onChange: propTypes.func,
+
+      /**
+       * @ignore
+       */
+      onClick: propTypes.func,
+
+      /**
+       * @ignore
+       */
+      selected: propTypes.bool,
+
+      /**
+       * @ignore
+       */
+      textColor: propTypes.oneOf(['secondary', 'primary', 'inherit']),
+
+      /**
+       * You can provide your own value. Otherwise, we fallback to the child position index.
+       */
+      value: propTypes.any,
+
+      /**
+       * Tab labels appear in a single row.
+       * They can use a second line if needed.
+       */
+      wrapped: propTypes.bool
+    } : void 0;
+    var Tab$1 = withStyles$1(styles$q, {
+      name: 'MuiTab'
+    })(Tab);
+
+    // Based on https://github.com/react-bootstrap/dom-helpers/blob/master/src/util/inDOM.js
+    var inDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+    var cachedType;
+    // Based on the jquery plugin https://github.com/othree/jquery.rtl-scroll-type
+    function detectScrollType() {
+        if (cachedType) {
+            return cachedType;
+        }
+        if (!inDOM || !window.document.body) {
+            return 'indeterminate';
+        }
+        var dummy = window.document.createElement('div');
+        dummy.appendChild(document.createTextNode('ABCD'));
+        dummy.dir = 'rtl';
+        dummy.style.fontSize = '14px';
+        dummy.style.width = '4px';
+        dummy.style.height = '1px';
+        dummy.style.position = 'absolute';
+        dummy.style.top = '-1000px';
+        dummy.style.overflow = 'scroll';
+        document.body.appendChild(dummy);
+        cachedType = 'reverse';
+        if (dummy.scrollLeft > 0) {
+            cachedType = 'default';
+        }
+        else {
+            dummy.scrollLeft = 1;
+            if (dummy.scrollLeft === 0) {
+                cachedType = 'negative';
+            }
+        }
+        document.body.removeChild(dummy);
+        return cachedType;
+    }
+    // Based on https://stackoverflow.com/a/24394376
+    function getNormalizedScrollLeft(element, direction) {
+        var scrollLeft = element.scrollLeft;
+        // Perform the calculations only when direction is rtl to avoid messing up the ltr bahavior
+        if (direction !== 'rtl') {
+            return scrollLeft;
+        }
+        var type = detectScrollType();
+        if (type === 'indeterminate') {
+            return Number.NaN;
+        }
+        switch (type) {
+            case 'negative':
+                return element.scrollWidth - element.clientWidth + scrollLeft;
+            case 'reverse':
+                return element.scrollWidth - element.clientWidth - scrollLeft;
+        }
+        return scrollLeft;
+    }
+
+    function easeInOutSin(time) {
+      return (1 + Math.sin(Math.PI * time - Math.PI / 2)) / 2;
+    }
+
+    function animate(property, element, to) {
+      var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+      var cb = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : function () {};
+      var _options$ease = options.ease,
+          ease = _options$ease === void 0 ? easeInOutSin : _options$ease,
+          _options$duration = options.duration,
+          duration = _options$duration === void 0 ? 300 : _options$duration;
+      var start = null;
+      var from = element[property];
+      var cancelled = false;
+
+      var cancel = function cancel() {
+        cancelled = true;
+      };
+
+      var step = function step(timestamp) {
+        if (cancelled) {
+          cb(new Error('Animation cancelled'));
+          return;
+        }
+
+        if (start === null) {
+          start = timestamp;
+        }
+
+        var time = Math.min(1, (timestamp - start) / duration);
+        element[property] = ease(time) * (to - from) + from;
+
+        if (time >= 1) {
+          requestAnimationFrame(function () {
+            cb(null);
+          });
+          return;
+        }
+
+        requestAnimationFrame(step);
+      };
+
+      if (from === to) {
+        cb(new Error('Element already at target position'));
+        return cancel;
+      }
+
+      requestAnimationFrame(step);
+      return cancel;
+    }
+
+    var styles$r = {
+      width: 99,
+      height: 99,
+      position: 'absolute',
+      top: -9999,
+      overflow: 'scroll'
+    };
+    /**
+     * @ignore - internal component.
+     * The component is originates from https://github.com/STORIS/react-scrollbar-size.
+     * It has been moved into the core in order to minimize the bundle size.
+     */
+
+    function ScrollbarSize(props) {
+      var onChange = props.onChange,
+          other = _objectWithoutProperties(props, ["onChange"]);
+
+      var scrollbarHeight = React__default.useRef();
+      var nodeRef = React__default.useRef(null);
+
+      var setMeasurements = function setMeasurements() {
+        scrollbarHeight.current = nodeRef.current.offsetHeight - nodeRef.current.clientHeight;
+      };
+
+      React__default.useEffect(function () {
+        var handleResize = debounce(function () {
+          var prevHeight = scrollbarHeight.current;
+          setMeasurements();
+
+          if (prevHeight !== scrollbarHeight.current) {
+            onChange(scrollbarHeight.current);
+          }
+        });
+        window.addEventListener('resize', handleResize);
+        return function () {
+          handleResize.clear();
+          window.removeEventListener('resize', handleResize);
+        };
+      }, [onChange]);
+      React__default.useEffect(function () {
+        setMeasurements();
+        onChange(scrollbarHeight.current);
+      }, [onChange]);
+      return React__default.createElement("div", _extends({
+        style: styles$r,
+        ref: nodeRef
+      }, other));
+    }
+    process.env.NODE_ENV !== "production" ? ScrollbarSize.propTypes = {
+      onChange: propTypes.func.isRequired
+    } : void 0;
+
+    var styles$s = function styles(theme) {
+      return {
+        root: {
+          position: 'absolute',
+          height: 2,
+          bottom: 0,
+          width: '100%',
+          transition: theme.transitions.create()
+        },
+        colorPrimary: {
+          backgroundColor: theme.palette.primary.main
+        },
+        colorSecondary: {
+          backgroundColor: theme.palette.secondary.main
+        },
+        vertical: {
+          height: '100%',
+          width: 2,
+          right: 0
+        }
+      };
+    };
+    /**
+     * @ignore - internal component.
+     */
+
+    var TabIndicator = React__default.forwardRef(function TabIndicator(props, ref) {
+      var classes = props.classes,
+          className = props.className,
+          color = props.color,
+          orientation = props.orientation,
+          other = _objectWithoutProperties(props, ["classes", "className", "color", "orientation"]);
+
+      return React__default.createElement("span", _extends({
+        className: clsx(classes.root, classes["color".concat(capitalize(color))], className, {
+          vertical: classes.vertical
+        }[orientation]),
+        ref: ref
+      }, other));
+    });
+    process.env.NODE_ENV !== "production" ? TabIndicator.propTypes = {
+      /**
+       * Override or extend the styles applied to the component.
+       * See [CSS API](#css) below for more details.
+       */
+      classes: propTypes.object.isRequired,
+
+      /**
+       * @ignore
+       */
+      className: propTypes.string,
+
+      /**
+       * @ignore
+       * The color of the tab indicator.
+       */
+      color: propTypes.oneOf(['primary', 'secondary']).isRequired,
+
+      /**
+       * The tabs orientation (layout flow direction).
+       */
+      orientation: propTypes.oneOf(['horizontal', 'vertical']).isRequired
+    } : void 0;
+    var TabIndicator$1 = withStyles$1(styles$s, {
+      name: 'PrivateTabIndicator'
+    })(TabIndicator);
+
+    /**
+     * @ignore - internal component.
+     */
+
+    var KeyboardArrowLeft = createSvgIcon(React__default.createElement("path", {
+      d: "M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z"
+    }), 'KeyboardArrowLeft');
+
+    /**
+     * @ignore - internal component.
+     */
+
+    var KeyboardArrowRight = createSvgIcon(React__default.createElement("path", {
+      d: "M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"
+    }), 'KeyboardArrowRight');
+
+    var styles$t = {
+      root: {
+        width: 40,
+        flexShrink: 0
+      },
+      vertical: {
+        width: '100%',
+        height: 40,
+        '& svg': {
+          transform: 'rotate(90deg)'
+        }
+      }
+    };
+    /**
+     * @ignore - internal component.
+     */
+
+    var _ref$1 = React__default.createElement(KeyboardArrowLeft, {
+      fontSize: "small"
+    });
+
+    var _ref2$1 = React__default.createElement(KeyboardArrowRight, {
+      fontSize: "small"
+    });
+
+    var TabScrollButton = React__default.forwardRef(function TabScrollButton(props, ref) {
+      var classes = props.classes,
+          classNameProp = props.className,
+          direction = props.direction,
+          orientation = props.orientation,
+          visible = props.visible,
+          other = _objectWithoutProperties(props, ["classes", "className", "direction", "orientation", "visible"]);
+
+      var className = clsx(classes.root, classNameProp, {
+        vertical: classes.vertical
+      }[orientation]);
+
+      if (!visible) {
+        return React__default.createElement("div", {
+          className: className
+        });
+      }
+
+      return React__default.createElement(ButtonBase$1, _extends({
+        component: "div",
+        className: className,
+        ref: ref,
+        role: null,
+        tabIndex: null
+      }, other), direction === 'left' ? _ref$1 : _ref2$1);
+    });
+    process.env.NODE_ENV !== "production" ? TabScrollButton.propTypes = {
+      /**
+       * Override or extend the styles applied to the component.
+       * See [CSS API](#css) below for more details.
+       */
+      classes: propTypes.object.isRequired,
+
+      /**
+       * @ignore
+       */
+      className: propTypes.string,
+
+      /**
+       * Which direction should the button indicate?
+       */
+      direction: propTypes.oneOf(['left', 'right']).isRequired,
+
+      /**
+       * The tabs orientation (layout flow direction).
+       */
+      orientation: propTypes.oneOf(['horizontal', 'vertical']).isRequired,
+
+      /**
+       * Should the button be present or just consume space.
+       */
+      visible: propTypes.bool.isRequired
+    } : void 0;
+    var TabScrollButton$1 = withStyles$1(styles$t, {
+      name: 'PrivateTabScrollButton'
+    })(TabScrollButton);
+
+    var styles$u = function styles(theme) {
+      return {
+        /* Styles applied to the root element. */
+        root: {
+          overflow: 'hidden',
+          minHeight: 48,
+          WebkitOverflowScrolling: 'touch',
+          // Add iOS momentum scrolling.
+          display: 'flex'
+        },
+
+        /* Styles applied to the root element if `orientation="vertical"`. */
+        vertical: {
+          flexDirection: 'column'
+        },
+
+        /* Styles applied to the flex container element. */
+        flexContainer: {
+          display: 'flex'
+        },
+
+        /* Styles applied to the flex container element if `orientation="vertical"`. */
+        flexContainerVertical: {
+          flexDirection: 'column'
+        },
+
+        /* Styles applied to the flex container element if `centered={true}` & `!variant="scrollable"`. */
+        centered: {
+          justifyContent: 'center'
+        },
+
+        /* Styles applied to the tablist element. */
+        scroller: {
+          position: 'relative',
+          display: 'inline-block',
+          flex: '1 1 auto',
+          whiteSpace: 'nowrap'
+        },
+
+        /* Styles applied to the tablist element if `!variant="scrollable"`. */
+        fixed: {
+          overflowX: 'hidden',
+          width: '100%'
+        },
+
+        /* Styles applied to the tablist element if `variant="scrollable"`. */
+        scrollable: {
+          overflowX: 'scroll',
+          // Hide dimensionless scrollbar on MacOS
+          scrollbarWidth: 'none',
+          // Firefox
+          '&::-webkit-scrollbar': {
+            display: 'none' // Safari + Chrome
+
+          }
+        },
+
+        /* Styles applied to the `ScrollButtonComponent` component. */
+        scrollButtons: {},
+
+        /* Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"` or scrollButtons="desktop"`. */
+        scrollButtonsDesktop: _defineProperty({}, theme.breakpoints.down('xs'), {
+          display: 'none'
+        }),
+
+        /* Styles applied to the `TabIndicator` component. */
+        indicator: {}
+      };
+    };
+    var Tabs = React__default.forwardRef(function Tabs(props, ref) {
+      var action = props.action,
+          _props$centered = props.centered,
+          centered = _props$centered === void 0 ? false : _props$centered,
+          childrenProp = props.children,
+          classes = props.classes,
+          className = props.className,
+          _props$component = props.component,
+          Component = _props$component === void 0 ? 'div' : _props$component,
+          _props$indicatorColor = props.indicatorColor,
+          indicatorColor = _props$indicatorColor === void 0 ? 'secondary' : _props$indicatorColor,
+          onChange = props.onChange,
+          _props$orientation = props.orientation,
+          orientation = _props$orientation === void 0 ? 'horizontal' : _props$orientation,
+          _props$ScrollButtonCo = props.ScrollButtonComponent,
+          ScrollButtonComponent = _props$ScrollButtonCo === void 0 ? TabScrollButton$1 : _props$ScrollButtonCo,
+          _props$scrollButtons = props.scrollButtons,
+          scrollButtons = _props$scrollButtons === void 0 ? 'auto' : _props$scrollButtons,
+          _props$TabIndicatorPr = props.TabIndicatorProps,
+          TabIndicatorProps = _props$TabIndicatorPr === void 0 ? {} : _props$TabIndicatorPr,
+          _props$textColor = props.textColor,
+          textColor = _props$textColor === void 0 ? 'inherit' : _props$textColor,
+          value = props.value,
+          _props$variant = props.variant,
+          variant = _props$variant === void 0 ? 'standard' : _props$variant,
+          other = _objectWithoutProperties(props, ["action", "centered", "children", "classes", "className", "component", "indicatorColor", "onChange", "orientation", "ScrollButtonComponent", "scrollButtons", "TabIndicatorProps", "textColor", "value", "variant"]);
+
+      var theme = useTheme$1();
+      var scrollable = variant === 'scrollable';
+      var isRtl = theme.direction === 'rtl';
+      var vertical = orientation === 'vertical';
+      var scrollStart = vertical ? 'scrollTop' : 'scrollLeft';
+      var start = vertical ? 'top' : 'left';
+      var end = vertical ? 'bottom' : 'right';
+      var clientSize = vertical ? 'clientHeight' : 'clientWidth';
+      var size = vertical ? 'height' : 'width';
+
+      if (process.env.NODE_ENV !== 'production') {
+        if (centered && scrollable) {
+          console.error('Material-UI: you can not use the `centered={true}` and `variant="scrollable"` properties ' + 'at the same time on a `Tabs` component.');
+        }
+      }
+
+      var _React$useState = React__default.useState(false),
+          mounted = _React$useState[0],
+          setMounted = _React$useState[1];
+
+      var _React$useState2 = React__default.useState({}),
+          indicatorStyle = _React$useState2[0],
+          setIndicatorStyle = _React$useState2[1];
+
+      var _React$useState3 = React__default.useState({
+        start: false,
+        end: false
+      }),
+          displayScroll = _React$useState3[0],
+          setDisplayScroll = _React$useState3[1];
+
+      var _React$useState4 = React__default.useState({
+        overflow: 'hidden',
+        marginBottom: null
+      }),
+          scrollerStyle = _React$useState4[0],
+          setScrollerStyle = _React$useState4[1];
+
+      var valueToIndex = new Map();
+      var tabsRef = React__default.useRef(null);
+      var childrenWrapperRef = React__default.useRef(null);
+
+      var getTabsMeta = function getTabsMeta() {
+        var tabsNode = tabsRef.current;
+        var tabsMeta;
+
+        if (tabsNode) {
+          var rect = tabsNode.getBoundingClientRect(); // create a new object with ClientRect class props + scrollLeft
+
+          tabsMeta = {
+            clientWidth: tabsNode.clientWidth,
+            scrollLeft: tabsNode.scrollLeft,
+            scrollTop: tabsNode.scrollTop,
+            scrollLeftNormalized: getNormalizedScrollLeft(tabsNode, theme.direction),
+            scrollWidth: tabsNode.scrollWidth,
+            top: rect.top,
+            bottom: rect.bottom,
+            left: rect.left,
+            right: rect.right
+          };
+        }
+
+        var tabMeta;
+
+        if (tabsNode && value !== false) {
+          var _children = childrenWrapperRef.current.children;
+
+          if (_children.length > 0) {
+            var tab = _children[valueToIndex.get(value)];
+
+            if (process.env.NODE_ENV !== 'production') {
+              if (!tab) {
+                console.error(["Material-UI: the value provided `".concat(value, "` to the Tabs component is invalid."), 'None of the Tabs children have this value.', valueToIndex.keys ? "You can provide one of the following values: ".concat(Array.from(valueToIndex.keys()).join(', '), ".") : null].join('\n'));
+              }
+            }
+
+            tabMeta = tab ? tab.getBoundingClientRect() : null;
+          }
+        }
+
+        return {
+          tabsMeta: tabsMeta,
+          tabMeta: tabMeta
+        };
+      };
+
+      var updateIndicatorState = useEventCallback(function () {
+        var _newIndicatorStyle;
+
+        var _getTabsMeta = getTabsMeta(),
+            tabsMeta = _getTabsMeta.tabsMeta,
+            tabMeta = _getTabsMeta.tabMeta;
+
+        var startValue = 0;
+
+        if (tabMeta && tabsMeta) {
+          if (vertical) {
+            startValue = tabMeta.top - tabsMeta.top + tabsMeta.scrollTop;
+          } else {
+            var correction = isRtl ? tabsMeta.scrollLeftNormalized + tabsMeta.clientWidth - tabsMeta.scrollWidth : tabsMeta.scrollLeft;
+            startValue = tabMeta.left - tabsMeta.left + correction;
+          }
+        }
+
+        var newIndicatorStyle = (_newIndicatorStyle = {}, _defineProperty(_newIndicatorStyle, start, startValue), _defineProperty(_newIndicatorStyle, size, tabMeta ? tabMeta[size] : 0), _newIndicatorStyle);
+
+        if (isNaN(indicatorStyle[start]) || isNaN(indicatorStyle[size])) {
+          setIndicatorStyle(newIndicatorStyle);
+        } else {
+          var dStart = Math.abs(indicatorStyle[start] - newIndicatorStyle[start]);
+          var dSize = Math.abs(indicatorStyle[size] - newIndicatorStyle[size]);
+
+          if (dStart >= 1 || dSize >= 1) {
+            setIndicatorStyle(newIndicatorStyle);
+          }
+        }
+      });
+
+      var scroll = function scroll(scrollValue) {
+        animate(scrollStart, tabsRef.current, scrollValue);
+      };
+
+      var moveTabsScroll = function moveTabsScroll(delta) {
+        var scrollValue = tabsRef.current[scrollStart];
+
+        if (vertical) {
+          scrollValue += delta;
+        } else {
+          scrollValue += delta * (isRtl ? -1 : 1); // Fix for Edge
+
+          scrollValue *= isRtl && detectScrollType() === 'reverse' ? -1 : 1;
+        }
+
+        scroll(scrollValue);
+      };
+
+      var handleStartScrollClick = function handleStartScrollClick() {
+        moveTabsScroll(-tabsRef.current[clientSize]);
+      };
+
+      var handleEndScrollClick = function handleEndScrollClick() {
+        moveTabsScroll(tabsRef.current[clientSize]);
+      };
+
+      var handleScrollbarSizeChange = React__default.useCallback(function (scrollbarHeight) {
+        setScrollerStyle({
+          overflow: null,
+          marginBottom: -scrollbarHeight
+        });
+      }, []);
+
+      var getConditionalElements = function getConditionalElements() {
+        var conditionalElements = {};
+        conditionalElements.scrollbarSizeListener = scrollable ? React__default.createElement(ScrollbarSize, {
+          className: classes.scrollable,
+          onChange: handleScrollbarSizeChange
+        }) : null;
+        var scrollButtonsActive = displayScroll.start || displayScroll.end;
+        var showScrollButtons = scrollable && (scrollButtons === 'auto' && scrollButtonsActive || scrollButtons === 'desktop' || scrollButtons === 'on');
+        conditionalElements.scrollButtonStart = showScrollButtons ? React__default.createElement(ScrollButtonComponent, {
+          orientation: orientation,
+          direction: isRtl ? 'right' : 'left',
+          onClick: handleStartScrollClick,
+          visible: displayScroll.start,
+          className: clsx(classes.scrollButtons, scrollButtons !== 'on' && classes.scrollButtonsDesktop)
+        }) : null;
+        conditionalElements.scrollButtonEnd = showScrollButtons ? React__default.createElement(ScrollButtonComponent, {
+          orientation: orientation,
+          direction: isRtl ? 'left' : 'right',
+          onClick: handleEndScrollClick,
+          visible: displayScroll.end,
+          className: clsx(classes.scrollButtons, scrollButtons !== 'on' && classes.scrollButtonsDesktop)
+        }) : null;
+        return conditionalElements;
+      };
+
+      var scrollSelectedIntoView = useEventCallback(function () {
+        var _getTabsMeta2 = getTabsMeta(),
+            tabsMeta = _getTabsMeta2.tabsMeta,
+            tabMeta = _getTabsMeta2.tabMeta;
+
+        if (!tabMeta || !tabsMeta) {
+          return;
+        }
+
+        if (tabMeta[start] < tabsMeta[start]) {
+          // left side of button is out of view
+          var nextScrollStart = tabsMeta[scrollStart] + (tabMeta[start] - tabsMeta[start]);
+          scroll(nextScrollStart);
+        } else if (tabMeta[end] > tabsMeta[end]) {
+          // right side of button is out of view
+          var _nextScrollStart = tabsMeta[scrollStart] + (tabMeta[end] - tabsMeta[end]);
+
+          scroll(_nextScrollStart);
+        }
+      });
+      var updateScrollButtonState = useEventCallback(function () {
+        if (scrollable && scrollButtons !== 'off') {
+          var _tabsRef$current = tabsRef.current,
+              scrollTop = _tabsRef$current.scrollTop,
+              scrollHeight = _tabsRef$current.scrollHeight,
+              clientHeight = _tabsRef$current.clientHeight,
+              scrollWidth = _tabsRef$current.scrollWidth,
+              clientWidth = _tabsRef$current.clientWidth;
+          var showStartScroll;
+          var showEndScroll;
+
+          if (vertical) {
+            showStartScroll = scrollTop > 1;
+            showEndScroll = scrollTop < scrollHeight - clientHeight - 1;
+          } else {
+            var scrollLeft = getNormalizedScrollLeft(tabsRef.current, theme.direction); // use 1 for the potential rounding error with browser zooms.
+
+            showStartScroll = isRtl ? scrollLeft < scrollWidth - clientWidth - 1 : scrollLeft > 1;
+            showEndScroll = !isRtl ? scrollLeft < scrollWidth - clientWidth - 1 : scrollLeft > 1;
+          }
+
+          if (showStartScroll !== displayScroll.start || showEndScroll !== displayScroll.end) {
+            setDisplayScroll({
+              start: showStartScroll,
+              end: showEndScroll
+            });
+          }
+        }
+      });
+      React__default.useEffect(function () {
+        var handleResize = debounce(function () {
+          updateIndicatorState();
+          updateScrollButtonState();
+        });
+        var win = ownerWindow(tabsRef.current);
+        win.addEventListener('resize', handleResize);
+        return function () {
+          handleResize.clear();
+          win.removeEventListener('resize', handleResize);
+        };
+      }, [updateIndicatorState, updateScrollButtonState]);
+      var handleTabsScroll = React__default.useCallback(debounce(function () {
+        updateScrollButtonState();
+      }));
+      React__default.useEffect(function () {
+        return function () {
+          handleTabsScroll.clear();
+        };
+      }, [handleTabsScroll]);
+      React__default.useEffect(function () {
+        setMounted(true);
+      }, []);
+      React__default.useEffect(function () {
+        updateIndicatorState();
+        updateScrollButtonState();
+      });
+      React__default.useEffect(function () {
+        scrollSelectedIntoView();
+      }, [scrollSelectedIntoView, indicatorStyle]);
+      React__default.useImperativeHandle(action, function () {
+        return {
+          updateIndicator: updateIndicatorState
+        };
+      }, [updateIndicatorState]);
+      var indicator = React__default.createElement(TabIndicator$1, _extends({
+        className: classes.indicator,
+        orientation: orientation,
+        color: indicatorColor
+      }, TabIndicatorProps, {
+        style: _extends({}, indicatorStyle, {}, TabIndicatorProps.style)
+      }));
+      var childIndex = 0;
+      var children = React__default.Children.map(childrenProp, function (child) {
+        if (!React__default.isValidElement(child)) {
+          return null;
+        }
+
+        if (process.env.NODE_ENV !== 'production') {
+          if (child.type === React__default.Fragment) {
+            console.error(["Material-UI: the Tabs component doesn't accept a Fragment as a child.", 'Consider providing an array instead.'].join('\n'));
+          }
+        }
+
+        var childValue = child.props.value === undefined ? childIndex : child.props.value;
+        valueToIndex.set(childValue, childIndex);
+        var selected = childValue === value;
+        childIndex += 1;
+        return React__default.cloneElement(child, {
+          fullWidth: variant === 'fullWidth',
+          indicator: selected && !mounted && indicator,
+          selected: selected,
+          onChange: onChange,
+          textColor: textColor,
+          value: childValue
+        });
+      });
+      var conditionalElements = getConditionalElements();
+      return React__default.createElement(Component, _extends({
+        className: clsx(classes.root, className, vertical && classes.vertical),
+        ref: ref
+      }, other), conditionalElements.scrollButtonStart, conditionalElements.scrollbarSizeListener, React__default.createElement("div", {
+        className: clsx(classes.scroller, scrollable ? classes.scrollable : classes.fixed),
+        style: scrollerStyle,
+        ref: tabsRef,
+        onScroll: handleTabsScroll
+      }, React__default.createElement("div", {
+        className: clsx(classes.flexContainer, vertical && classes.flexContainerVertical, centered && !scrollable && classes.centered),
+        ref: childrenWrapperRef,
+        role: "tablist"
+      }, children), mounted && indicator), conditionalElements.scrollButtonEnd);
+    });
+    process.env.NODE_ENV !== "production" ? Tabs.propTypes = {
+      /**
+       * Callback fired when the component mounts.
+       * This is useful when you want to trigger an action programmatically.
+       * It currently only supports `updateIndicator()` action.
+       *
+       * @param {object} actions This object contains all possible actions
+       * that can be triggered programmatically.
+       */
+      action: refType,
+
+      /**
+       * If `true`, the tabs will be centered.
+       * This property is intended for large views.
+       */
+      centered: propTypes.bool,
+
+      /**
+       * The content of the component.
+       */
+      children: propTypes.node,
+
+      /**
+       * Override or extend the styles applied to the component.
+       * See [CSS API](#css) below for more details.
+       */
+      classes: propTypes.object.isRequired,
+
+      /**
+       * @ignore
+       */
+      className: propTypes.string,
+
+      /**
+       * The component used for the root node.
+       * Either a string to use a DOM element or a component.
+       */
+      component: propTypes.elementType,
+
+      /**
+       * Determines the color of the indicator.
+       */
+      indicatorColor: propTypes.oneOf(['secondary', 'primary']),
+
+      /**
+       * Callback fired when the value changes.
+       *
+       * @param {object} event The event source of the callback
+       * @param {any} value We default to the index of the child (number)
+       */
+      onChange: propTypes.func,
+
+      /**
+       * The tabs orientation (layout flow direction).
+       */
+      orientation: propTypes.oneOf(['horizontal', 'vertical']),
+
+      /**
+       * The component used to render the scroll buttons.
+       */
+      ScrollButtonComponent: propTypes.elementType,
+
+      /**
+       * Determine behavior of scroll buttons when tabs are set to scroll:
+       *
+       * - `auto` will only present them when not all the items are visible.
+       * - `desktop` will only present them on medium and larger viewports.
+       * - `on` will always present them.
+       * - `off` will never present them.
+       */
+      scrollButtons: propTypes.oneOf(['auto', 'desktop', 'on', 'off']),
+
+      /**
+       * Props applied to the tab indicator element.
+       */
+      TabIndicatorProps: propTypes.object,
+
+      /**
+       * Determines the color of the `Tab`.
+       */
+      textColor: propTypes.oneOf(['secondary', 'primary', 'inherit']),
+
+      /**
+       * The value of the currently selected `Tab`.
+       * If you don't want any selected `Tab`, you can set this property to `false`.
+       */
+      value: propTypes.any,
+
+      /**
+       *  Determines additional display behavior of the tabs:
+       *
+       *  - `scrollable` will invoke scrolling properties and allow for horizontally
+       *  scrolling (or swiping) of the tab bar.
+       *  -`fullWidth` will make the tabs grow to use all the available space,
+       *  which should be used for small views, like on mobile.
+       *  - `standard` will render the default state.
+       */
+      variant: propTypes.oneOf(['standard', 'scrollable', 'fullWidth'])
+    } : void 0;
+    var Tabs$1 = withStyles$1(styles$u, {
+      name: 'MuiTabs'
+    })(Tabs);
+
+    var NO_TAB_CONTENTS_ERROR = "TabSet expects children prop to hold at least one tab content component.";
+    function TabPanel(props) {
+        var children = props.children, value = props.value, idPrefix = props.idPrefix, index = props.index, other = __rest(props, ["children", "value", "idPrefix", "index"]);
+        return (React__default.createElement(Box, __assign({ component: "div", role: "tabpanel", hidden: value !== index, id: idPrefix + "-tab-panel-" + index, "aria-labelledby": idPrefix + "-tab-" + index }, other),
+            React__default.createElement(Box, { p: 3 }, children)));
+    }
+    function a11yProps(idPrefix, index) {
+        return {
+            "id": idPrefix + "-tab-" + index,
+            "aria-controls": idPrefix + "-tab-panel-" + index,
+        };
+    }
+    function TabSet(props) {
+        var children = props.children, tabNames = props.tabNames, idPrefix = props.idPrefix, initialTabIndex = props.initialTabIndex;
+        var selectedTab = (initialTabIndex !== undefined) ? initialTabIndex : 0;
+        var _a = React__default.useState(selectedTab), value = _a[0], setValue = _a[1];
+        function handleChange(event, newValue) {
+            setValue(newValue);
+        }
+        var tabPanels = children;
+        if (!tabPanels) {
+            throw new Error(NO_TAB_CONTENTS_ERROR);
+        }
+        else {
+            var tabNamesFinal = getTabNamesWithDefaults(tabNames, tabPanels.length);
+            return (React__default.createElement("div", { className: "mt-tab-set" },
+                React__default.createElement(Tabs$1, { indicatorColor: "primary", value: value, onChange: handleChange, "aria-label": "simple tabs example" }, tabNamesFinal.map(function (tabName, index) { return (React__default.createElement(Tab$1, __assign({ key: index, label: tabName }, a11yProps(idPrefix, index)))); })),
+                tabPanels.map(function (child, index) { return (React__default.createElement(TabPanel, { key: index, value: value, index: index }, child)); })));
+        }
+    }
+    var getTabNamesWithDefaults = function (names, count) {
+        var results = [];
+        for (var i = 0, iEnd = count; i < iEnd; i++) {
+            var name_1 = (names.length > i) ? names[i] : "Tab " + (i + 1);
+            results.push(React__default.createElement("span", { "data-qa-element": "tab-name" }, name_1));
+        }
+        return results;
     };
 
     exports.ButtonGroup = ButtonGroup;
@@ -17141,6 +19001,7 @@
     exports.InputFieldRow = InputFieldRow;
     exports.InputLabel = InputLabel$2;
     exports.LoadingOverlay = LoadingOverlay;
+    exports.TabSet = TabSet;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

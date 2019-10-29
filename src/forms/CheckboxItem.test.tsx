@@ -4,6 +4,7 @@ import { fullDomMount, jsxCleanup } from "utils/testing/mountUtils";
 
 import { WrappedFieldInputProps, WrappedFieldMetaProps } from "redux-form";
 import { CheckboxItem } from "./CheckboxItem";
+import { hasQaElement } from "utils/testing/qaElementUtils";
 
 afterEach(jsxCleanup);
 
@@ -32,6 +33,6 @@ describe("CheckboxItem", () => {
                 data-qa-element="test-field"
             />
         );
-        expect(wrapper.exists("#testRadioButtonId")).toBeTruthy();
+        expect(hasQaElement(wrapper, "test-field")).toBeTruthy();
     });
 });

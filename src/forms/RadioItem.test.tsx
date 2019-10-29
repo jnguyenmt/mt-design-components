@@ -4,6 +4,7 @@ import { WrappedFieldInputProps, WrappedFieldMetaProps } from "redux-form";
 import { fullDomMount, jsxCleanup } from "utils/testing/mountUtils";
 
 import { RadioItem } from "./RadioItem";
+import { hasQaElement } from "utils/testing/qaElementUtils";
 
 afterEach(jsxCleanup);
 
@@ -33,6 +34,6 @@ describe("RadioItem", () => {
                 data-qa-element="test-field"
             />
         );
-        expect(wrapper.exists("#radioButtonTestId")).toBeTruthy();
+        expect(hasQaElement(wrapper, "test-field")).toBeTruthy();
     });
 });

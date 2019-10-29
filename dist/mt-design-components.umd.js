@@ -1,7 +1,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react-dom'), require('@material-ui/core'), require('react')) :
     typeof define === 'function' && define.amd ? define(['exports', 'react-dom', '@material-ui/core', 'react'], factory) :
-    (factory((global.index = global.index || {}, global.index.ts = {}),global.ReactDOM,global['@material-ui/core'],global.React));
+    (factory((global.index = global.index || {}, global.index.ts = {}),global.ReactDOM,global.core,global.React));
 }(this, (function (exports,ReactDOM,core,React) { 'use strict';
 
     ReactDOM = ReactDOM && ReactDOM.hasOwnProperty('default') ? ReactDOM['default'] : ReactDOM;

@@ -18,6 +18,6 @@ jobs:
                   @semantic-release/changelog
                   @semantic-release/git
             env:
-                GH_TOKEN: ${{ secrets.GH_TOKEN }}
-                GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+                GH_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
+                GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
                 NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

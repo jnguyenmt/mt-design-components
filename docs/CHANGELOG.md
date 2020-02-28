@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/jnguyenmt/mt-design-components/compare/v1.3.0...v1.4.0) (2020-02-28)
+
+
+### Features
+
+* children is now plural ([c255efb](https://github.com/jnguyenmt/mt-design-components/commit/c255efb8e40d6e9e15d309fc6cdfa2816899c528))
+
+
+### Reverts
+
+* set npm publish to false ([de88ee6](https://github.com/jnguyenmt/mt-design-components/commit/de88ee69cbaea4e7d3e790ed23a9c5e7d25721cc))
+
 # [1.3.0](https://github.com/jnguyenmt/mt-design-components/compare/v1.2.0...v1.3.0) (2020-02-28)
 
 

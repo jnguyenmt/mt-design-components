@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/jnguyenmt/mt-design-components/compare/v1.2.0...v1.3.0) (2020-02-28)
+
+
+### Features
+
+* **buttongroup:** childrens are now a child ([0e523cc](https://github.com/jnguyenmt/mt-design-components/commit/0e523ccdeaa5875bd48995d89e0667d7ccbaa36c))
+
 # [1.2.0](https://github.com/jnguyenmt/mt-design-components/compare/v1.1.0...v1.2.0) (2020-02-28)
 
 

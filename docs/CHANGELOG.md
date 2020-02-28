@@ -1,3 +1,16 @@
+# [1.2.0](https://github.com/jnguyenmt/mt-design-components/compare/v1.1.0...v1.2.0) (2020-02-28)
+
+
+### Bug Fixes
+
+* made it plural again ([ae8ebe5](https://github.com/jnguyenmt/mt-design-components/commit/ae8ebe51acc48a2cc0a8f14a233089a8803ba581))
+
+
+### Features
+
+* **semver:** added github_token to semver.yml ([5226090](https://github.com/jnguyenmt/mt-design-components/commit/5226090e5e25afa6c27afcbb1a618c668d201915))
+* update .releaserc ([1800990](https://github.com/jnguyenmt/mt-design-components/commit/1800990b1c54487ca979afbdee7d7d6ac2a04d84))
+
 # [1.1.0](https://github.com/jnguyenmt/mt-design-components/compare/v1.0.0...v1.1.0) (2020-02-26)
 
 

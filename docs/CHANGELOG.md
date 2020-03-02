@@ -1,3 +1,15 @@
+# [1.7.0](https://github.com/jnguyenmt/mt-design-components/compare/v1.6.0...v1.7.0) (2020-03-02)
+
+
+### Bug Fixes
+
+* pushing with correct secret ([#19](https://github.com/jnguyenmt/mt-design-components/issues/19)) ([2ebcc38](https://github.com/jnguyenmt/mt-design-components/commit/2ebcc38256f07a6d640ae94ddb429b781e064982))
+
+
+### Features
+
+* updated token again ([#18](https://github.com/jnguyenmt/mt-design-components/issues/18)) ([8bbb6f6](https://github.com/jnguyenmt/mt-design-components/commit/8bbb6f6248b1639b40b38e1f27e9b4e19188ef1a))
+
 # [1.6.0](https://github.com/jnguyenmt/mt-design-components/compare/v1.5.0...v1.6.0) (2020-03-02)
 
 

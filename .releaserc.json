@@ -14,7 +14,7 @@
             }
         ],
         [
-            "@semantic-release/git", {
+            "@semantic-release/github", {
                 "assets": [
                     "docs/CHANGELOG.md",
                     "package.json",

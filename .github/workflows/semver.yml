@@ -11,6 +11,8 @@ jobs:
         steps:
           - name: Checkout
             uses: actions/checkout@v2
+            with:
+              token: ${{ secrets.SEMANTIC_RELEASE }}
           - name: Semantic Release
             uses: cycjimmy/semantic-release-action@v2
             with:
@@ -18,5 +20,4 @@ jobs:
                   @semantic-release/changelog
                   @semantic-release/git
             env:
-              GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_V2 }}
               NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

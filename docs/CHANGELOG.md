@@ -1,3 +1,21 @@
+# [1.6.0](https://github.com/jnguyenmt/mt-design-components/compare/v1.5.0...v1.6.0) (2020-03-02)
+
+
+### Bug Fixes
+
+* adjust github token ([#15](https://github.com/jnguyenmt/mt-design-components/issues/15)) ([dd8a9e2](https://github.com/jnguyenmt/mt-design-components/commit/dd8a9e2f35805c51335435ad303cc3e87b10d8eb))
+
+
+### Features
+
+* try with suggested config ([#12](https://github.com/jnguyenmt/mt-design-components/issues/12)) ([2c98eb2](https://github.com/jnguyenmt/mt-design-components/commit/2c98eb203a4d3722c65af2957082b937441dce6a))
+* updated github token ([#16](https://github.com/jnguyenmt/mt-design-components/issues/16)) ([ec9bd73](https://github.com/jnguyenmt/mt-design-components/commit/ec9bd73217dd71d523466360134b16da862b2b3e))
+
+
+### Reverts
+
+* revert to using action to use semantic release ([#14](https://github.com/jnguyenmt/mt-design-components/issues/14)) ([4a054e2](https://github.com/jnguyenmt/mt-design-components/commit/4a054e281e3c2b9b2d79b535993dcc12a571b38e))
+
 # [1.4.0](https://github.com/jnguyenmt/mt-design-components/compare/v1.3.0...v1.4.0) (2020-02-28)
 
 

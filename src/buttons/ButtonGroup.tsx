@@ -13,7 +13,7 @@ export const ButtonGroup = (props: ComponentProps<"div">): JSX.Element => {
             className={"button-group" + givenClasses}
             {...rest}
         >
-            {children}s
+            {children}
         </div>
     );
 };
